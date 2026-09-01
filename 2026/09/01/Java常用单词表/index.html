@@ -1,0 +1,4187 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java常用单词 | Dyblott's Blog</title><meta name="author" content="Dyblott"><meta name="copyright" content="Dyblott"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Java常用单词">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java常用单词">
+<meta property="og:url" content="https://dyblott.github.io/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/index.html">
+<meta property="og:site_name" content="Dyblott&#39;s Blog">
+<meta property="og:description" content="Java常用单词">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dyblott.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-01T07:13:00.000Z">
+<meta property="article:modified_time" content="2026-09-01T07:13:00.000Z">
+<meta property="article:author" content="Dyblott">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="Word">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dyblott.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Java常用单词",
+  "url": "https://dyblott.github.io/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/",
+  "image": "https://dyblott.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-01T07:13:00.000Z",
+  "dateModified": "2026-09-01T07:13:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dyblott",
+      "url": "https://dyblott.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://dyblott.github.io/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java常用单词',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dyblott's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Java常用单词</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Java常用单词</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-01T07:13:00.000Z" title="发表于 2026-09-01 15:13:00">2026-09-01</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-01T07:13:00.000Z" title="更新于 2026-09-01 15:13:00">2026-09-01</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/Word/">Word</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="JavaSE-单词"><a href="#JavaSE-单词" class="headerlink" title="JavaSE 单词"></a>JavaSE 单词</h1><h2 id="一、Java-概述与开发环境"><a href="#一、Java-概述与开发环境" class="headerlink" title="一、Java 概述与开发环境"></a>一、Java 概述与开发环境</h2><h3 id="1-1-平台与核心概念"><a href="#1-1-平台与核心概念" class="headerlink" title="1.1 平台与核心概念"></a>1.1 平台与核心概念</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ Java</td>
+<td align="left">[ˈdʒɑːvə]</td>
+<td align="left">爪哇岛；Java 语言（一种面向对象的编程语言）</td>
+</tr>
+<tr>
+<td align="left">JDK</td>
+<td align="left">—</td>
+<td align="left">Java 开发工具包（Java Developer’s Kit）</td>
+</tr>
+<tr>
+<td align="left">JRE</td>
+<td align="left">—</td>
+<td align="left">Java 运行环境（Java Runtime Environment）</td>
+</tr>
+<tr>
+<td align="left">JVM</td>
+<td align="left">—</td>
+<td align="left">Java 虚拟机（Java Virtual Machine）</td>
+</tr>
+<tr>
+<td align="left">Java SE</td>
+<td align="left">[ˈdʒɑːvə ˈstændəd ɪˈdɪʃn]</td>
+<td align="left">Java 标准版（基础版本，含核心类库和运行环境）</td>
+</tr>
+<tr>
+<td align="left">Java EE</td>
+<td align="left">[ˈdʒɑːvə ˌentəpraɪz ɪˈdɪʃn]</td>
+<td align="left">Java 企业版（企业级应用开发平台）</td>
+</tr>
+<tr>
+<td align="left">Java ME</td>
+<td align="left">[ˈdʒɑːvə ˈmaɪkrəʊ ɪˈdɪʃn]</td>
+<td align="left">Java 小型版（面向嵌入式设备）</td>
+</tr>
+<tr>
+<td align="left">SUN</td>
+<td align="left">—</td>
+<td align="left">斯坦福大学校园网（Stanford University Network）；太阳</td>
+</tr>
+<tr>
+<td align="left">Oracle</td>
+<td align="left">[ˈɔrəkl]</td>
+<td align="left">甲骨文公司；神谕</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-开发环境与流程"><a href="#1-2-开发环境与流程" class="headerlink" title="1.2 开发环境与流程"></a>1.2 开发环境与流程</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">download</td>
+<td align="left">[ˌdaʊnˈləʊd]</td>
+<td align="left">v.&#x2F;n. 下载</td>
+</tr>
+<tr>
+<td align="left">install</td>
+<td align="left">[ɪnˈstɔːl]</td>
+<td align="left">v. 安装；安置</td>
+</tr>
+<tr>
+<td align="left">configure</td>
+<td align="left">[kənˈfɪɡə(r)]</td>
+<td align="left">v. 配置；使成形</td>
+</tr>
+<tr>
+<td align="left">environment</td>
+<td align="left">[ɪnˈvaɪrənmənt]</td>
+<td align="left">n. 环境；外界</td>
+</tr>
+<tr>
+<td align="left">path</td>
+<td align="left">[pɑːθ]</td>
+<td align="left">n. 路径；小路</td>
+</tr>
+<tr>
+<td align="left">variable</td>
+<td align="left">[ˈveəriəbl]</td>
+<td align="left">n. 变量；可变因素 adj. 可变的</td>
+</tr>
+<tr>
+<td align="left">JAVA_HOME</td>
+<td align="left">—</td>
+<td align="left">JDK 的安装根目录，如 D:\ProgramFiles\Java\jdk17</td>
+</tr>
+<tr>
+<td align="left">command</td>
+<td align="left">[kəˈmɑːnd]</td>
+<td align="left">n.&#x2F;v. 命令；控制</td>
+</tr>
+<tr>
+<td align="left">compile</td>
+<td align="left">[kəmˈpaɪl]</td>
+<td align="left">v. 编译</td>
+</tr>
+<tr>
+<td align="left">development</td>
+<td align="left">[dɪˈveləpmənt]</td>
+<td align="left">n. 开发；发展</td>
+</tr>
+<tr>
+<td align="left">kit</td>
+<td align="left">[kɪt]</td>
+<td align="left">n. 工具箱</td>
+</tr>
+<tr>
+<td align="left">machine</td>
+<td align="left">[məˈʃiːn]</td>
+<td align="left">n. 机器</td>
+</tr>
+<tr>
+<td align="left">lib</td>
+<td align="left">[lɪb]</td>
+<td align="left">n. 库（library）</td>
+</tr>
+<tr>
+<td align="left">include</td>
+<td align="left">[ɪnˈkluːd]</td>
+<td align="left">v. 包含；把……列为一部分</td>
+</tr>
+<tr>
+<td align="left">history</td>
+<td align="left">[ˈhɪstri]</td>
+<td align="left">n. 历史；发展史</td>
+</tr>
+<tr>
+<td align="left">overview</td>
+<td align="left">[ˈəʊvəvjuː]</td>
+<td align="left">n. 概述；概览</td>
+</tr>
+<tr>
+<td align="left">software</td>
+<td align="left">[ˈsɒftweə(r)]</td>
+<td align="left">n. 软件</td>
+</tr>
+<tr>
+<td align="left">hardware</td>
+<td align="left">[ˈhɑːdweə(r)]</td>
+<td align="left">n. 硬件</td>
+</tr>
+</tbody></table>
+<h3 id="1-3-程序结构关键词"><a href="#1-3-程序结构关键词" class="headerlink" title="1.3 程序结构关键词"></a>1.3 程序结构关键词</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ public</td>
+<td align="left">[ˈpʌblɪk]</td>
+<td align="left">adj. 公共的；公开的</td>
+</tr>
+<tr>
+<td align="left">⭐ static</td>
+<td align="left">[ˈstætɪk]</td>
+<td align="left">adj. 静态的；静止的</td>
+</tr>
+<tr>
+<td align="left">⭐ void</td>
+<td align="left">[vɔɪd]</td>
+<td align="left">adj. 无返回值的；空的</td>
+</tr>
+<tr>
+<td align="left">⭐ main</td>
+<td align="left">[meɪn]</td>
+<td align="left">adj. 主要的 n. 主函数</td>
+</tr>
+<tr>
+<td align="left">⭐ String</td>
+<td align="left">[strɪŋ]</td>
+<td align="left">n. 字符串（一种数据类型）</td>
+</tr>
+<tr>
+<td align="left">⭐ args</td>
+<td align="left">[ˈɑːɡjumənts]</td>
+<td align="left">n. 参数；变元（arguments 的缩写）</td>
+</tr>
+<tr>
+<td align="left">System</td>
+<td align="left">[ˈsɪstəm]</td>
+<td align="left">n. 系统（Java 中的系统类）</td>
+</tr>
+<tr>
+<td align="left">out</td>
+<td align="left">[aʊt]</td>
+<td align="left">n. 输出；外部（System 类的输出流对象）</td>
+</tr>
+<tr>
+<td align="left">println</td>
+<td align="left">[prɪnt laɪn]</td>
+<td align="left">v. 打印并换行（print line 的缩写）</td>
+</tr>
+<tr>
+<td align="left">literal</td>
+<td align="left">[ˈlɪtərəl]</td>
+<td align="left">n. 字面量；文字 adj. 字面的</td>
+</tr>
+<tr>
+<td align="left">test</td>
+<td align="left">[test]</td>
+<td align="left">v.&#x2F;n. 测试；检验</td>
+</tr>
+<tr>
+<td align="left">text</td>
+<td align="left">[tekst]</td>
+<td align="left">n. 文本；文字</td>
+</tr>
+<tr>
+<td align="left">relationship</td>
+<td align="left">[rɪˈleɪʃnʃɪp]</td>
+<td align="left">n. 关系；联系</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="二、基础语法"><a href="#二、基础语法" class="headerlink" title="二、基础语法"></a>二、基础语法</h2><h3 id="2-1-基础概念与数据类型"><a href="#2-1-基础概念与数据类型" class="headerlink" title="2.1 基础概念与数据类型"></a>2.1 基础概念与数据类型</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">basic</td>
+<td align="left">[ˈbeɪsɪk]</td>
+<td align="left">adj. 基础的；基本的</td>
+</tr>
+<tr>
+<td align="left">syntax</td>
+<td align="left">[ˈsɪntæks]</td>
+<td align="left">n. 语法；句法</td>
+</tr>
+<tr>
+<td align="left">data</td>
+<td align="left">[ˈdeɪtə]</td>
+<td align="left">n. 数据；资料（datum 的复数）</td>
+</tr>
+<tr>
+<td align="left">type</td>
+<td align="left">[taɪp]</td>
+<td align="left">n. 类型；种类</td>
+</tr>
+<tr>
+<td align="left">conversion</td>
+<td align="left">[kənˈvɜːʃn]</td>
+<td align="left">n. 转换；变换（类型转换）</td>
+</tr>
+</tbody></table>
+<h3 id="2-2-运算符"><a href="#2-2-运算符" class="headerlink" title="2.2 运算符"></a>2.2 运算符</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">arithmetic</td>
+<td align="left">[əˈrɪθmətɪk]</td>
+<td align="left">n.&#x2F;adj. 算术（的）</td>
+</tr>
+<tr>
+<td align="left">operator</td>
+<td align="left">[ˈɒpəreɪtə(r)]</td>
+<td align="left">n. 运算符；操作员</td>
+</tr>
+<tr>
+<td align="left">assignment</td>
+<td align="left">[əˈsaɪnmənt]</td>
+<td align="left">n. 赋值；分配；任务</td>
+</tr>
+<tr>
+<td align="left">logical</td>
+<td align="left">[ˈlɒdʒɪkl]</td>
+<td align="left">adj. 逻辑的</td>
+</tr>
+<tr>
+<td align="left">relational</td>
+<td align="left">[rɪˈleɪʃənl]</td>
+<td align="left">adj. 关系的；相关的</td>
+</tr>
+<tr>
+<td align="left">bitwise</td>
+<td align="left">[ˈbɪtwaɪz]</td>
+<td align="left">adj. 按位的</td>
+</tr>
+<tr>
+<td align="left">conditional</td>
+<td align="left">[kənˈdɪʃənl]</td>
+<td align="left">adj. 有条件的 n. 条件运算符</td>
+</tr>
+</tbody></table>
+<h3 id="2-3-进制与存储单位"><a href="#2-3-进制与存储单位" class="headerlink" title="2.3 进制与存储单位"></a>2.3 进制与存储单位</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">binary</td>
+<td align="left">[ˈbaɪnəri]</td>
+<td align="left">n.&#x2F;adj. 二进制（的）</td>
+</tr>
+<tr>
+<td align="left">octal</td>
+<td align="left">[ˈɒktl]</td>
+<td align="left">n.&#x2F;adj. 八进制（的）</td>
+</tr>
+<tr>
+<td align="left">hexadecimal</td>
+<td align="left">[ˌheksəˈdesɪml]</td>
+<td align="left">n.&#x2F;adj. 十六进制（的）</td>
+</tr>
+<tr>
+<td align="left">decimal</td>
+<td align="left">[ˈdesɪml]</td>
+<td align="left">n.&#x2F;adj. 十进制（的）；小数</td>
+</tr>
+<tr>
+<td align="left">bit</td>
+<td align="left">[bɪt]</td>
+<td align="left">n. 比特（二进制位）</td>
+</tr>
+<tr>
+<td align="left">byte</td>
+<td align="left">[baɪt]</td>
+<td align="left">n. 字节（存储单位）</td>
+</tr>
+<tr>
+<td align="left">ASCII</td>
+<td align="left">—</td>
+<td align="left">美国信息交换标准代码</td>
+</tr>
+</tbody></table>
+<h3 id="2-4-布尔值与空值"><a href="#2-4-布尔值与空值" class="headerlink" title="2.4 布尔值与空值"></a>2.4 布尔值与空值</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ true</td>
+<td align="left">[truː]</td>
+<td align="left">adj. 真的（布尔值）</td>
+</tr>
+<tr>
+<td align="left">⭐ false</td>
+<td align="left">[fɔːls]</td>
+<td align="left">adj. 假的（布尔值）</td>
+</tr>
+<tr>
+<td align="left">⭐ null</td>
+<td align="left">[nʌl]</td>
+<td align="left">adj. 空值的；无效的 n. 空值</td>
+</tr>
+</tbody></table>
+<h3 id="2-5-变量与常量"><a href="#2-5-变量与常量" class="headerlink" title="2.5 变量与常量"></a>2.5 变量与常量</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">variable</td>
+<td align="left">[ˈveəriəbl]</td>
+<td align="left">n. 变量 adj. 可变的</td>
+</tr>
+<tr>
+<td align="left">constant</td>
+<td align="left">[ˈkɒnstənt]</td>
+<td align="left">n. 常量；常数 adj. 不变的</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">[neɪm]</td>
+<td align="left">n. 姓名；名称（变量名）</td>
+</tr>
+<tr>
+<td align="left">age</td>
+<td align="left">[eɪdʒ]</td>
+<td align="left">n. 年龄（变量名）</td>
+</tr>
+<tr>
+<td align="left">tel</td>
+<td align="left">[tel]</td>
+<td align="left">n. 电话（telephone 的缩写）</td>
+</tr>
+<tr>
+<td align="left">gender</td>
+<td align="left">[ˈdʒendə(r)]</td>
+<td align="left">n. 性别</td>
+</tr>
+<tr>
+<td align="left">salary</td>
+<td align="left">[ˈsæləri]</td>
+<td align="left">n. 薪水；工资</td>
+</tr>
+<tr>
+<td align="left">money</td>
+<td align="left">[ˈmʌni]</td>
+<td align="left">n. 钱；货币</td>
+</tr>
+<tr>
+<td align="left">weight</td>
+<td align="left">[weɪt]</td>
+<td align="left">n. 重量；体重</td>
+</tr>
+<tr>
+<td align="left">height</td>
+<td align="left">[haɪt]</td>
+<td align="left">n. 身高；高度</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="三、流程控制"><a href="#三、流程控制" class="headerlink" title="三、流程控制"></a>三、流程控制</h2><h3 id="3-1-条件语句"><a href="#3-1-条件语句" class="headerlink" title="3.1 条件语句"></a>3.1 条件语句</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ if</td>
+<td align="left">[ɪf]</td>
+<td align="left">conj. 如果（条件判断语句）</td>
+</tr>
+<tr>
+<td align="left">⭐ else</td>
+<td align="left">[els]</td>
+<td align="left">conj.&#x2F;adv. 否则（与 if 搭配的分支）</td>
+</tr>
+<tr>
+<td align="left">switch</td>
+<td align="left">[swɪtʃ]</td>
+<td align="left">n. 开关；多分支条件语句</td>
+</tr>
+<tr>
+<td align="left">case</td>
+<td align="left">[keɪs]</td>
+<td align="left">n. 情况；switch 中的分支条件</td>
+</tr>
+<tr>
+<td align="left">break</td>
+<td align="left">[breɪk]</td>
+<td align="left">v. 打破；跳出循环或 switch</td>
+</tr>
+<tr>
+<td align="left">default</td>
+<td align="left">[dɪˈfɔːlt]</td>
+<td align="left">n.&#x2F;adj. 默认（分支）</td>
+</tr>
+<tr>
+<td align="left">yield</td>
+<td align="left">[jiːld]</td>
+<td align="left">v. 产生（switch 中返回值）</td>
+</tr>
+</tbody></table>
+<h3 id="3-2-输入输出"><a href="#3-2-输入输出" class="headerlink" title="3.2 输入输出"></a>3.2 输入输出</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">output</td>
+<td align="left">[ˈaʊtpʊt]</td>
+<td align="left">n.&#x2F;v. 输出</td>
+</tr>
+<tr>
+<td align="left">input</td>
+<td align="left">[ˈɪnpʊt]</td>
+<td align="left">n.&#x2F;v. 输入</td>
+</tr>
+<tr>
+<td align="left">statement</td>
+<td align="left">[ˈsteɪtmənt]</td>
+<td align="left">n. 语句；陈述</td>
+</tr>
+<tr>
+<td align="left">Scanner</td>
+<td align="left">[ˈskænə(r)]</td>
+<td align="left">n. 扫描仪；Java 中获取输入的类</td>
+</tr>
+<tr>
+<td align="left">next</td>
+<td align="left">[nekst]</td>
+<td align="left">adj. 下一个的；Scanner 获取下一个输入</td>
+</tr>
+<tr>
+<td align="left">⭐ new</td>
+<td align="left">[njuː]</td>
+<td align="left">adj. 新的；创建对象的关键字</td>
+</tr>
+<tr>
+<td align="left">process</td>
+<td align="left">[ˈprəʊses]</td>
+<td align="left">n. 过程；进程 v. 处理</td>
+</tr>
+<tr>
+<td align="left">control</td>
+<td align="left">[kənˈtrəʊl]</td>
+<td align="left">v.&#x2F;n. 控制</td>
+</tr>
+<tr>
+<td align="left">structure</td>
+<td align="left">[ˈstrʌktʃə(r)]</td>
+<td align="left">n. 结构；构造</td>
+</tr>
+</tbody></table>
+<h3 id="3-3-常用词（星期-月份-季节）"><a href="#3-3-常用词（星期-月份-季节）" class="headerlink" title="3.3 常用词（星期 &#x2F; 月份 &#x2F; 季节）"></a>3.3 常用词（星期 &#x2F; 月份 &#x2F; 季节）</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Monday</td>
+<td align="left">[ˈmʌndeɪ]</td>
+<td align="left">n. 星期一</td>
+</tr>
+<tr>
+<td align="left">Tuesday</td>
+<td align="left">[ˈtjuːzdeɪ]</td>
+<td align="left">n. 星期二</td>
+</tr>
+<tr>
+<td align="left">Wednesday</td>
+<td align="left">[ˈwenzdeɪ]</td>
+<td align="left">n. 星期三</td>
+</tr>
+<tr>
+<td align="left">Thursday</td>
+<td align="left">[ˈθɜːzdeɪ]</td>
+<td align="left">n. 星期四</td>
+</tr>
+<tr>
+<td align="left">Friday</td>
+<td align="left">[ˈfraɪdeɪ]</td>
+<td align="left">n. 星期五</td>
+</tr>
+<tr>
+<td align="left">Saturday</td>
+<td align="left">[ˈsætədeɪ]</td>
+<td align="left">n. 星期六</td>
+</tr>
+<tr>
+<td align="left">Sunday</td>
+<td align="left">[ˈsʌndeɪ]</td>
+<td align="left">n. 星期日</td>
+</tr>
+<tr>
+<td align="left">January</td>
+<td align="left">[ˈdʒænjuəri]</td>
+<td align="left">n. 一月</td>
+</tr>
+<tr>
+<td align="left">February</td>
+<td align="left">[ˈfebruəri]</td>
+<td align="left">n. 二月</td>
+</tr>
+<tr>
+<td align="left">March</td>
+<td align="left">[mɑːtʃ]</td>
+<td align="left">n. 三月</td>
+</tr>
+<tr>
+<td align="left">April</td>
+<td align="left">[ˈeɪprəl]</td>
+<td align="left">n. 四月</td>
+</tr>
+<tr>
+<td align="left">May</td>
+<td align="left">[meɪ]</td>
+<td align="left">n. 五月</td>
+</tr>
+<tr>
+<td align="left">June</td>
+<td align="left">[dʒuːn]</td>
+<td align="left">n. 六月</td>
+</tr>
+<tr>
+<td align="left">July</td>
+<td align="left">[dʒuˈlaɪ]</td>
+<td align="left">n. 七月</td>
+</tr>
+<tr>
+<td align="left">August</td>
+<td align="left">[ˈɔːɡəst]</td>
+<td align="left">n. 八月</td>
+</tr>
+<tr>
+<td align="left">September</td>
+<td align="left">[sepˈtembə(r)]</td>
+<td align="left">n. 九月</td>
+</tr>
+<tr>
+<td align="left">October</td>
+<td align="left">[ɒkˈtəʊbə(r)]</td>
+<td align="left">n. 十月</td>
+</tr>
+<tr>
+<td align="left">November</td>
+<td align="left">[nəʊˈvembə(r)]</td>
+<td align="left">n. 十一月</td>
+</tr>
+<tr>
+<td align="left">December</td>
+<td align="left">[dɪˈsembə(r)]</td>
+<td align="left">n. 十二月</td>
+</tr>
+<tr>
+<td align="left">spring</td>
+<td align="left">[sprɪŋ]</td>
+<td align="left">n. 春天</td>
+</tr>
+<tr>
+<td align="left">summer</td>
+<td align="left">[ˈsʌmə(r)]</td>
+<td align="left">n. 夏天</td>
+</tr>
+<tr>
+<td align="left">autumn</td>
+<td align="left">[ˈɔːtəm]</td>
+<td align="left">n. 秋天</td>
+</tr>
+<tr>
+<td align="left">winter</td>
+<td align="left">[ˈwɪntə(r)]</td>
+<td align="left">n. 冬天</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="四、循环结构"><a href="#四、循环结构" class="headerlink" title="四、循环结构"></a>四、循环结构</h2><h3 id="4-1-循环关键词"><a href="#4-1-循环关键词" class="headerlink" title="4.1 循环关键词"></a>4.1 循环关键词</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ for</td>
+<td align="left">[fə(r); fɔː(r)]</td>
+<td align="left">prep.&#x2F;conj. 为；因为（for 循环）</td>
+</tr>
+<tr>
+<td align="left">⭐ while</td>
+<td align="left">[waɪl]</td>
+<td align="left">conj. 当……的时候；然而（while 循环）</td>
+</tr>
+<tr>
+<td align="left">do</td>
+<td align="left">[duː]</td>
+<td align="left">v. 做（do-while 循环）</td>
+</tr>
+<tr>
+<td align="left">break</td>
+<td align="left">[breɪk]</td>
+<td align="left">v. 打破；中断</td>
+</tr>
+<tr>
+<td align="left">continue</td>
+<td align="left">[kənˈtɪnjuː]</td>
+<td align="left">v. 继续；延续</td>
+</tr>
+<tr>
+<td align="left">return</td>
+<td align="left">[rɪˈtɜːn]</td>
+<td align="left">v.&#x2F;n. 返回</td>
+</tr>
+<tr>
+<td align="left">for loop</td>
+<td align="left">[fɔː(r) luːp]</td>
+<td align="left">n. for 循环</td>
+</tr>
+<tr>
+<td align="left">while loop</td>
+<td align="left">[waɪl luːp]</td>
+<td align="left">n. while 循环</td>
+</tr>
+<tr>
+<td align="left">do-while loop</td>
+<td align="left">[duː waɪl luːp]</td>
+<td align="left">n. do-while 循环（先执行一次再判断）</td>
+</tr>
+</tbody></table>
+<h3 id="4-2-常用工具与数学术语"><a href="#4-2-常用工具与数学术语" class="headerlink" title="4.2 常用工具与数学术语"></a>4.2 常用工具与数学术语</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">math</td>
+<td align="left">[mæθ]</td>
+<td align="left">n. 数学（mathematics）</td>
+</tr>
+<tr>
+<td align="left">Random</td>
+<td align="left">[ˈrændəm]</td>
+<td align="left">adj. 随机的 n. 随机</td>
+</tr>
+<tr>
+<td align="left">first</td>
+<td align="left">[fɜːst]</td>
+<td align="left">adv.&#x2F;adj. 第一；首先</td>
+</tr>
+<tr>
+<td align="left">sum</td>
+<td align="left">[sʌm]</td>
+<td align="left">n.&#x2F;v. 总和；合计</td>
+</tr>
+<tr>
+<td align="left">check</td>
+<td align="left">[tʃek]</td>
+<td align="left">v.&#x2F;n. 检查；核对</td>
+</tr>
+<tr>
+<td align="left">input</td>
+<td align="left">[ˈɪnpʊt]</td>
+<td align="left">n.&#x2F;v. 输入</td>
+</tr>
+<tr>
+<td align="left">max</td>
+<td align="left">[mæks]</td>
+<td align="left">n. 最大值（maximum）</td>
+</tr>
+<tr>
+<td align="left">min</td>
+<td align="left">[mɪn]</td>
+<td align="left">n. 最小值（minimum）</td>
+</tr>
+<tr>
+<td align="left">temp</td>
+<td align="left">[temp]</td>
+<td align="left">adj. 临时的（temporary）</td>
+</tr>
+<tr>
+<td align="left">positive</td>
+<td align="left">[ˈpɒzɪtɪv]</td>
+<td align="left">adj. 正的；积极的</td>
+</tr>
+<tr>
+<td align="left">negative</td>
+<td align="left">[ˈnegətɪv]</td>
+<td align="left">adj. 负的；否定的</td>
+</tr>
+<tr>
+<td align="left">half</td>
+<td align="left">[hɑːf]</td>
+<td align="left">n.&#x2F;adv.&#x2F;adj. 一半</td>
+</tr>
+<tr>
+<td align="left">middle</td>
+<td align="left">[ˈmɪd(ə)l]</td>
+<td align="left">adj.&#x2F;n. 中间</td>
+</tr>
+<tr>
+<td align="left">show</td>
+<td align="left">[ʃəʊ]</td>
+<td align="left">v. 显示；展示</td>
+</tr>
+<tr>
+<td align="left">round</td>
+<td align="left">[raʊnd]</td>
+<td align="left">adj.&#x2F;n.&#x2F;prep. 圆的；环绕</td>
+</tr>
+<tr>
+<td align="left">item</td>
+<td align="left">[ˈaɪtəm]</td>
+<td align="left">n. 项目；条目</td>
+</tr>
+<tr>
+<td align="left">content</td>
+<td align="left">[kənˈtent]</td>
+<td align="left">n. 内容；满足</td>
+</tr>
+<tr>
+<td align="left">upload</td>
+<td align="left">[ʌpˈləʊd]</td>
+<td align="left">v.&#x2F;n. 上传</td>
+</tr>
+<tr>
+<td align="left">download</td>
+<td align="left">[daʊnˈləʊd]</td>
+<td align="left">v.&#x2F;n. 下载</td>
+</tr>
+<tr>
+<td align="left">prime number</td>
+<td align="left">[praɪm ˈnʌmbə(r)]</td>
+<td align="left">n. 素数（质数）</td>
+</tr>
+<tr>
+<td align="left">even number</td>
+<td align="left">[ˈiːv(ə)n ˈnʌmbə(r)]</td>
+<td align="left">n. 偶数</td>
+</tr>
+<tr>
+<td align="left">odd number</td>
+<td align="left">[ɒd ˈnʌmbə(r)]</td>
+<td align="left">n. 奇数</td>
+</tr>
+<tr>
+<td align="left">divisor</td>
+<td align="left">[dɪˈvaɪzə(r)]</td>
+<td align="left">n. 约数（因数）</td>
+</tr>
+<tr>
+<td align="left">factor</td>
+<td align="left">[ˈfæktə(r)]</td>
+<td align="left">n. 因子</td>
+</tr>
+<tr>
+<td align="left">multiple</td>
+<td align="left">[ˈmʌltɪpl]</td>
+<td align="left">n. 倍数</td>
+</tr>
+</tbody></table>
+<h3 id="4-3-几何图形"><a href="#4-3-几何图形" class="headerlink" title="4.3 几何图形"></a>4.3 几何图形</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">circle</td>
+<td align="left">[ˈsɜːk(ə)l]</td>
+<td align="left">n. 圆；循环</td>
+</tr>
+<tr>
+<td align="left">rectangle</td>
+<td align="left">[ˈrektæŋɡl]</td>
+<td align="left">n. 矩形；长方形</td>
+</tr>
+<tr>
+<td align="left">triangle</td>
+<td align="left">[ˈtraɪæŋɡ(ə)l]</td>
+<td align="left">n. 三角形</td>
+</tr>
+<tr>
+<td align="left">shape</td>
+<td align="left">[ʃeɪp]</td>
+<td align="left">n. 形状 v. 塑造</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="五、数组"><a href="#五、数组" class="headerlink" title="五、数组"></a>五、数组</h2><h3 id="5-1-核心概念"><a href="#5-1-核心概念" class="headerlink" title="5.1 核心概念"></a>5.1 核心概念</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ array</td>
+<td align="left">[əˈreɪ]</td>
+<td align="left">n. 数组；阵列</td>
+</tr>
+<tr>
+<td align="left">element</td>
+<td align="left">[ˈelɪm(ə)nt]</td>
+<td align="left">n. 元素；要素（数组中的数据单元）</td>
+</tr>
+<tr>
+<td align="left">index</td>
+<td align="left">[ˈɪndeks]</td>
+<td align="left">n. 索引；下标</td>
+</tr>
+<tr>
+<td align="left">length</td>
+<td align="left">[leŋθ]</td>
+<td align="left">n. 长度（元素的个数）</td>
+</tr>
+<tr>
+<td align="left">value</td>
+<td align="left">[ˈvæljuː]</td>
+<td align="left">n. 值（元素所存储的数据）</td>
+</tr>
+<tr>
+<td align="left">container</td>
+<td align="left">[kənˈteɪnə(r)]</td>
+<td align="left">n. 容器</td>
+</tr>
+<tr>
+<td align="left">data structure</td>
+<td align="left">[ˈdeɪtə ˈstrʌktʃə(r)]</td>
+<td align="left">n. 数据结构</td>
+</tr>
+</tbody></table>
+<h3 id="5-2-内存与初始化"><a href="#5-2-内存与初始化" class="headerlink" title="5.2 内存与初始化"></a>5.2 内存与初始化</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">memory</td>
+<td align="left">[ˈmeməri]</td>
+<td align="left">n. 内存；存储器</td>
+</tr>
+<tr>
+<td align="left">storage</td>
+<td align="left">[ˈstɔːrɪdʒ]</td>
+<td align="left">n. 存储；存储器</td>
+</tr>
+<tr>
+<td align="left">initialize</td>
+<td align="left">[ɪˈnɪʃ(ə)laɪz]</td>
+<td align="left">v. 初始化；设定初值</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">[njuː]</td>
+<td align="left">adj. 新的；创建数组&#x2F;对象的关键字</td>
+</tr>
+<tr>
+<td align="left">static initialization</td>
+<td align="left">[ˈstætɪk ɪˌnɪʃəlaɪˈzeɪʃn]</td>
+<td align="left">n. 静态初始化（声明时直接赋值）</td>
+</tr>
+<tr>
+<td align="left">dynamic initialization</td>
+<td align="left">[daɪˈnæmɪk ɪˌnɪʃəlaɪˈzeɪʃn]</td>
+<td align="left">n. 动态初始化（先定长度再赋值）</td>
+</tr>
+</tbody></table>
+<h3 id="5-3-常见操作"><a href="#5-3-常见操作" class="headerlink" title="5.3 常见操作"></a>5.3 常见操作</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">copy</td>
+<td align="left">[ˈkɒpɪ]</td>
+<td align="left">v. 复制</td>
+</tr>
+<tr>
+<td align="left">sort</td>
+<td align="left">[sɔːt]</td>
+<td align="left">v. 排序 n. 种类</td>
+</tr>
+<tr>
+<td align="left">avg</td>
+<td align="left">[ˈævərɪdʒ]</td>
+<td align="left">n. 平均值（average）</td>
+</tr>
+<tr>
+<td align="left">max &#x2F; min</td>
+<td align="left">[mæks] &#x2F; [mɪn]</td>
+<td align="left">n. 最大&#x2F;最小元素</td>
+</tr>
+<tr>
+<td align="left">reverse</td>
+<td align="left">[rɪˈvɜːs]</td>
+<td align="left">v. 反转；颠倒 adj. 相反的</td>
+</tr>
+<tr>
+<td align="left">range</td>
+<td align="left">[reɪndʒ]</td>
+<td align="left">n. 范围；幅度</td>
+</tr>
+<tr>
+<td align="left">find</td>
+<td align="left">[faɪnd]</td>
+<td align="left">v. 查找</td>
+</tr>
+<tr>
+<td align="left">sum</td>
+<td align="left">[sʌm]</td>
+<td align="left">n. 总和</td>
+</tr>
+<tr>
+<td align="left">shuffle</td>
+<td align="left">[ˈʃʌfl]</td>
+<td align="left">v. 打乱；洗牌</td>
+</tr>
+<tr>
+<td align="left">indexOf</td>
+<td align="left">[ˈɪndeks ɒv]</td>
+<td align="left">n. 索引位置（返回元素首次出现下标）</td>
+</tr>
+<tr>
+<td align="left">contains</td>
+<td align="left">[kənˈteɪnz]</td>
+<td align="left">v. 包含（判断是否存在元素）</td>
+</tr>
+<tr>
+<td align="left">foreach</td>
+<td align="left">[fɔː ˈiːtʃ]</td>
+<td align="left">n. 增强 for 循环（遍历数组&#x2F;集合）</td>
+</tr>
+</tbody></table>
+<h3 id="5-4-算法与异常"><a href="#5-4-算法与异常" class="headerlink" title="5.4 算法与异常"></a>5.4 算法与异常</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">bubble sort</td>
+<td align="left">[ˈbʌbl sɔːt]</td>
+<td align="left">n. 冒泡排序</td>
+</tr>
+<tr>
+<td align="left">binary search</td>
+<td align="left">[ˈbaɪnəri sɜːtʃ]</td>
+<td align="left">n. 折半查找法；二分搜寻</td>
+</tr>
+<tr>
+<td align="left">algorithm</td>
+<td align="left">[ˈælɡərɪðəm]</td>
+<td align="left">n. 算法</td>
+</tr>
+<tr>
+<td align="left">ArrayIndexOutOfBoundsException</td>
+<td align="left">[əˈreɪ ˈɪndeks aʊt ɒv baʊndz ɪkˈsepʃn]</td>
+<td align="left">n. 数组下标越界异常</td>
+</tr>
+<tr>
+<td align="left">NullPointerException</td>
+<td align="left">[nʌl ˌpɔɪntəˈrekʃn ɪkˈsepʃn]</td>
+<td align="left">n. 空指针异常</td>
+</tr>
+</tbody></table>
+<h3 id="5-5-工具类与业务词汇"><a href="#5-5-工具类与业务词汇" class="headerlink" title="5.5 工具类与业务词汇"></a>5.5 工具类与业务词汇</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">tools</td>
+<td align="left">[tuːlz]</td>
+<td align="left">n. 工具；工具类</td>
+</tr>
+<tr>
+<td align="left">util</td>
+<td align="left">[juːˈtɪl]</td>
+<td align="left">n. 工具（utility，如 java.util）</td>
+</tr>
+<tr>
+<td align="left">detail</td>
+<td align="left">[ˈdiːteɪl]</td>
+<td align="left">n. 细节 v. 详述</td>
+</tr>
+<tr>
+<td align="left">balance</td>
+<td align="left">[ˈbæl(ə)ns]</td>
+<td align="left">n. 平衡；余额</td>
+</tr>
+<tr>
+<td align="left">account</td>
+<td align="left">[əˈkaʊnt]</td>
+<td align="left">n. 账户；账目</td>
+</tr>
+<tr>
+<td align="left">family</td>
+<td align="left">[ˈfæməli]</td>
+<td align="left">n. 家庭；家族</td>
+</tr>
+<tr>
+<td align="left">flag</td>
+<td align="left">[flæɡ]</td>
+<td align="left">n. 标志；标记 v. 标记</td>
+</tr>
+<tr>
+<td align="left">menu</td>
+<td align="left">[ˈmenjuː]</td>
+<td align="left">n. 菜单</td>
+</tr>
+<tr>
+<td align="left">select</td>
+<td align="left">[sɪˈlekt]</td>
+<td align="left">v. 挑选 adj. 精选的</td>
+</tr>
+<tr>
+<td align="left">amount</td>
+<td align="left">[əˈmaʊnt]</td>
+<td align="left">n. 数量；总额</td>
+</tr>
+<tr>
+<td align="left">confirm</td>
+<td align="left">[kənˈfɜːm]</td>
+<td align="left">v. 确认；证实</td>
+</tr>
+<tr>
+<td align="left">description</td>
+<td align="left">[dɪˈskrɪpʃ(ə)n]</td>
+<td align="left">n. 描述；说明书</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="六、方法"><a href="#六、方法" class="headerlink" title="六、方法"></a>六、方法</h2><h3 id="6-1-核心概念"><a href="#6-1-核心概念" class="headerlink" title="6.1 核心概念"></a>6.1 核心概念</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ function</td>
+<td align="left">[ˈfʌŋ(k)ʃ(ə)n]</td>
+<td align="left">n. 功能；函数</td>
+</tr>
+<tr>
+<td align="left">⭐ method</td>
+<td align="left">[ˈmeθəd]</td>
+<td align="left">n. 方法；类函数</td>
+</tr>
+<tr>
+<td align="left">declare</td>
+<td align="left">[dɪˈkleə]</td>
+<td align="left">v. 声明</td>
+</tr>
+<tr>
+<td align="left">definition</td>
+<td align="left">[ˌdefɪˈnɪʃ(ə)n]</td>
+<td align="left">n. 定义</td>
+</tr>
+<tr>
+<td align="left">method declaration</td>
+<td align="left">[ˈmeθəd ˌdekləˈreɪʃn]</td>
+<td align="left">n. 方法声明</td>
+</tr>
+<tr>
+<td align="left">User-Defined Method</td>
+<td align="left">[ˈjuːzə(r) dɪˈfaɪnd]</td>
+<td align="left">n. 用户定义方法</td>
+</tr>
+<tr>
+<td align="left">System-Generated Method</td>
+<td align="left">[ˈsɪstəm ˈdʒenəreɪtɪd]</td>
+<td align="left">n. 系统方法</td>
+</tr>
+<tr>
+<td align="left">method invocation</td>
+<td align="left">[ˈmeθəd ˌɪnvəˈkeɪʃn]</td>
+<td align="left">n. 方法调用</td>
+</tr>
+<tr>
+<td align="left">calling method</td>
+<td align="left">[ˈkɔːlɪŋ ˈmeθəd]</td>
+<td align="left">n. 调用方法</td>
+</tr>
+</tbody></table>
+<h3 id="6-2-修饰符与静态方法"><a href="#6-2-修饰符与静态方法" class="headerlink" title="6.2 修饰符与静态方法"></a>6.2 修饰符与静态方法</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">modifier</td>
+<td align="left">[ˈmɒdɪfaɪə]</td>
+<td align="left">n. 修饰符（如 static、public）</td>
+</tr>
+<tr>
+<td align="left">static method</td>
+<td align="left">[ˈstætɪk ˈmeθəd]</td>
+<td align="left">n. 静态方法（属于类本身）</td>
+</tr>
+</tbody></table>
+<h3 id="6-3-参数与返回值"><a href="#6-3-参数与返回值" class="headerlink" title="6.3 参数与返回值"></a>6.3 参数与返回值</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">parameter</td>
+<td align="left">[pəˈræmɪtə]</td>
+<td align="left">n. 参数；系数</td>
+</tr>
+<tr>
+<td align="left">actual parameter</td>
+<td align="left">[ˈæktʃuəl pəˈræmɪtə]</td>
+<td align="left">n. 实参（调用时传递的实际值）</td>
+</tr>
+<tr>
+<td align="left">formal parameter</td>
+<td align="left">[ˈfɔːml pəˈræmɪtə]</td>
+<td align="left">n. 形参（声明时定义的变量）</td>
+</tr>
+<tr>
+<td align="left">command line parameter</td>
+<td align="left">[kəˈmɑːnd laɪn]</td>
+<td align="left">n. 命令行参数</td>
+</tr>
+<tr>
+<td align="left">variable parameter</td>
+<td align="left">[ˈveərɪəb(ə)l]</td>
+<td align="left">n. 可变参数</td>
+</tr>
+<tr>
+<td align="left">arguments</td>
+<td align="left">[ˈɑːɡjʊm(ə)nts]</td>
+<td align="left">n. 参数（传递给形参的实际值）</td>
+</tr>
+<tr>
+<td align="left">return</td>
+<td align="left">[rɪˈtɜːn]</td>
+<td align="left">v.&#x2F;n. 返回</td>
+</tr>
+<tr>
+<td align="left">return value</td>
+<td align="left">[rɪˈtɜːn ˈvæljuː]</td>
+<td align="left">n. 返回值</td>
+</tr>
+<tr>
+<td align="left">return type</td>
+<td align="left">[rɪˈtɜːn taɪp]</td>
+<td align="left">n. 返回类型（如 int、String）</td>
+</tr>
+</tbody></table>
+<h3 id="6-4-重载、递归与变量"><a href="#6-4-重载、递归与变量" class="headerlink" title="6.4 重载、递归与变量"></a>6.4 重载、递归与变量</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">overload</td>
+<td align="left">[ˌəʊvəˈləʊd]</td>
+<td align="left">v. 重载（同名方法，参数列表不同）</td>
+</tr>
+<tr>
+<td align="left">value passing mechanism</td>
+<td align="left">[ˈvæljuː ˈpɑːsɪŋ]</td>
+<td align="left">n. 参数值传递机制（Java 为值传递）</td>
+</tr>
+<tr>
+<td align="left">recursion</td>
+<td align="left">[rɪˈkɜːʃn]</td>
+<td align="left">n. 递归（方法调用自身）</td>
+</tr>
+<tr>
+<td align="left">statement</td>
+<td align="left">[ˈsteɪtm(ə)nt]</td>
+<td align="left">n. 语句</td>
+</tr>
+<tr>
+<td align="left">local variable</td>
+<td align="left">[ˈləʊkl ˈveərɪəb(ə)l]</td>
+<td align="left">n. 局部变量</td>
+</tr>
+<tr>
+<td align="left">member variable</td>
+<td align="left">[ˈmembə(r) ˈveərɪəb(ə)l]</td>
+<td align="left">n. 成员变量</td>
+</tr>
+<tr>
+<td align="left">reference</td>
+<td align="left">[ˈref(ə)r(ə)ns]</td>
+<td align="left">n.&#x2F;v. 引用；参考</td>
+</tr>
+<tr>
+<td align="left">memory</td>
+<td align="left">[ˈmeməri]</td>
+<td align="left">n. 内存；存储器</td>
+</tr>
+</tbody></table>
+<h2 id="七、面向对象基础（对象与类）"><a href="#七、面向对象基础（对象与类）" class="headerlink" title="七、面向对象基础（对象与类）"></a>七、面向对象基础（对象与类）</h2><h3 id="7-1-核心概念"><a href="#7-1-核心概念" class="headerlink" title="7.1 核心概念"></a>7.1 核心概念</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ object</td>
+<td align="left">[ˈɒbdʒɪkt]</td>
+<td align="left">n. 对象；目标；物体</td>
+</tr>
+<tr>
+<td align="left">new</td>
+<td align="left">[njuː]</td>
+<td align="left">adj. 新的；实例化对象的关键字</td>
+</tr>
+<tr>
+<td align="left">field</td>
+<td align="left">[fiːld]</td>
+<td align="left">n. 字段；属性（类中定义的变量）</td>
+</tr>
+<tr>
+<td align="left">stack</td>
+<td align="left">[stæk]</td>
+<td align="left">n. 堆栈（存储局部变量的内存结构）</td>
+</tr>
+<tr>
+<td align="left">heap</td>
+<td align="left">[hiːp]</td>
+<td align="left">n. 堆（存储对象实例的动态区域）</td>
+</tr>
+<tr>
+<td align="left">member</td>
+<td align="left">[ˈmembə]</td>
+<td align="left">n. 成员（成员变量、成员方法）</td>
+</tr>
+<tr>
+<td align="left">GC</td>
+<td align="left">—</td>
+<td align="left">垃圾收集（自动回收不再使用的对象内存）</td>
+</tr>
+<tr>
+<td align="left">undefined</td>
+<td align="left">[ˌʌndɪˈfaɪnd]</td>
+<td align="left">adj. 未定义的（未初始化的状态）</td>
+</tr>
+</tbody></table>
+<h3 id="7-2-编程范式"><a href="#7-2-编程范式" class="headerlink" title="7.2 编程范式"></a>7.2 编程范式</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">OOP</td>
+<td align="left">[ˈɒbdʒɪkt ˈɔːrientɪd ˈprəʊɡræmɪŋ]</td>
+<td align="left">面向对象程序设计（Object Oriented Programming）</td>
+</tr>
+<tr>
+<td align="left">POP</td>
+<td align="left">[prəˈsiːdʒə ˈɔːrientɪd ˈprəʊɡræmɪŋ]</td>
+<td align="left">面向过程程序设计（Procedure-Oriented Programming）</td>
+</tr>
+<tr>
+<td align="left">oriented</td>
+<td align="left">[ˈɔːrientɪd]</td>
+<td align="left">adj. 导向的；定向的</td>
+</tr>
+<tr>
+<td align="left">programming</td>
+<td align="left">[ˈprəʊɡræmɪŋ]</td>
+<td align="left">n. 程序设计；编制程序</td>
+</tr>
+</tbody></table>
+<h3 id="7-3-类、属性与构造器"><a href="#7-3-类、属性与构造器" class="headerlink" title="7.3 类、属性与构造器"></a>7.3 类、属性与构造器</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">student &#x2F; teacher</td>
+<td align="left">[ˈstjuːd(ə)nt] &#x2F; [ˈtiːtʃə]</td>
+<td align="left">n. 学生 &#x2F; 教师（常用作类名示例）</td>
+</tr>
+<tr>
+<td align="left">name &#x2F; age</td>
+<td align="left">[neɪm] &#x2F; [eɪdʒ]</td>
+<td align="left">n. 姓名 &#x2F; 年龄（常用作属性）</td>
+</tr>
+<tr>
+<td align="left">tel &#x2F; telephone &#x2F; phone</td>
+<td align="left">[tel] &#x2F; [ˈtelɪfəʊn] &#x2F; [fəʊn]</td>
+<td align="left">n. 电话；电话机</td>
+</tr>
+<tr>
+<td align="left">address</td>
+<td align="left">[əˈdres]</td>
+<td align="left">n. 地址</td>
+</tr>
+<tr>
+<td align="left">gender</td>
+<td align="left">[ˈdʒendə]</td>
+<td align="left">n. 性别</td>
+</tr>
+<tr>
+<td align="left">title</td>
+<td align="left">[ˈtaɪt(ə)l]</td>
+<td align="left">n. 标题</td>
+</tr>
+<tr>
+<td align="left">price</td>
+<td align="left">[praɪs]</td>
+<td align="left">n. 价格</td>
+</tr>
+<tr>
+<td align="left">null</td>
+<td align="left">[nʌl]</td>
+<td align="left">adj. 空（对象未引用任何实例）</td>
+</tr>
+<tr>
+<td align="left">package</td>
+<td align="left">[ˈpækɪdʒ]</td>
+<td align="left">n. 包（组织类的命名空间）</td>
+</tr>
+<tr>
+<td align="left">import</td>
+<td align="left">[ˈɪmpɔːt]</td>
+<td align="left">v.&#x2F;n. 导入（引入其他包的类）</td>
+</tr>
+<tr>
+<td align="left">constructor</td>
+<td align="left">[kənˈstrʌktə]</td>
+<td align="left">n. 构造器；构造方法</td>
+</tr>
+<tr>
+<td align="left">no-arg constructor</td>
+<td align="left">[nəʊ ɑːɡ]</td>
+<td align="left">n. 无参构造器</td>
+</tr>
+<tr>
+<td align="left">parameterized constructor</td>
+<td align="left">[pəˈræmɪtəraɪzd]</td>
+<td align="left">n. 有参构造器</td>
+</tr>
+<tr>
+<td align="left">⭐ this</td>
+<td align="left">[ðɪs]</td>
+<td align="left">pron. 这个；指向当前对象的引用</td>
+</tr>
+<tr>
+<td align="left">anonymous object</td>
+<td align="left">[əˈnɒnɪməs ˈɒbdʒɪkt]</td>
+<td align="left">n. 匿名对象（只能使用一次）</td>
+</tr>
+</tbody></table>
+<h3 id="7-4-变量类型与业务词汇"><a href="#7-4-变量类型与业务词汇" class="headerlink" title="7.4 变量类型与业务词汇"></a>7.4 变量类型与业务词汇</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">instance variable</td>
+<td align="left">[ˈɪnstəns ˈveərɪəbl]</td>
+<td align="left">n. 实例变量（每个对象独立副本）</td>
+</tr>
+<tr>
+<td align="left">static variable</td>
+<td align="left">[ˈstætɪk ˈveərɪəbl]</td>
+<td align="left">n. 静态变量（所有对象共享）</td>
+</tr>
+<tr>
+<td align="left">husband &#x2F; wife</td>
+<td align="left">[ˈhʌzbənd] &#x2F; [waɪf]</td>
+<td align="left">n. 丈夫 &#x2F; 妻子</td>
+</tr>
+<tr>
+<td align="left">account</td>
+<td align="left">[əˈkaʊnt]</td>
+<td align="left">n. 账户</td>
+</tr>
+<tr>
+<td align="left">customer</td>
+<td align="left">[ˈkʌstəmə]</td>
+<td align="left">n. 顾客；消费者</td>
+</tr>
+<tr>
+<td align="left">bank</td>
+<td align="left">[bæŋk]</td>
+<td align="left">n. 银行</td>
+</tr>
+<tr>
+<td align="left">save</td>
+<td align="left">[seɪv]</td>
+<td align="left">v. 保存；储蓄</td>
+</tr>
+<tr>
+<td align="left">withdraw</td>
+<td align="left">[wɪðˈdrɔː]</td>
+<td align="left">v. 取款；收回</td>
+</tr>
+<tr>
+<td align="left">balance</td>
+<td align="left">[ˈbæl(ə)ns]</td>
+<td align="left">n. 余额</td>
+</tr>
+<tr>
+<td align="left">identity</td>
+<td align="left">[aɪˈdentɪtɪ]</td>
+<td align="left">n. 身份</td>
+</tr>
+<tr>
+<td align="left">identifier</td>
+<td align="left">[aɪˈdentɪfaɪə]</td>
+<td align="left">n. 标识符（变量名、类名等）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="八、封装"><a href="#八、封装" class="headerlink" title="八、封装"></a>八、封装</h2><h3 id="8-1-封装与权限修饰符"><a href="#8-1-封装与权限修饰符" class="headerlink" title="8.1 封装与权限修饰符"></a>8.1 封装与权限修饰符</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ encapsulation</td>
+<td align="left">[ɪnˌkæpsəˈleɪʃən]</td>
+<td align="left">n. 封装（面向对象三大特性之一）</td>
+</tr>
+<tr>
+<td align="left">⭐ public</td>
+<td align="left">[ˈpʌblɪk]</td>
+<td align="left">adj. 公共的（任意位置可访问）</td>
+</tr>
+<tr>
+<td align="left">⭐ protected</td>
+<td align="left">[prəˈtektɪd]</td>
+<td align="left">adj. 受保护的（本类、同包、子类可访问）</td>
+</tr>
+<tr>
+<td align="left">default</td>
+<td align="left">[dɪˈfɔːlt]</td>
+<td align="left">adj. 默认的（本类、同包可访问）</td>
+</tr>
+<tr>
+<td align="left">⭐ private</td>
+<td align="left">[ˈpraɪvɪt]</td>
+<td align="left">adj. 私有的（仅本类可访问）</td>
+</tr>
+<tr>
+<td align="left">get</td>
+<td align="left">[ɡet]</td>
+<td align="left">v. 获取（getXxx 获取私有属性）</td>
+</tr>
+<tr>
+<td align="left">set</td>
+<td align="left">[set]</td>
+<td align="left">v. 设置（setXxx 修改私有属性）</td>
+</tr>
+</tbody></table>
+<h3 id="8-2-方法、变量与对象数组"><a href="#8-2-方法、变量与对象数组" class="headerlink" title="8.2 方法、变量与对象数组"></a>8.2 方法、变量与对象数组</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">instance method</td>
+<td align="left">[ˈɪnstəns ˈmeθəd]</td>
+<td align="left">n. 实例方法（通过对象调用）</td>
+</tr>
+<tr>
+<td align="left">static method</td>
+<td align="left">[ˈstætɪk ˈmeθəd]</td>
+<td align="left">n. 静态方法（通过类名调用）</td>
+</tr>
+<tr>
+<td align="left">static &#x2F; instance &#x2F; local variable</td>
+<td align="left">—</td>
+<td align="left">n. 静态 &#x2F; 实例 &#x2F; 局部变量</td>
+</tr>
+<tr>
+<td align="left">object array</td>
+<td align="left">[ˈɒbdʒɪkt əˈreɪ]</td>
+<td align="left">n. 对象数组（存储对象引用的数组）</td>
+</tr>
+<tr>
+<td align="left">declaration</td>
+<td align="left">[ˌdekləˈreɪʃn]</td>
+<td align="left">n. 声明</td>
+</tr>
+<tr>
+<td align="left">initialization</td>
+<td align="left">[ɪˌnɪʃəlaɪˈzeɪʃn]</td>
+<td align="left">n. 初始化</td>
+</tr>
+<tr>
+<td align="left">traversal</td>
+<td align="left">[trəˈvɜːsl]</td>
+<td align="left">n. 遍历</td>
+</tr>
+<tr>
+<td align="left">enhanced for loop</td>
+<td align="left">[ɪnˈhɑːnst fɔː luːp]</td>
+<td align="left">n. 增强 for 循环（for-each）</td>
+</tr>
+<tr>
+<td align="left">JavaBean</td>
+<td align="left">[ˈdʒɑːvə biːn]</td>
+<td align="left">n. JavaBean（封装数据的规范类）</td>
+</tr>
+<tr>
+<td align="left">pass by reference</td>
+<td align="left">[pɑːs baɪ ˈrefrəns]</td>
+<td align="left">n. 按引用传递</td>
+</tr>
+<tr>
+<td align="left">pass by value</td>
+<td align="left">[pɑːs baɪ ˈvæljuː]</td>
+<td align="left">n. 按值传递（Java 参数传递方式）</td>
+</tr>
+</tbody></table>
+<h3 id="8-3-常见类名-属性示例"><a href="#8-3-常见类名-属性示例" class="headerlink" title="8.3 常见类名 &#x2F; 属性示例"></a>8.3 常见类名 &#x2F; 属性示例</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">person &#x2F; people &#x2F; human</td>
+<td align="left">[ˈpɜːs(ə)n] &#x2F; [ˈpiːp(ə)l] &#x2F; [ˈhjuːmən]</td>
+<td align="left">n. 人；人类</td>
+</tr>
+<tr>
+<td align="left">info</td>
+<td align="left">[ˈɪnfəʊ]</td>
+<td align="left">n. 信息（如 getInfo()）</td>
+</tr>
+<tr>
+<td align="left">detail</td>
+<td align="left">[ˈdiːteɪl]</td>
+<td align="left">n. 细节</td>
+</tr>
+<tr>
+<td align="left">team</td>
+<td align="left">[tiːm]</td>
+<td align="left">n. 队；组</td>
+</tr>
+<tr>
+<td align="left">service</td>
+<td align="left">[ˈsɜːvɪs]</td>
+<td align="left">n. 服务</td>
+</tr>
+<tr>
+<td align="left">view</td>
+<td align="left">[vjuː]</td>
+<td align="left">n. 视图</td>
+</tr>
+<tr>
+<td align="left">major</td>
+<td align="left">[ˈmeɪdʒə]</td>
+<td align="left">n. 专业 adj. 主要的</td>
+</tr>
+<tr>
+<td align="left">school</td>
+<td align="left">[skuːl]</td>
+<td align="left">n. 学校</td>
+</tr>
+<tr>
+<td align="left">base</td>
+<td align="left">[beɪs]</td>
+<td align="left">n. 基础；底部（如 BaseClass 父类名）</td>
+</tr>
+<tr>
+<td align="left">margin</td>
+<td align="left">[ˈmɑːdʒɪn]</td>
+<td align="left">n. 边缘；利润；页边空白</td>
+</tr>
+<tr>
+<td align="left">bottom &#x2F; top</td>
+<td align="left">[ˈbɒtəm] &#x2F; [tɒp]</td>
+<td align="left">n. 底部 &#x2F; 顶部</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="九、继承"><a href="#九、继承" class="headerlink" title="九、继承"></a>九、继承</h2><h3 id="9-1-继承核心"><a href="#9-1-继承核心" class="headerlink" title="9.1 继承核心"></a>9.1 继承核心</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ extends</td>
+<td align="left">[ɪkˈstendz]</td>
+<td align="left">v. 继承（extend 的三单形式）</td>
+</tr>
+<tr>
+<td align="left">subclass</td>
+<td align="left">[ˈsʌbklɑːs]</td>
+<td align="left">n. 子类</td>
+</tr>
+<tr>
+<td align="left">superclass</td>
+<td align="left">[ˈsuːpəklɑːs]</td>
+<td align="left">n. 超类（父类）</td>
+</tr>
+<tr>
+<td align="left">inherit</td>
+<td align="left">[ɪnˈherɪt]</td>
+<td align="left">v. 继承</td>
+</tr>
+<tr>
+<td align="left">generalization</td>
+<td align="left">[ˌdʒenrələˈzeɪʃən]</td>
+<td align="left">n. 泛化；继承（is-a 关系）</td>
+</tr>
+<tr>
+<td align="left">super</td>
+<td align="left">[ˈsuːpə]</td>
+<td align="left">adj. 父类（访问父类成员&#x2F;构造方法）</td>
+</tr>
+</tbody></table>
+<h3 id="9-2-重写、重载与修饰符"><a href="#9-2-重写、重载与修饰符" class="headerlink" title="9.2 重写、重载与修饰符"></a>9.2 重写、重载与修饰符</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">override</td>
+<td align="left">[ˌəʊvəˈraɪd]</td>
+<td align="left">v. 方法重写；推翻</td>
+</tr>
+<tr>
+<td align="left">overload</td>
+<td align="left">[ˌəʊvəˈləʊd]</td>
+<td align="left">v. 方法重载；超载</td>
+</tr>
+<tr>
+<td align="left">native</td>
+<td align="left">[ˈneɪtɪv]</td>
+<td align="left">adj. 本地的（由其他语言实现的方法）</td>
+</tr>
+<tr>
+<td align="left">final</td>
+<td align="left">[ˈfaɪnl]</td>
+<td align="left">adj. 最终的（类不可继承&#x2F;方法不可重写&#x2F;变量不可改）</td>
+</tr>
+</tbody></table>
+<h3 id="9-3-抽象类与接口"><a href="#9-3-抽象类与接口" class="headerlink" title="9.3 抽象类与接口"></a>9.3 抽象类与接口</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">abstract class</td>
+<td align="left">—</td>
+<td align="left">n. 抽象类（不能实例化）</td>
+</tr>
+<tr>
+<td align="left">interface</td>
+<td align="left">[ˈɪntəfeɪs]</td>
+<td align="left">n. 接口（定义类应实现的方法集合）</td>
+</tr>
+<tr>
+<td align="left">implements</td>
+<td align="left">[ˈɪmplɪm(ə)nts]</td>
+<td align="left">v. 实现（类声明实现接口）</td>
+</tr>
+<tr>
+<td align="left">static method</td>
+<td align="left">—</td>
+<td align="left">n. 静态方法</td>
+</tr>
+<tr>
+<td align="left">default method</td>
+<td align="left">—</td>
+<td align="left">n. 默认方法（接口中带默认实现）</td>
+</tr>
+<tr>
+<td align="left">private method</td>
+<td align="left">—</td>
+<td align="left">n. 私有方法</td>
+</tr>
+</tbody></table>
+<h3 id="9-4-对象关系"><a href="#9-4-对象关系" class="headerlink" title="9.4 对象关系"></a>9.4 对象关系</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">dependency</td>
+<td align="left">[dɪˈpend(ə)nsɪ]</td>
+<td align="left">n. 依赖（模块之间的依赖关系）</td>
+</tr>
+<tr>
+<td align="left">association</td>
+<td align="left">[əˌsoʃɪˈeɪʃən]</td>
+<td align="left">n. 关联（对象之间的弱关系）</td>
+</tr>
+<tr>
+<td align="left">aggregation</td>
+<td align="left">[ˌæɡrɪˈɡeɪʃən]</td>
+<td align="left">n. 聚合（整体-部分，部分可独立）</td>
+</tr>
+<tr>
+<td align="left">composite</td>
+<td align="left">[ˈkɒmpəzɪt]</td>
+<td align="left">n. 复合；组合（部分不可独立）</td>
+</tr>
+</tbody></table>
+<h3 id="9-5-增删改查与业务词汇"><a href="#9-5-增删改查与业务词汇" class="headerlink" title="9.5 增删改查与业务词汇"></a>9.5 增删改查与业务词汇</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">add</td>
+<td align="left">[æd]</td>
+<td align="left">v. 增加</td>
+</tr>
+<tr>
+<td align="left">update</td>
+<td align="left">[ʌpˈdeɪt]</td>
+<td align="left">v. 更新</td>
+</tr>
+<tr>
+<td align="left">delete</td>
+<td align="left">[dɪˈliːt]</td>
+<td align="left">v. 删除</td>
+</tr>
+<tr>
+<td align="left">replace</td>
+<td align="left">[rɪˈpleɪs]</td>
+<td align="left">v. 替换</td>
+</tr>
+<tr>
+<td align="left">modify</td>
+<td align="left">[ˈmɒdɪfaɪ]</td>
+<td align="left">v. 修改</td>
+</tr>
+<tr>
+<td align="left">all</td>
+<td align="left">[ɔːl]</td>
+<td align="left">adj.&#x2F;pron. 全部</td>
+</tr>
+<tr>
+<td align="left">total</td>
+<td align="left">[ˈtəʊt(ə)l]</td>
+<td align="left">n.&#x2F;adj.&#x2F;v. 总数；合计</td>
+</tr>
+<tr>
+<td align="left">list</td>
+<td align="left">[lɪst]</td>
+<td align="left">n. 列表 v. 列出</td>
+</tr>
+<tr>
+<td align="left">select</td>
+<td align="left">[sɪˈlekt]</td>
+<td align="left">v. 选择</td>
+</tr>
+<tr>
+<td align="left">read</td>
+<td align="left">[riːd]</td>
+<td align="left">v. 读取</td>
+</tr>
+<tr>
+<td align="left">menu</td>
+<td align="left">[ˈmenjuː]</td>
+<td align="left">n. 菜单</td>
+</tr>
+<tr>
+<td align="left">enter</td>
+<td align="left">[ˈentə]</td>
+<td align="left">v.&#x2F;n. 输入；回车</td>
+</tr>
+<tr>
+<td align="left">confirm</td>
+<td align="left">[kənˈfɜːm]</td>
+<td align="left">v. 确认</td>
+</tr>
+<tr>
+<td align="left">employee</td>
+<td align="left">[ɪmˈplɔɪiː]</td>
+<td align="left">n. 雇员</td>
+</tr>
+<tr>
+<td align="left">manager</td>
+<td align="left">[ˈmænɪdʒə]</td>
+<td align="left">n. 经理</td>
+</tr>
+<tr>
+<td align="left">salary</td>
+<td align="left">[ˈsælərɪ]</td>
+<td align="left">n. 薪水</td>
+</tr>
+<tr>
+<td align="left">pay</td>
+<td align="left">[peɪ]</td>
+<td align="left">n.&#x2F;v. 工资；支付</td>
+</tr>
+<tr>
+<td align="left">hire</td>
+<td align="left">[ˈhaɪə]</td>
+<td align="left">v. 雇用</td>
+</tr>
+<tr>
+<td align="left">bonus</td>
+<td align="left">[ˈbəʊnəs]</td>
+<td align="left">n. 奖金；红利</td>
+</tr>
+<tr>
+<td align="left">stock</td>
+<td align="left">[stɒk]</td>
+<td align="left">n. 股份；库存</td>
+</tr>
+<tr>
+<td align="left">plan</td>
+<td align="left">[plæn]</td>
+<td align="left">n.&#x2F;v. 计划</td>
+</tr>
+<tr>
+<td align="left">report</td>
+<td align="left">[rɪˈpɔːt]</td>
+<td align="left">n.&#x2F;v. 报告</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十、多态"><a href="#十、多态" class="headerlink" title="十、多态"></a>十、多态</h2><h3 id="10-1-多态核心"><a href="#10-1-多态核心" class="headerlink" title="10.1 多态核心"></a>10.1 多态核心</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">⭐ polymorphism</td>
+<td align="left">[ˌpɒliˈmɔːfɪzəm]</td>
+<td align="left">n. 多态（面向对象三大特性之一）</td>
+</tr>
+<tr>
+<td align="left">dynamic binding</td>
+<td align="left">[daɪˈnæmɪk ˈbaɪndɪŋ]</td>
+<td align="left">n. 动态绑定（虚方法绑定）</td>
+</tr>
+<tr>
+<td align="left">virtual method</td>
+<td align="left">[ˈvɜːtʃuəl ˈmeθəd]</td>
+<td align="left">n. 虚方法（可被子类重写）</td>
+</tr>
+</tbody></table>
+<h3 id="10-2-类型转换"><a href="#10-2-类型转换" class="headerlink" title="10.2 类型转换"></a>10.2 类型转换</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">upcasting</td>
+<td align="left">[ˈʌpkɑːstɪŋ]</td>
+<td align="left">n. 向上转型（子类→父类，隐式）</td>
+</tr>
+<tr>
+<td align="left">downcasting</td>
+<td align="left">[ˈdaʊnkɑːstɪŋ]</td>
+<td align="left">n. 向下转型（父类→子类，强制）</td>
+</tr>
+<tr>
+<td align="left">Safe Downcasting</td>
+<td align="left">[seɪf ˈdaʊnkɑːstɪŋ]</td>
+<td align="left">n. 安全的向下转型（转型前类型检查）</td>
+</tr>
+<tr>
+<td align="left">ClassCastException</td>
+<td align="left">[klɑːs kɑːst ɪkˈsepʃn]</td>
+<td align="left">n. 类型转换异常</td>
+</tr>
+<tr>
+<td align="left">instanceof</td>
+<td align="left">[ˈɪnstəns ɒv]</td>
+<td align="left">n. 类型判断运算符（返回布尔值）</td>
+</tr>
+<tr>
+<td align="left">instanceof pattern matching</td>
+<td align="left">[ˈpætn ˈmætʃɪŋ]</td>
+<td align="left">n. instanceof 模式匹配</td>
+</tr>
+</tbody></table>
+<h3 id="10-3-内部类"><a href="#10-3-内部类" class="headerlink" title="10.3 内部类"></a>10.3 内部类</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">static inner class</td>
+<td align="left">[ˈstætɪk ˈɪnə klɑːs]</td>
+<td align="left">n. 静态内部类</td>
+</tr>
+<tr>
+<td align="left">non-static inner class</td>
+<td align="left">[ˌnɒn ˈstætɪk ˈɪnə klɑːs]</td>
+<td align="left">n. 非静态内部类</td>
+</tr>
+<tr>
+<td align="left">local inner class</td>
+<td align="left">[ˈləʊkl ˈɪnə klɑːs]</td>
+<td align="left">n. 局部内部类</td>
+</tr>
+<tr>
+<td align="left">anonymous inner class</td>
+<td align="left">[əˈnɒnɪməs ˈɪnə klɑːs]</td>
+<td align="left">n. 匿名内部类</td>
+</tr>
+</tbody></table>
+<h3 id="10-4-接口、比较与-Object-方法"><a href="#10-4-接口、比较与-Object-方法" class="headerlink" title="10.4 接口、比较与 Object 方法"></a>10.4 接口、比较与 Object 方法</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Comparable</td>
+<td align="left">[ˈkɒmpərəbl]</td>
+<td align="left">adj. 可比较的（自然排序接口）</td>
+</tr>
+<tr>
+<td align="left">Comparator</td>
+<td align="left">[ˈkɒmpəreɪtə]</td>
+<td align="left">n. 比较器（定制排序接口）</td>
+</tr>
+<tr>
+<td align="left">equals</td>
+<td align="left">[ˈiːkwəlz]</td>
+<td align="left">v. 与……相同（判断内容相等）</td>
+</tr>
+<tr>
+<td align="left">hash code</td>
+<td align="left">[hæʃ kəʊd]</td>
+<td align="left">n. 散列码（hashCode() 返回值）</td>
+</tr>
+<tr>
+<td align="left">finalize</td>
+<td align="left">[ˈfaɪn(ə)laɪz]</td>
+<td align="left">v. 完成（垃圾回收前调用的方法）</td>
+</tr>
+<tr>
+<td align="left">clone</td>
+<td align="left">[kləʊn]</td>
+<td align="left">n.&#x2F;v. 克隆（创建对象副本）</td>
+</tr>
+</tbody></table>
+<h3 id="10-5-修饰符、设计模式与示例"><a href="#10-5-修饰符、设计模式与示例" class="headerlink" title="10.5 修饰符、设计模式与示例"></a>10.5 修饰符、设计模式与示例</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">static</td>
+<td align="left">[ˈstætɪk]</td>
+<td align="left">adj. 静态的</td>
+</tr>
+<tr>
+<td align="left">final</td>
+<td align="left">[ˈfaɪn(ə)l]</td>
+<td align="left">adj. 最终的；不可更改的</td>
+</tr>
+<tr>
+<td align="left">native</td>
+<td align="left">[ˈneɪtɪv]</td>
+<td align="left">adj. 原生的</td>
+</tr>
+<tr>
+<td align="left">abstract</td>
+<td align="left">[ˈæbstrækt]</td>
+<td align="left">n.&#x2F;adj. 抽象的</td>
+</tr>
+<tr>
+<td align="left">single &#x2F; singleton</td>
+<td align="left">[ˈsɪŋɡ(ə)l] &#x2F; [ˈsɪŋɡ(ə)lt(ə)n]</td>
+<td align="left">n. 单例（设计模式）</td>
+</tr>
+<tr>
+<td align="left">block</td>
+<td align="left">[blɒk]</td>
+<td align="left">n. 块；代码块</td>
+</tr>
+<tr>
+<td align="left">order</td>
+<td align="left">[ˈɔːdə]</td>
+<td align="left">n. 顺序；命令</td>
+</tr>
+<tr>
+<td align="left">animal &#x2F; dog &#x2F; cat</td>
+<td align="left">[ˈænɪm(ə)l] &#x2F; [dɒɡ] &#x2F; [kæt]</td>
+<td align="left">n. 动物 &#x2F; 狗 &#x2F; 猫（多态示例）</td>
+</tr>
+<tr>
+<td align="left">vehicle</td>
+<td align="left">[ˈvɪəkl]</td>
+<td align="left">n. 车辆；交通工具（接口示例）</td>
+</tr>
+<tr>
+<td align="left">programmer</td>
+<td align="left">[ˈprəʊɡræmə]</td>
+<td align="left">n. 程序员（子类示例）</td>
+</tr>
+<tr>
+<td align="left">init</td>
+<td align="left">[ɪˈnɪt]</td>
+<td align="left">n. 初始化（initialization）</td>
+</tr>
+<tr>
+<td align="left">status</td>
+<td align="left">[ˈsteɪtəs]</td>
+<td align="left">n. 状态</td>
+</tr>
+<tr>
+<td align="left">remove</td>
+<td align="left">[rɪˈmuːv]</td>
+<td align="left">v. 移除；删除</td>
+</tr>
+<tr>
+<td align="left">radius</td>
+<td align="left">[ˈreɪdɪəs]</td>
+<td align="left">n. 半径</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十一、枚举、注解与开发工具"><a href="#十一、枚举、注解与开发工具" class="headerlink" title="十一、枚举、注解与开发工具"></a>十一、枚举、注解与开发工具</h2><h3 id="11-1-枚举"><a href="#11-1-枚举" class="headerlink" title="11.1 枚举"></a>11.1 枚举</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">enum</td>
+<td align="left">[ˈenəm]</td>
+<td align="left">n. 枚举（enumeration 的缩写）</td>
+</tr>
+<tr>
+<td align="left">ordinal</td>
+<td align="left">[ˈɔːdɪn(ə)l]</td>
+<td align="left">adj.&#x2F;n. 顺序的；序数（枚举常量索引）</td>
+</tr>
+<tr>
+<td align="left">enum declaration</td>
+<td align="left">[ˈenəm ˌdekləˈreɪʃn]</td>
+<td align="left">n. 枚举声明</td>
+</tr>
+</tbody></table>
+<h3 id="11-2-注解"><a href="#11-2-注解" class="headerlink" title="11.2 注解"></a>11.2 注解</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">annotation</td>
+<td align="left">[ˌænəˈteɪʃ(ə)n]</td>
+<td align="left">n. 注解；注释</td>
+</tr>
+<tr>
+<td align="left">@Override</td>
+<td align="left">[ˌəʊvəˈraɪd]</td>
+<td align="left">标记方法为重写父类方法</td>
+</tr>
+<tr>
+<td align="left">@Deprecated</td>
+<td align="left">[ˈdeprəkeɪtɪd]</td>
+<td align="left">标记已过时；不赞成使用</td>
+</tr>
+<tr>
+<td align="left">suppress</td>
+<td align="left">[səˈpres]</td>
+<td align="left">v. 抑制；镇压（抑制警告）</td>
+</tr>
+<tr>
+<td align="left">warning</td>
+<td align="left">[ˈwɔːnɪŋ]</td>
+<td align="left">n. 警告</td>
+</tr>
+<tr>
+<td align="left">@SuppressWarnings</td>
+<td align="left">[səˈpres ˈwɔːnɪŋz]</td>
+<td align="left">抑制编译器警告</td>
+</tr>
+<tr>
+<td align="left">@Target</td>
+<td align="left">[ˈtɑːɡɪt]</td>
+<td align="left">指定注解可应用的目标元素</td>
+</tr>
+<tr>
+<td align="left">@Retention</td>
+<td align="left">[rɪˈtenʃ(ə)n]</td>
+<td align="left">指定注解的保留策略</td>
+</tr>
+<tr>
+<td align="left">ElementType</td>
+<td align="left">[ˈelɪm(ə)nt taɪp]</td>
+<td align="left">n. 元素类型（@Target 参数）</td>
+</tr>
+<tr>
+<td align="left">RetentionPolicy</td>
+<td align="left">[rɪˈtenʃ(ə)n ˈpɒləsɪ]</td>
+<td align="left">n. 保留策略（@Retention 参数）</td>
+</tr>
+<tr>
+<td align="left">metadata</td>
+<td align="left">[ˈmetədeɪtə]</td>
+<td align="left">n. 元数据（注解的本质）</td>
+</tr>
+</tbody></table>
+<h3 id="11-3-代码块与新特性"><a href="#11-3-代码块与新特性" class="headerlink" title="11.3 代码块与新特性"></a>11.3 代码块与新特性</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">static block</td>
+<td align="left">[ˈstætɪk blɒk]</td>
+<td align="left">n. 静态代码块（类加载时执行一次）</td>
+</tr>
+<tr>
+<td align="left">non-static block</td>
+<td align="left">[ˌnɒn ˈstætɪk blɒk]</td>
+<td align="left">n. 非静态代码块（每次创建对象执行）</td>
+</tr>
+<tr>
+<td align="left">class initialization</td>
+<td align="left">[klɑːs ɪˌnɪʃəlaɪˈzeɪʃn]</td>
+<td align="left">n. 类初始化</td>
+</tr>
+<tr>
+<td align="left">instance initialization</td>
+<td align="left">[ˈɪnstəns ɪˌnɪʃəlaɪˈzeɪʃn]</td>
+<td align="left">n. 实例初始化</td>
+</tr>
+<tr>
+<td align="left">Record class</td>
+<td align="left">[ˈrekɔːd klɑːs]</td>
+<td align="left">n. 记录类（JDK 16 特性）</td>
+</tr>
+<tr>
+<td align="left">sealed class</td>
+<td align="left">[siːld klɑːs]</td>
+<td align="left">n. 密封类（JDK 15 特性）</td>
+</tr>
+</tbody></table>
+<h3 id="11-4-构建与测试工具"><a href="#11-4-构建与测试工具" class="headerlink" title="11.4 构建与测试工具"></a>11.4 构建与测试工具</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Maven</td>
+<td align="left">[ˈmeɪvən]</td>
+<td align="left">n. Maven 工程（项目管理工具）</td>
+</tr>
+<tr>
+<td align="left">Junit</td>
+<td align="left">[ˈdʒuːnɪt]</td>
+<td align="left">n. Junit（单元测试框架）</td>
+</tr>
+<tr>
+<td align="left">@Test</td>
+<td align="left">[test]</td>
+<td align="left">标记方法为测试用例</td>
+</tr>
+<tr>
+<td align="left">@BeforeAll &#x2F; @AfterAll</td>
+<td align="left">—</td>
+<td align="left">所有测试方法执行前&#x2F;后各执行一次</td>
+</tr>
+<tr>
+<td align="left">@BeforeEach &#x2F; @AfterEach</td>
+<td align="left">—</td>
+<td align="left">每个测试方法执行前&#x2F;后各执行一次</td>
+</tr>
+</tbody></table>
+<h3 id="11-5-Lombok"><a href="#11-5-Lombok" class="headerlink" title="11.5 Lombok"></a>11.5 Lombok</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">lombok</td>
+<td align="left">[ˈlɒmbɒk]</td>
+<td align="left">n. Lombok 工具（自动生成代码）</td>
+</tr>
+<tr>
+<td align="left">@Data</td>
+<td align="left">[ˈdeɪtə]</td>
+<td align="left">自动生成 getter&#x2F;setter&#x2F;equals&#x2F;hashCode 等</td>
+</tr>
+<tr>
+<td align="left">@NoArgsConstructor</td>
+<td align="left">—</td>
+<td align="left">自动生成无参构造器</td>
+</tr>
+<tr>
+<td align="left">@AllArgsConstructor</td>
+<td align="left">—</td>
+<td align="left">自动生成全参构造器</td>
+</tr>
+<tr>
+<td align="left">@Builder</td>
+<td align="left">[ˈbɪldə(r)]</td>
+<td align="left">自动生成构建者模式代码</td>
+</tr>
+<tr>
+<td align="left">@SuperBuilder</td>
+<td align="left">[ˈsuːpə(r) ˈbɪldə(r)]</td>
+<td align="left">@Builder 的扩展（支持继承）</td>
+</tr>
+</tbody></table>
+<h3 id="11-6-包装类"><a href="#11-6-包装类" class="headerlink" title="11.6 包装类"></a>11.6 包装类</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">wrapper class</td>
+<td align="left">[ˈræpə klɑːs]</td>
+<td align="left">n. 包装类（基本类型的引用类型）</td>
+</tr>
+<tr>
+<td align="left">autoboxing</td>
+<td align="left">[ˈɔːtəʊˌbɒksɪŋ]</td>
+<td align="left">n. 自动装箱（int→Integer）</td>
+</tr>
+<tr>
+<td align="left">unboxing</td>
+<td align="left">[ʌnˈbɒksɪŋ]</td>
+<td align="left">n. 自动拆箱（Integer→int）</td>
+</tr>
+<tr>
+<td align="left">cache</td>
+<td align="left">[kæʃ]</td>
+<td align="left">n. 缓存（Integer 缓存 -128~127）</td>
+</tr>
+<tr>
+<td align="left">valueOf()</td>
+<td align="left">[ˈvæljuː ɒv]</td>
+<td align="left">返回包装类对象（优先使用缓存）</td>
+</tr>
+</tbody></table>
+<h3 id="11-7-数学工具类"><a href="#11-7-数学工具类" class="headerlink" title="11.7 数学工具类"></a>11.7 数学工具类</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Math</td>
+<td align="left">[mæθ]</td>
+<td align="left">n. Math 类（数学运算工具类）</td>
+</tr>
+<tr>
+<td align="left">BigInteger</td>
+<td align="left">[bɪɡ ˈɪntɪdʒə]</td>
+<td align="left">n. BigInteger 类（任意精度整数）</td>
+</tr>
+<tr>
+<td align="left">BigDecimal</td>
+<td align="left">[bɪɡ ˈdesɪml]</td>
+<td align="left">n. BigDecimal 类（任意精度小数）</td>
+</tr>
+<tr>
+<td align="left">Random</td>
+<td align="left">[ˈrændəm]</td>
+<td align="left">n. Random 类（生成伪随机数）</td>
+</tr>
+<tr>
+<td align="left">sqrt</td>
+<td align="left">[skwɔːt]</td>
+<td align="left">n. 开平方根（square root）</td>
+</tr>
+<tr>
+<td align="left">pow</td>
+<td align="left">[paʊ]</td>
+<td align="left">n.&#x2F;v. 幂；求幂</td>
+</tr>
+<tr>
+<td align="left">ceil</td>
+<td align="left">[siːl]</td>
+<td align="left">v. 向上取整</td>
+</tr>
+<tr>
+<td align="left">floor</td>
+<td align="left">[flɔː(r)]</td>
+<td align="left">v. 向下取整</td>
+</tr>
+<tr>
+<td align="left">round</td>
+<td align="left">[raʊnd]</td>
+<td align="left">v. 四舍五入</td>
+</tr>
+</tbody></table>
+<h3 id="11-8-其他术语"><a href="#11-8-其他术语" class="headerlink" title="11.8 其他术语"></a>11.8 其他术语</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">inner &#x2F; outer</td>
+<td align="left">[ˈɪnə] &#x2F; [ˈaʊtə]</td>
+<td align="left">adj. 内部的 &#x2F; 外部的</td>
+</tr>
+<tr>
+<td align="left">local</td>
+<td align="left">[ˈləʊk(ə)l]</td>
+<td align="left">adj. 局部的；本地的</td>
+</tr>
+<tr>
+<td align="left">anonymous</td>
+<td align="left">[əˈnɒnɪməs]</td>
+<td align="left">adj. 匿名的</td>
+</tr>
+<tr>
+<td align="left">source code</td>
+<td align="left">[sɔːs kəʊd]</td>
+<td align="left">n. 源代码</td>
+</tr>
+<tr>
+<td align="left">runtime</td>
+<td align="left">[ˈrʌntaɪm]</td>
+<td align="left">n. 运行时间</td>
+</tr>
+<tr>
+<td align="left">class</td>
+<td align="left">[klɑːs]</td>
+<td align="left">n. 类；字节码（.class 文件）</td>
+</tr>
+<tr>
+<td align="left">author</td>
+<td align="left">[ˈɔːθə]</td>
+<td align="left">n. 作者（如 @author）</td>
+</tr>
+<tr>
+<td align="left">version</td>
+<td align="left">[ˈvɜːʃ(ə)n]</td>
+<td align="left">n. 版本（如 @version）</td>
+</tr>
+</tbody></table>
+<h2 id="十二、IO-流与异常处理"><a href="#十二、IO-流与异常处理" class="headerlink" title="十二、IO 流与异常处理"></a>十二、IO 流与异常处理</h2><h3 id="12-1-文件与目录"><a href="#12-1-文件与目录" class="headerlink" title="12.1 文件与目录"></a>12.1 文件与目录</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">file</td>
+<td align="left">[faɪl]</td>
+<td align="left">n. 文件</td>
+</tr>
+<tr>
+<td align="left">directory</td>
+<td align="left">[dɪˈrekt(ə)rɪ]</td>
+<td align="left">n. 目录</td>
+</tr>
+<tr>
+<td align="left">folder</td>
+<td align="left">[ˈfəʊldə(r)]</td>
+<td align="left">n. 文件夹</td>
+</tr>
+<tr>
+<td align="left">create</td>
+<td align="left">[kriːˈeɪt]</td>
+<td align="left">v. 创建</td>
+</tr>
+<tr>
+<td align="left">mkdir</td>
+<td align="left">[ˌem keɪ ˈdaɪr]</td>
+<td align="left">n. 建立新子目录（DOS 命令）</td>
+</tr>
+<tr>
+<td align="left">separator</td>
+<td align="left">[ˈsepəreɪtə(r)]</td>
+<td align="left">n. 分隔符</td>
+</tr>
+<tr>
+<td align="left">hidden</td>
+<td align="left">[ˈhɪdn]</td>
+<td align="left">adj. 隐藏的</td>
+</tr>
+<tr>
+<td align="left">suffix &#x2F; prefix</td>
+<td align="left">[ˈsʌfɪks] &#x2F; [ˈpriːfɪks]</td>
+<td align="left">n. 后缀 &#x2F; 前缀</td>
+</tr>
+<tr>
+<td align="left">rename</td>
+<td align="left">[ˌriːˈneɪm]</td>
+<td align="left">v. 重命名</td>
+</tr>
+<tr>
+<td align="left">exists</td>
+<td align="left">[ɪɡˈzɪsts]</td>
+<td align="left">v. 存在</td>
+</tr>
+</tbody></table>
+<h3 id="12-2-文件属性与操作"><a href="#12-2-文件属性与操作" class="headerlink" title="12.2 文件属性与操作"></a>12.2 文件属性与操作</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">modified</td>
+<td align="left">[ˈmɒdɪfaɪd]</td>
+<td align="left">adj. 修改的（lastModified 最后修改时间）</td>
+</tr>
+<tr>
+<td align="left">parent</td>
+<td align="left">[ˈpeərənt]</td>
+<td align="left">n. 父亲；父级（目录）</td>
+</tr>
+<tr>
+<td align="left">absolute</td>
+<td align="left">[ˈæbsəluːt]</td>
+<td align="left">adj. 绝对的</td>
+</tr>
+<tr>
+<td align="left">canonical</td>
+<td align="left">[kəˈnɒnɪkl]</td>
+<td align="left">adj. 规范化的</td>
+</tr>
+<tr>
+<td align="left">readonly</td>
+<td align="left">[ˌriːd ˈəʊnli]</td>
+<td align="left">adj. 只读的</td>
+</tr>
+<tr>
+<td align="left">canWrite</td>
+<td align="left">[kæn raɪt]</td>
+<td align="left">是否可写</td>
+</tr>
+<tr>
+<td align="left">readable</td>
+<td align="left">[ˈriːdəbl]</td>
+<td align="left">adj. 可读的</td>
+</tr>
+<tr>
+<td align="left">resources</td>
+<td align="left">[rɪˈsɔːsɪz]</td>
+<td align="left">n. 资源</td>
+</tr>
+</tbody></table>
+<h3 id="12-3-流（Stream）"><a href="#12-3-流（Stream）" class="headerlink" title="12.3 流（Stream）"></a>12.3 流（Stream）</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">stream</td>
+<td align="left">[striːm]</td>
+<td align="left">n. 流</td>
+</tr>
+<tr>
+<td align="left">InputStream</td>
+<td align="left">[ˈɪnˌpʊt striːm]</td>
+<td align="left">n. 字节输入流</td>
+</tr>
+<tr>
+<td align="left">OutputStream</td>
+<td align="left">[ˈaʊtˌpʊt striːm]</td>
+<td align="left">n. 字节输出流</td>
+</tr>
+<tr>
+<td align="left">Reader</td>
+<td align="left">[ˈriːdə(r)]</td>
+<td align="left">n. 字符输入流</td>
+</tr>
+<tr>
+<td align="left">Writer</td>
+<td align="left">[ˈraɪtə(r)]</td>
+<td align="left">n. 字符输出流</td>
+</tr>
+<tr>
+<td align="left">read</td>
+<td align="left">[riːd]</td>
+<td align="left">v. 读取</td>
+</tr>
+<tr>
+<td align="left">write</td>
+<td align="left">[raɪt]</td>
+<td align="left">v. 写</td>
+</tr>
+<tr>
+<td align="left">close</td>
+<td align="left">[kləʊs]</td>
+<td align="left">v. 关闭</td>
+</tr>
+<tr>
+<td align="left">flush</td>
+<td align="left">[flʌʃ]</td>
+<td align="left">v. 刷新</td>
+</tr>
+<tr>
+<td align="left">buffered</td>
+<td align="left">[ˈbʌfəd]</td>
+<td align="left">adj. 缓冲的</td>
+</tr>
+</tbody></table>
+<h3 id="12-4-序列化与编码"><a href="#12-4-序列化与编码" class="headerlink" title="12.4 序列化与编码"></a>12.4 序列化与编码</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">ObjectInputStream</td>
+<td align="left">[ˈɒbdʒɪkt ˈɪnˌpʊt striːm]</td>
+<td align="left">n. 对象输入流（反序列化）</td>
+</tr>
+<tr>
+<td align="left">ObjectOutputStream</td>
+<td align="left">[ˈɒbdʒɪkt ˈaʊtˌpʊt striːm]</td>
+<td align="left">n. 对象输出流（序列化）</td>
+</tr>
+<tr>
+<td align="left">serializable</td>
+<td align="left">[ˈsɪərɪəlaɪzəbl]</td>
+<td align="left">adj. 可序列化的</td>
+</tr>
+<tr>
+<td align="left">transient</td>
+<td align="left">[ˈtrænziənt]</td>
+<td align="left">adj. 瞬态的（不参与序列化）</td>
+</tr>
+<tr>
+<td align="left">serialized</td>
+<td align="left">[ˈsɪərɪəlaɪzd]</td>
+<td align="left">v. 序列化</td>
+</tr>
+<tr>
+<td align="left">serialVersionUID</td>
+<td align="left">[ˌsɪərɪəlaɪˈzeɪʃn ˌjuː aɪ ˈdiː]</td>
+<td align="left">n. 序列化唯一标识符</td>
+</tr>
+<tr>
+<td align="left">UID</td>
+<td align="left">[ˌjuː aɪ ˈdiː]</td>
+<td align="left">n. 唯一标识符（unique identifier）</td>
+</tr>
+<tr>
+<td align="left">encoding</td>
+<td align="left">[ɪnˈkəʊdɪŋ]</td>
+<td align="left">v.&#x2F;n. 编码</td>
+</tr>
+<tr>
+<td align="left">decoding</td>
+<td align="left">[ˌdiːˈkəʊdɪŋ]</td>
+<td align="left">v.&#x2F;n. 解码</td>
+</tr>
+<tr>
+<td align="left">charset</td>
+<td align="left">[ˈtʃærset]</td>
+<td align="left">n. 字符集</td>
+</tr>
+</tbody></table>
+<h3 id="12-5-异常体系"><a href="#12-5-异常体系" class="headerlink" title="12.5 异常体系"></a>12.5 异常体系</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">exception</td>
+<td align="left">[ɪkˈsepʃn]</td>
+<td align="left">n. 异常</td>
+</tr>
+<tr>
+<td align="left">error</td>
+<td align="left">[ˈerə(r)]</td>
+<td align="left">n. 错误</td>
+</tr>
+<tr>
+<td align="left">throwable</td>
+<td align="left">[ˈθrəʊəbl]</td>
+<td align="left">adj. 可抛出的</td>
+</tr>
+<tr>
+<td align="left">try</td>
+<td align="left">[traɪ]</td>
+<td align="left">v. 尝试（try-catch 语句）</td>
+</tr>
+<tr>
+<td align="left">catch</td>
+<td align="left">[kætʃ]</td>
+<td align="left">v.&#x2F;n. 捕捉</td>
+</tr>
+<tr>
+<td align="left">finally</td>
+<td align="left">[ˈfaɪnəli]</td>
+<td align="left">adv. 最后；终于</td>
+</tr>
+<tr>
+<td align="left">throw</td>
+<td align="left">[θrəʊ]</td>
+<td align="left">v. 抛出</td>
+</tr>
+<tr>
+<td align="left">throws</td>
+<td align="left">[θrəʊz]</td>
+<td align="left">v. 抛出（throw 三单形式）</td>
+</tr>
+<tr>
+<td align="left">trace</td>
+<td align="left">[treɪs]</td>
+<td align="left">n. 痕迹（stack trace 堆栈追踪）</td>
+</tr>
+<tr>
+<td align="left">message</td>
+<td align="left">[ˈmesɪdʒ]</td>
+<td align="left">n. 消息</td>
+</tr>
+</tbody></table>
+<h3 id="12-6-异常类型"><a href="#12-6-异常类型" class="headerlink" title="12.6 异常类型"></a>12.6 异常类型</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Checked Exceptions</td>
+<td align="left">[tʃekt]</td>
+<td align="left">n. 受检异常</td>
+</tr>
+<tr>
+<td align="left">Unchecked Exceptions</td>
+<td align="left">[ˌʌnˈtʃekt]</td>
+<td align="left">n. 非受检异常</td>
+</tr>
+<tr>
+<td align="left">RuntimeException</td>
+<td align="left">[ˈrʌntaɪm ɪkˈsepʃən]</td>
+<td align="left">n. 运行时异常</td>
+</tr>
+<tr>
+<td align="left">ArithmeticException</td>
+<td align="left">[əˈrɪθmətɪk ɪkˈsepʃən]</td>
+<td align="left">n. 算术异常</td>
+</tr>
+<tr>
+<td align="left">NullPointerException</td>
+<td align="left">[nʌl ˈpɔɪntə(r)]</td>
+<td align="left">n. 空指针异常</td>
+</tr>
+<tr>
+<td align="left">ClassCastException</td>
+<td align="left">[klɑːs kɑːst ɪkˈsepʃən]</td>
+<td align="left">n. 类型转换异常</td>
+</tr>
+<tr>
+<td align="left">ArrayIndexOutOfBoundsException</td>
+<td align="left">[əˈreɪ ˈɪndeks aʊt ɒv baʊndz]</td>
+<td align="left">n. 数组下标越界异常</td>
+</tr>
+<tr>
+<td align="left">NumberFormatException</td>
+<td align="left">[ˈnʌmbə(r) ˈfɔːmæt]</td>
+<td align="left">n. 数字格式化异常</td>
+</tr>
+<tr>
+<td align="left">IOException</td>
+<td align="left">[ˌaɪ əʊ ˈer ɪkˈsepʃən]</td>
+<td align="left">n. I&#x2F;O 异常</td>
+</tr>
+<tr>
+<td align="left">FileNotFoundException</td>
+<td align="left">[faɪl ˌnɒt faʊn ɪkˈsepʃən]</td>
+<td align="left">n. 文件找不到异常</td>
+</tr>
+<tr>
+<td align="left">EOFException</td>
+<td align="left">[ˌiː əʊ ˈef ɪkˈsepʃən]</td>
+<td align="left">n. 文件结束异常</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十三、日期时间与字符串"><a href="#十三、日期时间与字符串" class="headerlink" title="十三、日期时间与字符串"></a>十三、日期时间与字符串</h2><h3 id="13-1-日期时间基础"><a href="#13-1-日期时间基础" class="headerlink" title="13.1 日期时间基础"></a>13.1 日期时间基础</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">date</td>
+<td align="left">[deɪt]</td>
+<td align="left">n. 日期</td>
+</tr>
+<tr>
+<td align="left">time</td>
+<td align="left">[taɪm]</td>
+<td align="left">n. 时间</td>
+</tr>
+<tr>
+<td align="left">calendar</td>
+<td align="left">[ˈkælɪndə]</td>
+<td align="left">n. 日历（第一代日期 API）</td>
+</tr>
+<tr>
+<td align="left">Instant</td>
+<td align="left">[ˈɪnst(ə)nt]</td>
+<td align="left">n. 瞬间；时刻（时间戳类）</td>
+</tr>
+<tr>
+<td align="left">duration</td>
+<td align="left">[djʊˈreɪʃ(ə)n]</td>
+<td align="left">n. 持续时间（基于时间）</td>
+</tr>
+<tr>
+<td align="left">period</td>
+<td align="left">[ˈpɪərɪəd]</td>
+<td align="left">n. 周期；期间（基于日期）</td>
+</tr>
+</tbody></table>
+<h3 id="13-2-时区与本地化"><a href="#13-2-时区与本地化" class="headerlink" title="13.2 时区与本地化"></a>13.2 时区与本地化</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">local</td>
+<td align="left">[ˈləʊk(ə)l]</td>
+<td align="left">adj. 本地的（LocalDate 等前缀）</td>
+</tr>
+<tr>
+<td align="left">zone</td>
+<td align="left">[zəʊn]</td>
+<td align="left">n. 地区；区域</td>
+</tr>
+<tr>
+<td align="left">timezone</td>
+<td align="left">[ˈtaɪmzəʊn]</td>
+<td align="left">n. 时区</td>
+</tr>
+<tr>
+<td align="left">locale</td>
+<td align="left">[ləʊˈkɑːl]</td>
+<td align="left">n. 区域；场所（语言文化设置）</td>
+</tr>
+<tr>
+<td align="left">offset</td>
+<td align="left">[ˈɒfset]</td>
+<td align="left">n. 偏移（OffsetDateTime）</td>
+</tr>
+<tr>
+<td align="left">temporal</td>
+<td align="left">[ˈtemp(ə)r(ə)l]</td>
+<td align="left">adj. 时间的（Temporal 接口）</td>
+</tr>
+<tr>
+<td align="left">adjuster</td>
+<td align="left">[əˈdʒʌstə]</td>
+<td align="left">n. 调节器（TemporalAdjuster 接口）</td>
+</tr>
+</tbody></table>
+<h3 id="13-3-字符串"><a href="#13-3-字符串" class="headerlink" title="13.3 字符串"></a>13.3 字符串</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">string</td>
+<td align="left">[strɪŋ]</td>
+<td align="left">n. 字符串（不可变字符序列）</td>
+</tr>
+<tr>
+<td align="left">char</td>
+<td align="left">[tʃɑː(r)]</td>
+<td align="left">n. 字符（character 的缩写）</td>
+</tr>
+<tr>
+<td align="left">byte</td>
+<td align="left">[baɪt]</td>
+<td align="left">n. 字节</td>
+</tr>
+<tr>
+<td align="left">coder</td>
+<td align="left">[ˈkəʊdə(r)]</td>
+<td align="left">n. 编码器（标识编码方式的字段）</td>
+</tr>
+<tr>
+<td align="left">constant</td>
+<td align="left">[ˈkɒnstənt]</td>
+<td align="left">n. 常量（字符串常量）</td>
+</tr>
+<tr>
+<td align="left">Pattern</td>
+<td align="left">[ˈpætn]</td>
+<td align="left">n. 模式（正则表达式编译形式）</td>
+</tr>
+<tr>
+<td align="left">Matcher</td>
+<td align="left">[ˈmætʃə(r)]</td>
+<td align="left">n. 匹配器（正则匹配）</td>
+</tr>
+<tr>
+<td align="left">StringBuilder</td>
+<td align="left">[ˈstrɪŋ ˈbɪldə(r)]</td>
+<td align="left">n. 字符串构建器（非线程安全）</td>
+</tr>
+<tr>
+<td align="left">StringBuffer</td>
+<td align="left">[ˈstrɪŋ ˈbʌfə(r)]</td>
+<td align="left">n. 字符串缓冲区（线程安全）</td>
+</tr>
+<tr>
+<td align="left">text block</td>
+<td align="left">[tekst blɒk]</td>
+<td align="left">n. 文本块（多行字符串）</td>
+</tr>
+<tr>
+<td align="left">append</td>
+<td align="left">[əˈpend]</td>
+<td align="left">v. 追加；附加</td>
+</tr>
+<tr>
+<td align="left">format</td>
+<td align="left">[ˈfɔːmæt]</td>
+<td align="left">v.&#x2F;n. 格式化</td>
+</tr>
+<tr>
+<td align="left">comparable</td>
+<td align="left">[ˈkɒmp(ə)rəb(ə)l]</td>
+<td align="left">adj. 可比较的（Comparable 接口）</td>
+</tr>
+<tr>
+<td align="left">comparator</td>
+<td align="left">[kəmˈpærətə]</td>
+<td align="left">n. 比较器（Comparator 接口）</td>
+</tr>
+</tbody></table>
+<h3 id="13-4-时间方法与运算"><a href="#13-4-时间方法与运算" class="headerlink" title="13.4 时间方法与运算"></a>13.4 时间方法与运算</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">now</td>
+<td align="left">[naʊ]</td>
+<td align="left">n. 现在（LocalDate.now()）</td>
+</tr>
+<tr>
+<td align="left">before</td>
+<td align="left">[bɪˈfɔː]</td>
+<td align="left">在……之前（before() 方法）</td>
+</tr>
+<tr>
+<td align="left">after</td>
+<td align="left">[ˈɑːftə]</td>
+<td align="left">在……之后（after() 方法）</td>
+</tr>
+<tr>
+<td align="left">add</td>
+<td align="left">[æd]</td>
+<td align="left">v. 加（add() 方法）</td>
+</tr>
+<tr>
+<td align="left">subtract</td>
+<td align="left">[səbˈtrækt]</td>
+<td align="left">v. 减去</td>
+</tr>
+<tr>
+<td align="left">multiply</td>
+<td align="left">[ˈmʌltɪplaɪ]</td>
+<td align="left">v. 乘</td>
+</tr>
+<tr>
+<td align="left">divide</td>
+<td align="left">[dɪˈvaɪd]</td>
+<td align="left">v. 除</td>
+</tr>
+<tr>
+<td align="left">remainder</td>
+<td align="left">[rɪˈmeɪndə]</td>
+<td align="left">n. 余数</td>
+</tr>
+<tr>
+<td align="left">plus</td>
+<td align="left">[plʌs]</td>
+<td align="left">prep. 加；正的</td>
+</tr>
+<tr>
+<td align="left">minus</td>
+<td align="left">[ˈmaɪnəs]</td>
+<td align="left">prep. 减；负的</td>
+</tr>
+<tr>
+<td align="left">leap</td>
+<td align="left">[liːp]</td>
+<td align="left">v.&#x2F;n. 跳跃（leap year 闰年）</td>
+</tr>
+</tbody></table>
+<h3 id="13-5-其他"><a href="#13-5-其他" class="headerlink" title="13.5 其他"></a>13.5 其他</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">memory</td>
+<td align="left">[ˈmem(ə)rɪ]</td>
+<td align="left">n. 内存；记忆（字符串常量池）</td>
+</tr>
+<tr>
+<td align="left">free</td>
+<td align="left">[friː]</td>
+<td align="left">adj. 空闲的 v. 释放</td>
+</tr>
+<tr>
+<td align="left">milli</td>
+<td align="left">[ˈmɪli]</td>
+<td align="left">毫；千分之一（millisecond 毫秒）</td>
+</tr>
+<tr>
+<td align="left">current</td>
+<td align="left">[ˈkʌr(ə)nt]</td>
+<td align="left">adj. 当前的</td>
+</tr>
+<tr>
+<td align="left">System.currentTimeMillis()</td>
+<td align="left">—</td>
+<td align="left">当前时间戳方法（返回毫秒数）</td>
+</tr>
+<tr>
+<td align="left">available</td>
+<td align="left">[əˈveɪləb(ə)l]</td>
+<td align="left">adj. 有效的；可用的</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十四、集合与泛型"><a href="#十四、集合与泛型" class="headerlink" title="十四、集合与泛型"></a>十四、集合与泛型</h2><h3 id="14-1-Collection-接口与通用方法"><a href="#14-1-Collection-接口与通用方法" class="headerlink" title="14.1 Collection 接口与通用方法"></a>14.1 Collection 接口与通用方法</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">collection</td>
+<td align="left">[kəˈlekʃ(ə)n]</td>
+<td align="left">n. 集合（Collection 接口，所有集合根接口）</td>
+</tr>
+<tr>
+<td align="left">add</td>
+<td align="left">[æd]</td>
+<td align="left">v. 添加元素</td>
+</tr>
+<tr>
+<td align="left">addAll</td>
+<td align="left">[æd ɔːl]</td>
+<td align="left">v. 批量添加</td>
+</tr>
+<tr>
+<td align="left">remove</td>
+<td align="left">[rɪˈmuːv]</td>
+<td align="left">v. 删除元素</td>
+</tr>
+<tr>
+<td align="left">removeIf</td>
+<td align="left">[rɪˈmuːv ɪf]</td>
+<td align="left">v. 条件删除</td>
+</tr>
+<tr>
+<td align="left">clear</td>
+<td align="left">[klɪə]</td>
+<td align="left">v. 清空</td>
+</tr>
+<tr>
+<td align="left">contains</td>
+<td align="left">[kənˈteɪnz]</td>
+<td align="left">v. 包含（判断是否存在元素）</td>
+</tr>
+<tr>
+<td align="left">containsAll</td>
+<td align="left">[kənˈteɪnz ɔːl]</td>
+<td align="left">v. 全包含</td>
+</tr>
+<tr>
+<td align="left">retainAll</td>
+<td align="left">[rɪˈteɪn ɔːl]</td>
+<td align="left">v. 保留交集</td>
+</tr>
+<tr>
+<td align="left">iterate</td>
+<td align="left">[ˈɪtəreɪt]</td>
+<td align="left">v. 迭代；遍历</td>
+</tr>
+<tr>
+<td align="left">size</td>
+<td align="left">[saɪz]</td>
+<td align="left">n. 大小（元素数量）</td>
+</tr>
+<tr>
+<td align="left">empty</td>
+<td align="left">[ˈempti]</td>
+<td align="left">adj. 空的（isEmpty()）</td>
+</tr>
+<tr>
+<td align="left">replace</td>
+<td align="left">[rɪˈpleɪs]</td>
+<td align="left">v. 替换</td>
+</tr>
+<tr>
+<td align="left">retain</td>
+<td align="left">[rɪˈteɪn]</td>
+<td align="left">v. 保持；留存</td>
+</tr>
+<tr>
+<td align="left">insert</td>
+<td align="left">[ɪnˈsɜːt]</td>
+<td align="left">v. 插入</td>
+</tr>
+<tr>
+<td align="left">fill</td>
+<td align="left">[fɪl]</td>
+<td align="left">v. 填充（替换为指定值）</td>
+</tr>
+<tr>
+<td align="left">absent</td>
+<td align="left">[ˈæbsənt]</td>
+<td align="left">adj. 缺席的；不存在的</td>
+</tr>
+</tbody></table>
+<h3 id="14-2-List-系列"><a href="#14-2-List-系列" class="headerlink" title="14.2 List 系列"></a>14.2 List 系列</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">List</td>
+<td align="left">[lɪst]</td>
+<td align="left">n. 列表（有序可重复，可索引访问）</td>
+</tr>
+<tr>
+<td align="left">ArrayList</td>
+<td align="left">[əˈreɪ lɪst]</td>
+<td align="left">n. 数组列表（基于数组，查询快）</td>
+</tr>
+<tr>
+<td align="left">LinkedList</td>
+<td align="left">[ˈlɪŋkt lɪst]</td>
+<td align="left">n. 链表（基于链表，增删快）</td>
+</tr>
+<tr>
+<td align="left">Vector</td>
+<td align="left">[ˈvektə]</td>
+<td align="left">n. 向量（线程安全，效率低）</td>
+</tr>
+<tr>
+<td align="left">subList</td>
+<td align="left">[sʌb lɪst]</td>
+<td align="left">n. 子列表（集合的部分视图）</td>
+</tr>
+<tr>
+<td align="left">resize</td>
+<td align="left">[riːˈsaɪz]</td>
+<td align="left">v. 调整大小（ArrayList 扩容）</td>
+</tr>
+</tbody></table>
+<h3 id="14-3-Set-系列"><a href="#14-3-Set-系列" class="headerlink" title="14.3 Set 系列"></a>14.3 Set 系列</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Set</td>
+<td align="left">[set]</td>
+<td align="left">n. 集合（无序不可重复）</td>
+</tr>
+<tr>
+<td align="left">HashSet</td>
+<td align="left">[hæʃ set]</td>
+<td align="left">n. 哈希集合（基于哈希表，无序唯一）</td>
+</tr>
+<tr>
+<td align="left">LinkedHashSet</td>
+<td align="left">[lɪŋkt hæʃ set]</td>
+<td align="left">n. 链式哈希集（保持插入顺序）</td>
+</tr>
+<tr>
+<td align="left">TreeSet</td>
+<td align="left">[triː set]</td>
+<td align="left">n. 树集（基于红黑树，可排序）</td>
+</tr>
+</tbody></table>
+<h3 id="14-4-栈、队列与双端队列"><a href="#14-4-栈、队列与双端队列" class="headerlink" title="14.4 栈、队列与双端队列"></a>14.4 栈、队列与双端队列</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Stack</td>
+<td align="left">[stæk]</td>
+<td align="left">n. 栈（先进后出 LIFO）</td>
+</tr>
+<tr>
+<td align="left">Queue</td>
+<td align="left">[kjuː]</td>
+<td align="left">n. 队列（先进先出 FIFO）</td>
+</tr>
+<tr>
+<td align="left">Deque</td>
+<td align="left">[dek]</td>
+<td align="left">n. 双端队列（两端插入删除）</td>
+</tr>
+<tr>
+<td align="left">push</td>
+<td align="left">[pʊʃ]</td>
+<td align="left">v. 入栈（压入栈顶）</td>
+</tr>
+<tr>
+<td align="left">pop</td>
+<td align="left">[pɒp]</td>
+<td align="left">v. 出栈（移除并返回栈顶）</td>
+</tr>
+<tr>
+<td align="left">peek</td>
+<td align="left">[piːk]</td>
+<td align="left">v. 查看（返回顶部&#x2F;头部元素不移除）</td>
+</tr>
+<tr>
+<td align="left">poll</td>
+<td align="left">[pəʊl]</td>
+<td align="left">v. 轮询（移除并返回头部元素）</td>
+</tr>
+</tbody></table>
+<h3 id="14-5-迭代器"><a href="#14-5-迭代器" class="headerlink" title="14.5 迭代器"></a>14.5 迭代器</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Iterator</td>
+<td align="left">[ˈɪtəreɪtə(r)]</td>
+<td align="left">n. 迭代器（遍历集合）</td>
+</tr>
+<tr>
+<td align="left">Iterable</td>
+<td align="left">[ˈɪtərəbl]</td>
+<td align="left">adj. 可迭代的</td>
+</tr>
+<tr>
+<td align="left">foreach</td>
+<td align="left">[fɔːr iːtʃ]</td>
+<td align="left">n. 增强 for 循环</td>
+</tr>
+<tr>
+<td align="left">ListIterator</td>
+<td align="left">[lɪst ˈɪtəreɪtə(r)]</td>
+<td align="left">n. 列表迭代器（支持双向遍历）</td>
+</tr>
+<tr>
+<td align="left">modCount</td>
+<td align="left">[mɒd kaʊnt]</td>
+<td align="left">n. 修改计数（检测并发修改）</td>
+</tr>
+<tr>
+<td align="left">ConcurrentModificationException</td>
+<td align="left">[kənˈkʌr(ə)nt ˌmɒdɪfɪˈkeɪʃ(ə)n]</td>
+<td align="left">n. 并发修改异常</td>
+</tr>
+</tbody></table>
+<h3 id="14-6-Map-系列"><a href="#14-6-Map-系列" class="headerlink" title="14.6 Map 系列"></a>14.6 Map 系列</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Map</td>
+<td align="left">[mæp]</td>
+<td align="left">n. 映射（键值对存储，key 唯一）</td>
+</tr>
+<tr>
+<td align="left">key</td>
+<td align="left">[kiː]</td>
+<td align="left">n. 键</td>
+</tr>
+<tr>
+<td align="left">value</td>
+<td align="left">[ˈvæljuː]</td>
+<td align="left">n. 值</td>
+</tr>
+<tr>
+<td align="left">entry</td>
+<td align="left">[ˈentri]</td>
+<td align="left">n. 条目（Map.Entry 键值对）</td>
+</tr>
+<tr>
+<td align="left">put</td>
+<td align="left">[pʊt]</td>
+<td align="left">v. 放入（添加&#x2F;修改键值对）</td>
+</tr>
+<tr>
+<td align="left">get</td>
+<td align="left">[ɡet]</td>
+<td align="left">v. 获取（根据键取值）</td>
+</tr>
+<tr>
+<td align="left">containsKey</td>
+<td align="left">[kənˈteɪnz kiː]</td>
+<td align="left">判断是否包含指定键</td>
+</tr>
+<tr>
+<td align="left">containsValue</td>
+<td align="left">[kənˈteɪnz ˈvæljuː]</td>
+<td align="left">判断是否包含指定值</td>
+</tr>
+<tr>
+<td align="left">keySet</td>
+<td align="left">[kiː set]</td>
+<td align="left">返回所有键的 Set 集合</td>
+</tr>
+<tr>
+<td align="left">values</td>
+<td align="left">[ˈvæljuːz]</td>
+<td align="left">返回所有值的 Collection 集合</td>
+</tr>
+<tr>
+<td align="left">entrySet</td>
+<td align="left">[ˈentri set]</td>
+<td align="left">返回所有键值对的 Set 集合</td>
+</tr>
+<tr>
+<td align="left">HashMap</td>
+<td align="left">[ˈhæʃmæp]</td>
+<td align="left">n. 哈希映射（无序，非线程安全）</td>
+</tr>
+<tr>
+<td align="left">Hashtable</td>
+<td align="left">[ˈhæʃteɪbl]</td>
+<td align="left">n. 哈希表（线程安全，不允许 null）</td>
+</tr>
+<tr>
+<td align="left">TreeMap</td>
+<td align="left">[triːmæp]</td>
+<td align="left">n. 树映射（键有序）</td>
+</tr>
+<tr>
+<td align="left">LinkedHashMap</td>
+<td align="left">[ˈlɪŋkt ˈhæʃmæp]</td>
+<td align="left">n. 链表哈希映射（保持插入顺序）</td>
+</tr>
+<tr>
+<td align="left">Properties</td>
+<td align="left">[ˈprɒpətiz]</td>
+<td align="left">n. 属性集合（配置文件）</td>
+</tr>
+<tr>
+<td align="left">property</td>
+<td align="left">[ˈprɒpətɪ]</td>
+<td align="left">n. 属性</td>
+</tr>
+<tr>
+<td align="left">bucket</td>
+<td align="left">[ˈbʌkɪt]</td>
+<td align="left">n. 桶（哈希表存储单元）</td>
+</tr>
+<tr>
+<td align="left">tree</td>
+<td align="left">[triː]</td>
+<td align="left">n. 树（非线性数据结构）</td>
+</tr>
+<tr>
+<td align="left">hash table</td>
+<td align="left">[hæʃ ˈteɪbl]</td>
+<td align="left">n. 哈希表（数据结构）</td>
+</tr>
+</tbody></table>
+<h3 id="14-7-Collections-工具类"><a href="#14-7-Collections-工具类" class="headerlink" title="14.7 Collections 工具类"></a>14.7 Collections 工具类</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Collections</td>
+<td align="left">[kəˈlekʃənz]</td>
+<td align="left">n. 集合工具类（java.util.Collections）</td>
+</tr>
+<tr>
+<td align="left">addAll</td>
+<td align="left">[æd ɔːl]</td>
+<td align="left">将所有元素添加到集合</td>
+</tr>
+<tr>
+<td align="left">max &#x2F; min</td>
+<td align="left">[mæks] &#x2F; [mɪn]</td>
+<td align="left">n. 获取集合最大&#x2F;最小元素</td>
+</tr>
+<tr>
+<td align="left">sort</td>
+<td align="left">[sɔːt]</td>
+<td align="left">v. 排序</td>
+</tr>
+<tr>
+<td align="left">binarySearch</td>
+<td align="left">[ˈbaɪnəri sɜːtʃ]</td>
+<td align="left">v. 二分查找</td>
+</tr>
+<tr>
+<td align="left">shuffle</td>
+<td align="left">[ˈʃʌfl]</td>
+<td align="left">v. 洗牌；打乱顺序</td>
+</tr>
+<tr>
+<td align="left">compare</td>
+<td align="left">[kəmˈpeə]</td>
+<td align="left">v. 比较</td>
+</tr>
+</tbody></table>
+<h3 id="14-8-泛型"><a href="#14-8-泛型" class="headerlink" title="14.8 泛型"></a>14.8 泛型</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">generic</td>
+<td align="left">[dʒɪˈnerɪk]</td>
+<td align="left">adj. 泛型的；通用的</td>
+</tr>
+<tr>
+<td align="left">generic class</td>
+<td align="left">[dʒɪˈnerɪk klɑːs]</td>
+<td align="left">n. 泛型类（ArrayList<E>）</td>
+</tr>
+<tr>
+<td align="left">generic interface</td>
+<td align="left">[dʒɪˈnerɪk ˈɪntəfeɪs]</td>
+<td align="left">n. 泛型接口（List<E>）</td>
+</tr>
+<tr>
+<td align="left">generic method</td>
+<td align="left">[dʒɪˈnerɪk ˈmeθəd]</td>
+<td align="left">n. 泛型方法</td>
+</tr>
+<tr>
+<td align="left">type variable</td>
+<td align="left">[taɪp ˈveəriəbl]</td>
+<td align="left">n. 类型变量（E、T、K、V）</td>
+</tr>
+<tr>
+<td align="left">type erasure</td>
+<td align="left">[taɪp ɪˈreɪʒə]</td>
+<td align="left">n. 泛型擦除（编译时擦除类型信息）</td>
+</tr>
+<tr>
+<td align="left">wildcard</td>
+<td align="left">[ˈwaɪldkɑːd]</td>
+<td align="left">n. 通配符（?）</td>
+</tr>
+</tbody></table>
+<h3 id="14-9-函数式接口与-Lambda"><a href="#14-9-函数式接口与-Lambda" class="headerlink" title="14.9 函数式接口与 Lambda"></a>14.9 函数式接口与 Lambda</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">functional interface</td>
+<td align="left">[ˈfʌŋkʃənl ˈɪntəfeɪs]</td>
+<td align="left">n. 函数式接口（仅一个抽象方法）</td>
+</tr>
+<tr>
+<td align="left">Consumer</td>
+<td align="left">[kənˈsjuːmə]</td>
+<td align="left">n. 消费者接口（接收参数无返回）</td>
+</tr>
+<tr>
+<td align="left">Supplier</td>
+<td align="left">[səˈplaɪə]</td>
+<td align="left">n. 供应者接口（无参有返回）</td>
+</tr>
+<tr>
+<td align="left">Function</td>
+<td align="left">[ˈfʌŋ(k)ʃ(ə)n]</td>
+<td align="left">n. 函数接口（接收参数返回结果）</td>
+</tr>
+<tr>
+<td align="left">Predicate</td>
+<td align="left">[ˈpredɪkət]</td>
+<td align="left">n. 谓词接口（返回布尔值）</td>
+</tr>
+<tr>
+<td align="left">UnaryOperator</td>
+<td align="left">[ˈjuːnərɪ ˈɒpəreɪtə]</td>
+<td align="left">n. 一元运算符接口</td>
+</tr>
+<tr>
+<td align="left">BinaryOperator</td>
+<td align="left">[ˈbaɪnərɪ ˈɒpəreɪtə]</td>
+<td align="left">n. 二元运算符接口</td>
+</tr>
+<tr>
+<td align="left">lambda</td>
+<td align="left">[ˈlæmdə]</td>
+<td align="left">n. Lambda 表达式（匿名函数）</td>
+</tr>
+<tr>
+<td align="left">method reference</td>
+<td align="left">[ˈmeθəd ˈrefrəns]</td>
+<td align="left">n. 方法引用</td>
+</tr>
+<tr>
+<td align="left">predicate</td>
+<td align="left">[ˈpredɪkət]</td>
+<td align="left">n. 谓词；断言</td>
+</tr>
+<tr>
+<td align="left">consumer</td>
+<td align="left">[kənˈsjuːmə]</td>
+<td align="left">n. 消费者</td>
+</tr>
+</tbody></table>
+<h3 id="14-10-Stream-API"><a href="#14-10-Stream-API" class="headerlink" title="14.10 Stream API"></a>14.10 Stream API</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Stream</td>
+<td align="left">[striːm]</td>
+<td align="left">n. 流（Java 8 数据流）</td>
+</tr>
+<tr>
+<td align="left">filter</td>
+<td align="left">[ˈfɪltə]</td>
+<td align="left">v.&#x2F;n. 过滤（筛选元素）</td>
+</tr>
+<tr>
+<td align="left">map</td>
+<td align="left">[mæp]</td>
+<td align="left">v. 映射（转换元素类型）</td>
+</tr>
+<tr>
+<td align="left">flatMap</td>
+<td align="left">[flæt mæp]</td>
+<td align="left">v. 扁平化映射</td>
+</tr>
+<tr>
+<td align="left">distinct</td>
+<td align="left">[dɪˈstɪŋ(k)t]</td>
+<td align="left">adj. 独特的；不同的（去重）</td>
+</tr>
+<tr>
+<td align="left">limit</td>
+<td align="left">[ˈlɪmɪt]</td>
+<td align="left">v.&#x2F;n. 限制（截取前 N 个）</td>
+</tr>
+<tr>
+<td align="left">skip</td>
+<td align="left">[skɪp]</td>
+<td align="left">v. 跳过（跳过前 N 个）</td>
+</tr>
+<tr>
+<td align="left">match</td>
+<td align="left">[mætʃ]</td>
+<td align="left">v. 匹配（allMatch&#x2F;anyMatch&#x2F;noneMatch）</td>
+</tr>
+<tr>
+<td align="left">reduce</td>
+<td align="left">[rɪˈdjuːs]</td>
+<td align="left">v. 归约（聚合为结果）</td>
+</tr>
+<tr>
+<td align="left">collect</td>
+<td align="left">[kəˈlekt]</td>
+<td align="left">v. 收集（收集到集合）</td>
+</tr>
+<tr>
+<td align="left">parallel</td>
+<td align="left">[ˈpærəlel]</td>
+<td align="left">adj. 并行的（parallelStream()）</td>
+</tr>
+<tr>
+<td align="left">Optional</td>
+<td align="left">[ˈɒpʃ(ə)n(ə)l]</td>
+<td align="left">n. 可选值容器（避免空指针）</td>
+</tr>
+<tr>
+<td align="left">concurrent</td>
+<td align="left">[kənˈkʌr(ə)nt]</td>
+<td align="left">adj. 并发的</td>
+</tr>
+<tr>
+<td align="left">modification</td>
+<td align="left">[ˌmɒdɪfɪˈkeɪʃ(ə)n]</td>
+<td align="left">n. 修改</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="十五、多线程"><a href="#十五、多线程" class="headerlink" title="十五、多线程"></a>十五、多线程</h2><h3 id="15-1-线程基础"><a href="#15-1-线程基础" class="headerlink" title="15.1 线程基础"></a>15.1 线程基础</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">thread</td>
+<td align="left">[θred]</td>
+<td align="left">n. 线程</td>
+</tr>
+<tr>
+<td align="left">program</td>
+<td align="left">[ˈprəʊɡræm]</td>
+<td align="left">n. 程序</td>
+</tr>
+<tr>
+<td align="left">process</td>
+<td align="left">[ˈprəʊses]</td>
+<td align="left">n. 过程；进程</td>
+</tr>
+<tr>
+<td align="left">start</td>
+<td align="left">[stɑːt]</td>
+<td align="left">v. 开始（线程启动方法）</td>
+</tr>
+<tr>
+<td align="left">run</td>
+<td align="left">[rʌn]</td>
+<td align="left">v. 执行；运行（线程执行体）</td>
+</tr>
+</tbody></table>
+<h3 id="15-2-线程状态与操作"><a href="#15-2-线程状态与操作" class="headerlink" title="15.2 线程状态与操作"></a>15.2 线程状态与操作</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">sleep</td>
+<td align="left">[sliːp]</td>
+<td align="left">v. 睡眠（线程休眠）</td>
+</tr>
+<tr>
+<td align="left">stop</td>
+<td align="left">[stɒp]</td>
+<td align="left">v. 停止（已过时）</td>
+</tr>
+<tr>
+<td align="left">join</td>
+<td align="left">[dʒɒɪn]</td>
+<td align="left">v. 连接（线程插队）</td>
+</tr>
+<tr>
+<td align="left">block</td>
+<td align="left">[blɒk]</td>
+<td align="left">v. 阻塞</td>
+</tr>
+<tr>
+<td align="left">alive</td>
+<td align="left">[əˈlaɪv]</td>
+<td align="left">adj. 活着的（判断线程存活）</td>
+</tr>
+<tr>
+<td align="left">interrupted</td>
+<td align="left">[ˌɪntəˈrʌptɪd]</td>
+<td align="left">adj. 中断的</td>
+</tr>
+<tr>
+<td align="left">suspend</td>
+<td align="left">[səˈspend]</td>
+<td align="left">v. 暂停（已过时）</td>
+</tr>
+<tr>
+<td align="left">resume</td>
+<td align="left">[rɪˈzjuːm]</td>
+<td align="left">v. 恢复（已过时）</td>
+</tr>
+<tr>
+<td align="left">yield</td>
+<td align="left">[jiːld]</td>
+<td align="left">v. 让步（线程让步）</td>
+</tr>
+</tbody></table>
+<h3 id="15-3-同步与优先级"><a href="#15-3-同步与优先级" class="headerlink" title="15.3 同步与优先级"></a>15.3 同步与优先级</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">synchronized</td>
+<td align="left">[ˈsɪŋkrənaɪzd]</td>
+<td align="left">adj. 同步的（线程同步关键字）</td>
+</tr>
+<tr>
+<td align="left">lock</td>
+<td align="left">[lɒk]</td>
+<td align="left">n.&#x2F;v. 锁（线程同步锁）</td>
+</tr>
+<tr>
+<td align="left">safe</td>
+<td align="left">[seɪf]</td>
+<td align="left">adj. 安全的（线程安全）</td>
+</tr>
+<tr>
+<td align="left">priority</td>
+<td align="left">[praɪˈɒrɪtɪ]</td>
+<td align="left">n. 优先级</td>
+</tr>
+<tr>
+<td align="left">daemon</td>
+<td align="left">[ˈdiːmən]</td>
+<td align="left">n. 守护进程（守护线程）</td>
+</tr>
+</tbody></table>
+<h3 id="15-4-线程异常与单例模式"><a href="#15-4-线程异常与单例模式" class="headerlink" title="15.4 线程异常与单例模式"></a>15.4 线程异常与单例模式</h3><table>
+<thead>
+<tr>
+<th align="left">单词</th>
+<th align="left">音标</th>
+<th align="left">释义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">IllegalThreadStateException</td>
+<td align="left">[ɪˈliːɡ(ə)l θred steɪt ɪkˈsepʃ(ə)n]</td>
+<td align="left">n. 非法的线程状态异常</td>
+</tr>
+<tr>
+<td align="left">illegal</td>
+<td align="left">[ɪˈliːɡ(ə)l]</td>
+<td align="left">adj. 非法的</td>
+</tr>
+<tr>
+<td align="left">singleton</td>
+<td align="left">[ˈsɪŋɡ(ə)lt(ə)n]</td>
+<td align="left">n. 单例（设计模式）</td>
+</tr>
+<tr>
+<td align="left">lazy</td>
+<td align="left">[ˈleɪzɪ]</td>
+<td align="left">adj. 懒惰的（懒汉式单例）</td>
+</tr>
+<tr>
+<td align="left">hungry</td>
+<td align="left">[ˈhʌŋɡrɪ]</td>
+<td align="left">adj. 饥饿的（饿汉式单例）</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="附：高频核心词速记清单（⭐）"><a href="#附：高频核心词速记清单（⭐）" class="headerlink" title="附：高频核心词速记清单（⭐）"></a>附：高频核心词速记清单（⭐）</h2><blockquote>
+<p>建议优先掌握这 25 个语法核心词，覆盖了 Java 基础语法的骨架。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">序号</th>
+<th align="left">单词</th>
+<th align="left">核心含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">1</td>
+<td align="left">class</td>
+<td align="left">类</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="left">public &#x2F; private &#x2F; protected</td>
+<td align="left">访问修饰符</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="left">static</td>
+<td align="left">静态</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="left">void</td>
+<td align="left">无返回值</td>
+</tr>
+<tr>
+<td align="center">5</td>
+<td align="left">main</td>
+<td align="left">主方法</td>
+</tr>
+<tr>
+<td align="center">6</td>
+<td align="left">new</td>
+<td align="left">创建对象</td>
+</tr>
+<tr>
+<td align="center">7</td>
+<td align="left">this &#x2F; super</td>
+<td align="left">当前对象 &#x2F; 父类</td>
+</tr>
+<tr>
+<td align="center">8</td>
+<td align="left">extends &#x2F; implements</td>
+<td align="left">继承 &#x2F; 实现</td>
+</tr>
+<tr>
+<td align="center">9</td>
+<td align="left">if &#x2F; else</td>
+<td align="left">条件判断</td>
+</tr>
+<tr>
+<td align="center">10</td>
+<td align="left">for &#x2F; while &#x2F; do</td>
+<td align="left">循环</td>
+</tr>
+<tr>
+<td align="center">11</td>
+<td align="left">break &#x2F; continue &#x2F; return</td>
+<td align="left">跳转控制</td>
+</tr>
+<tr>
+<td align="center">12</td>
+<td align="left">int &#x2F; double &#x2F; boolean &#x2F; char</td>
+<td align="left">基本数据类型</td>
+</tr>
+<tr>
+<td align="center">13</td>
+<td align="left">String</td>
+<td align="left">字符串</td>
+</tr>
+<tr>
+<td align="center">14</td>
+<td align="left">null &#x2F; true &#x2F; false</td>
+<td align="left">空值 &#x2F; 布尔值</td>
+</tr>
+<tr>
+<td align="center">15</td>
+<td align="left">try &#x2F; catch &#x2F; finally &#x2F; throw</td>
+<td align="left">异常处理</td>
+</tr>
+<tr>
+<td align="center">16</td>
+<td align="left">interface</td>
+<td align="left">接口</td>
+</tr>
+<tr>
+<td align="center">17</td>
+<td align="left">abstract</td>
+<td align="left">抽象</td>
+</tr>
+<tr>
+<td align="center">18</td>
+<td align="left">final</td>
+<td align="left">最终（不可变）</td>
+</tr>
+<tr>
+<td align="center">19</td>
+<td align="left">override &#x2F; overload</td>
+<td align="left">重写 &#x2F; 重载</td>
+</tr>
+<tr>
+<td align="center">20</td>
+<td align="left">import &#x2F; package</td>
+<td align="left">导入 &#x2F; 包</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://dyblott.github.io">Dyblott</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://dyblott.github.io/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/">https://dyblott.github.io/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://dyblott.github.io" target="_blank">Dyblott's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Java/">Java</a><a class="post-meta__tags" href="/tags/Word/">Word</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2026/09/01/%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="权限修饰符"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">权限修饰符</div></div><div class="info-2"><div class="info-item-1">权限修饰符final关键字1234567891011121314151617181.概述:代表的是最终的2.使用:  a.修饰一个类:	  格式：public final class 类名&#123;&#125;      特点：被final修饰的类不能被继承  b.修饰一个方法      格式：修饰符 final 返回值类型 方法名(形参)      特点：被final修饰的方法不能被重写  	  	   final和abstract不能一起使用    c.修饰一个成员变量      格式：final 数据类型 变量名      特点：被final修饰的成员变量,不能二次赋值,相当于常量  d.修饰一个局部变量      格式：final 数据类型 变量名 = 值      特点：不能二次赋值   e.修饰一个对象      格式：final 类名 对象名 = new 类名()      特点：被final修饰的对象,地址值不能改变,但是对象的属性值可以改变    权限修饰符1234public:公共的访问权限,被public修饰的在哪里都能使用protected:受保护的默认...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dyblott</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">23</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Dyblott" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JavaSE-%E5%8D%95%E8%AF%8D"><span class="toc-number">1.</span> <span class="toc-text">JavaSE 单词</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81Java-%E6%A6%82%E8%BF%B0%E4%B8%8E%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83"><span class="toc-number">1.1.</span> <span class="toc-text">一、Java 概述与开发环境</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E5%B9%B3%E5%8F%B0%E4%B8%8E%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 平台与核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E4%B8%8E%E6%B5%81%E7%A8%8B"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 开发环境与流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E7%A8%8B%E5%BA%8F%E7%BB%93%E6%9E%84%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 程序结构关键词</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95"><span class="toc-number">1.2.</span> <span class="toc-text">二、基础语法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 基础概念与数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E8%BF%90%E7%AE%97%E7%AC%A6"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E8%BF%9B%E5%88%B6%E4%B8%8E%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 进制与存储单位</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%B8%83%E5%B0%94%E5%80%BC%E4%B8%8E%E7%A9%BA%E5%80%BC"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 布尔值与空值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-%E5%8F%98%E9%87%8F%E4%B8%8E%E5%B8%B8%E9%87%8F"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 变量与常量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6"><span class="toc-number">1.3.</span> <span class="toc-text">三、流程控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9D%A1%E4%BB%B6%E8%AF%AD%E5%8F%A5"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.1 条件语句</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.2 输入输出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E5%B8%B8%E7%94%A8%E8%AF%8D%EF%BC%88%E6%98%9F%E6%9C%9F-%E6%9C%88%E4%BB%BD-%E5%AD%A3%E8%8A%82%EF%BC%89"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3 常用词（星期 &#x2F; 月份 &#x2F; 季节）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BE%AA%E7%8E%AF%E7%BB%93%E6%9E%84"><span class="toc-number">1.4.</span> <span class="toc-text">四、循环结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E5%BE%AA%E7%8E%AF%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="toc-number">1.4.1.</span> <span class="toc-text">4.1 循环关键词</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E5%B8%B8%E7%94%A8%E5%B7%A5%E5%85%B7%E4%B8%8E%E6%95%B0%E5%AD%A6%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.4.2.</span> <span class="toc-text">4.2 常用工具与数学术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E5%87%A0%E4%BD%95%E5%9B%BE%E5%BD%A2"><span class="toc-number">1.4.3.</span> <span class="toc-text">4.3 几何图形</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%95%B0%E7%BB%84"><span class="toc-number">1.5.</span> <span class="toc-text">五、数组</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.5.1.</span> <span class="toc-text">5.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%86%85%E5%AD%98%E4%B8%8E%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-number">1.5.2.</span> <span class="toc-text">5.2 内存与初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="toc-number">1.5.3.</span> <span class="toc-text">5.3 常见操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E7%AE%97%E6%B3%95%E4%B8%8E%E5%BC%82%E5%B8%B8"><span class="toc-number">1.5.4.</span> <span class="toc-text">5.4 算法与异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-5-%E5%B7%A5%E5%85%B7%E7%B1%BB%E4%B8%8E%E4%B8%9A%E5%8A%A1%E8%AF%8D%E6%B1%87"><span class="toc-number">1.5.5.</span> <span class="toc-text">5.5 工具类与业务词汇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">六、方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E4%B8%8E%E9%9D%99%E6%80%81%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 修饰符与静态方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E5%8F%82%E6%95%B0%E4%B8%8E%E8%BF%94%E5%9B%9E%E5%80%BC"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3 参数与返回值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-4-%E9%87%8D%E8%BD%BD%E3%80%81%E9%80%92%E5%BD%92%E4%B8%8E%E5%8F%98%E9%87%8F"><span class="toc-number">1.6.4.</span> <span class="toc-text">6.4 重载、递归与变量</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80%EF%BC%88%E5%AF%B9%E8%B1%A1%E4%B8%8E%E7%B1%BB%EF%BC%89"><span class="toc-number">1.7.</span> <span class="toc-text">七、面向对象基础（对象与类）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#7-1-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="toc-number">1.7.1.</span> <span class="toc-text">7.1 核心概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-2-%E7%BC%96%E7%A8%8B%E8%8C%83%E5%BC%8F"><span class="toc-number">1.7.2.</span> <span class="toc-text">7.2 编程范式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-3-%E7%B1%BB%E3%80%81%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%9E%84%E9%80%A0%E5%99%A8"><span class="toc-number">1.7.3.</span> <span class="toc-text">7.3 类、属性与构造器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-4-%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B%E4%B8%8E%E4%B8%9A%E5%8A%A1%E8%AF%8D%E6%B1%87"><span class="toc-number">1.7.4.</span> <span class="toc-text">7.4 变量类型与业务词汇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E5%B0%81%E8%A3%85"><span class="toc-number">1.8.</span> <span class="toc-text">八、封装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-%E5%B0%81%E8%A3%85%E4%B8%8E%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.8.1.</span> <span class="toc-text">8.1 封装与权限修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-%E6%96%B9%E6%B3%95%E3%80%81%E5%8F%98%E9%87%8F%E4%B8%8E%E5%AF%B9%E8%B1%A1%E6%95%B0%E7%BB%84"><span class="toc-number">1.8.2.</span> <span class="toc-text">8.2 方法、变量与对象数组</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-%E5%B8%B8%E8%A7%81%E7%B1%BB%E5%90%8D-%E5%B1%9E%E6%80%A7%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.8.3.</span> <span class="toc-text">8.3 常见类名 &#x2F; 属性示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E7%BB%A7%E6%89%BF"><span class="toc-number">1.9.</span> <span class="toc-text">九、继承</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E7%BB%A7%E6%89%BF%E6%A0%B8%E5%BF%83"><span class="toc-number">1.9.1.</span> <span class="toc-text">9.1 继承核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E9%87%8D%E5%86%99%E3%80%81%E9%87%8D%E8%BD%BD%E4%B8%8E%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="toc-number">1.9.2.</span> <span class="toc-text">9.2 重写、重载与修饰符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-%E6%8A%BD%E8%B1%A1%E7%B1%BB%E4%B8%8E%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.9.3.</span> <span class="toc-text">9.3 抽象类与接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB"><span class="toc-number">1.9.4.</span> <span class="toc-text">9.4 对象关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-5-%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5%E4%B8%8E%E4%B8%9A%E5%8A%A1%E8%AF%8D%E6%B1%87"><span class="toc-number">1.9.5.</span> <span class="toc-text">9.5 增删改查与业务词汇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E3%80%81%E5%A4%9A%E6%80%81"><span class="toc-number">1.10.</span> <span class="toc-text">十、多态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-%E5%A4%9A%E6%80%81%E6%A0%B8%E5%BF%83"><span class="toc-number">1.10.1.</span> <span class="toc-text">10.1 多态核心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.10.2.</span> <span class="toc-text">10.2 类型转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-%E5%86%85%E9%83%A8%E7%B1%BB"><span class="toc-number">1.10.3.</span> <span class="toc-text">10.3 内部类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-4-%E6%8E%A5%E5%8F%A3%E3%80%81%E6%AF%94%E8%BE%83%E4%B8%8E-Object-%E6%96%B9%E6%B3%95"><span class="toc-number">1.10.4.</span> <span class="toc-text">10.4 接口、比较与 Object 方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-5-%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E7%A4%BA%E4%BE%8B"><span class="toc-number">1.10.5.</span> <span class="toc-text">10.5 修饰符、设计模式与示例</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%80%E3%80%81%E6%9E%9A%E4%B8%BE%E3%80%81%E6%B3%A8%E8%A7%A3%E4%B8%8E%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-number">1.11.</span> <span class="toc-text">十一、枚举、注解与开发工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-%E6%9E%9A%E4%B8%BE"><span class="toc-number">1.11.1.</span> <span class="toc-text">11.1 枚举</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-%E6%B3%A8%E8%A7%A3"><span class="toc-number">1.11.2.</span> <span class="toc-text">11.2 注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-%E4%BB%A3%E7%A0%81%E5%9D%97%E4%B8%8E%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-number">1.11.3.</span> <span class="toc-text">11.3 代码块与新特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-4-%E6%9E%84%E5%BB%BA%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%B7%A5%E5%85%B7"><span class="toc-number">1.11.4.</span> <span class="toc-text">11.4 构建与测试工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-5-Lombok"><span class="toc-number">1.11.5.</span> <span class="toc-text">11.5 Lombok</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-6-%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="toc-number">1.11.6.</span> <span class="toc-text">11.6 包装类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-7-%E6%95%B0%E5%AD%A6%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">1.11.7.</span> <span class="toc-text">11.7 数学工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-8-%E5%85%B6%E4%BB%96%E6%9C%AF%E8%AF%AD"><span class="toc-number">1.11.8.</span> <span class="toc-text">11.8 其他术语</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%8C%E3%80%81IO-%E6%B5%81%E4%B8%8E%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86"><span class="toc-number">1.12.</span> <span class="toc-text">十二、IO 流与异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#12-1-%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95"><span class="toc-number">1.12.1.</span> <span class="toc-text">12.1 文件与目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-2-%E6%96%87%E4%BB%B6%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.12.2.</span> <span class="toc-text">12.2 文件属性与操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-3-%E6%B5%81%EF%BC%88Stream%EF%BC%89"><span class="toc-number">1.12.3.</span> <span class="toc-text">12.3 流（Stream）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-4-%E5%BA%8F%E5%88%97%E5%8C%96%E4%B8%8E%E7%BC%96%E7%A0%81"><span class="toc-number">1.12.4.</span> <span class="toc-text">12.4 序列化与编码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-5-%E5%BC%82%E5%B8%B8%E4%BD%93%E7%B3%BB"><span class="toc-number">1.12.5.</span> <span class="toc-text">12.5 异常体系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-6-%E5%BC%82%E5%B8%B8%E7%B1%BB%E5%9E%8B"><span class="toc-number">1.12.6.</span> <span class="toc-text">12.6 异常类型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%B8%89%E3%80%81%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.13.</span> <span class="toc-text">十三、日期时间与字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#13-1-%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E5%9F%BA%E7%A1%80"><span class="toc-number">1.13.1.</span> <span class="toc-text">13.1 日期时间基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-2-%E6%97%B6%E5%8C%BA%E4%B8%8E%E6%9C%AC%E5%9C%B0%E5%8C%96"><span class="toc-number">1.13.2.</span> <span class="toc-text">13.2 时区与本地化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-3-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">1.13.3.</span> <span class="toc-text">13.3 字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-4-%E6%97%B6%E9%97%B4%E6%96%B9%E6%B3%95%E4%B8%8E%E8%BF%90%E7%AE%97"><span class="toc-number">1.13.4.</span> <span class="toc-text">13.4 时间方法与运算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-5-%E5%85%B6%E4%BB%96"><span class="toc-number">1.13.5.</span> <span class="toc-text">13.5 其他</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E5%9B%9B%E3%80%81%E9%9B%86%E5%90%88%E4%B8%8E%E6%B3%9B%E5%9E%8B"><span class="toc-number">1.14.</span> <span class="toc-text">十四、集合与泛型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#14-1-Collection-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E9%80%9A%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.14.1.</span> <span class="toc-text">14.1 Collection 接口与通用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-2-List-%E7%B3%BB%E5%88%97"><span class="toc-number">1.14.2.</span> <span class="toc-text">14.2 List 系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-3-Set-%E7%B3%BB%E5%88%97"><span class="toc-number">1.14.3.</span> <span class="toc-text">14.3 Set 系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-4-%E6%A0%88%E3%80%81%E9%98%9F%E5%88%97%E4%B8%8E%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97"><span class="toc-number">1.14.4.</span> <span class="toc-text">14.4 栈、队列与双端队列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-5-%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">1.14.5.</span> <span class="toc-text">14.5 迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-6-Map-%E7%B3%BB%E5%88%97"><span class="toc-number">1.14.6.</span> <span class="toc-text">14.6 Map 系列</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-7-Collections-%E5%B7%A5%E5%85%B7%E7%B1%BB"><span class="toc-number">1.14.7.</span> <span class="toc-text">14.7 Collections 工具类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-8-%E6%B3%9B%E5%9E%8B"><span class="toc-number">1.14.8.</span> <span class="toc-text">14.8 泛型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-9-%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3%E4%B8%8E-Lambda"><span class="toc-number">1.14.9.</span> <span class="toc-text">14.9 函数式接口与 Lambda</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-10-Stream-API"><span class="toc-number">1.14.10.</span> <span class="toc-text">14.10 Stream API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%81%E4%BA%94%E3%80%81%E5%A4%9A%E7%BA%BF%E7%A8%8B"><span class="toc-number">1.15.</span> <span class="toc-text">十五、多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#15-1-%E7%BA%BF%E7%A8%8B%E5%9F%BA%E7%A1%80"><span class="toc-number">1.15.1.</span> <span class="toc-text">15.1 线程基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-2-%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E4%B8%8E%E6%93%8D%E4%BD%9C"><span class="toc-number">1.15.2.</span> <span class="toc-text">15.2 线程状态与操作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-3-%E5%90%8C%E6%AD%A5%E4%B8%8E%E4%BC%98%E5%85%88%E7%BA%A7"><span class="toc-number">1.15.3.</span> <span class="toc-text">15.3 同步与优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#15-4-%E7%BA%BF%E7%A8%8B%E5%BC%82%E5%B8%B8%E4%B8%8E%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F"><span class="toc-number">1.15.4.</span> <span class="toc-text">15.4 线程异常与单例模式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E9%AB%98%E9%A2%91%E6%A0%B8%E5%BF%83%E8%AF%8D%E9%80%9F%E8%AE%B0%E6%B8%85%E5%8D%95%EF%BC%88%E2%AD%90%EF%BC%89"><span class="toc-number">1.16.</span> <span class="toc-text">附：高频核心词速记清单（⭐）</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/01/Java%E5%B8%B8%E7%94%A8%E5%8D%95%E8%AF%8D%E8%A1%A8/" title="Java常用单词">Java常用单词</a><time datetime="2026-09-01T07:13:00.000Z" title="发表于 2026-09-01 15:13:00">2026-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/01/%E6%9D%83%E9%99%90%E4%BF%AE%E9%A5%B0%E7%AC%A6/" title="权限修饰符">权限修饰符</a><time datetime="2026-09-01T06:44:00.000Z" title="发表于 2026-09-01 14:44:00">2026-09-01</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/31/%E6%8A%BD%E8%B1%A1%E7%B1%BB%E5%8F%8A%E6%8E%A5%E5%8F%A3/" title="抽象类及接口">抽象类及接口</a><time datetime="2026-08-31T03:44:00.000Z" title="发表于 2026-08-31 11:44:00">2026-08-31</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/30/Maven/" title="Maven">Maven</a><time datetime="2026-08-30T09:44:00.000Z" title="发表于 2026-08-30 17:44:00">2026-08-30</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/08/30/Java%E9%80%92%E5%BD%92/" title="Java递归">Java递归</a><time datetime="2026-08-30T03:38:00.000Z" title="发表于 2026-08-30 11:38:00">2026-08-30</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Dyblott</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
