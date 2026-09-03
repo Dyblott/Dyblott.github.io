@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>String | Dyblott's Blog</title><meta name="author" content="Dyblott"><meta name="copyright" content="Dyblott"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="String以及StringBuild">
+<meta property="og:type" content="article">
+<meta property="og:title" content="String">
+<meta property="og:url" content="https://dyblott.github.io/2026/09/02/String/index.html">
+<meta property="og:site_name" content="Dyblott&#39;s Blog">
+<meta property="og:description" content="String以及StringBuild">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dyblott.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-02T12:47:00.000Z">
+<meta property="article:modified_time" content="2026-09-02T12:47:00.000Z">
+<meta property="article:author" content="Dyblott">
+<meta property="article:tag" content="String">
+<meta property="article:tag" content="StringBuild">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dyblott.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "String",
+  "url": "https://dyblott.github.io/2026/09/02/String/",
+  "image": "https://dyblott.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-02T12:47:00.000Z",
+  "dateModified": "2026-09-02T12:47:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dyblott",
+      "url": "https://dyblott.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://dyblott.github.io/2026/09/02/String/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'String',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dyblott's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">String</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">String</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-02T12:47:00.000Z" title="发表于 2026-09-02 20:47:00">2026-09-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-02T12:47:00.000Z" title="更新于 2026-09-02 20:47:00">2026-09-02</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/String/">String</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="String"><a href="#String" class="headerlink" title="String"></a>String</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>概述:String 类代表字符串<br><span class="hljs-number">2.</span>特点:<br>  a.Java 程序中的所有字符串字面值（如 <span class="hljs-string">&quot;abc&quot;</span> ）都作为此类的实例(对象)实现<br>    说白了凡是带双引号的都是String的对象 -&gt; <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span><br>  b.字符串是常量,它们的值在创建之后不能更改<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;hello&quot;</span><br>    s1+=<span class="hljs-string">&quot;world&quot;</span><br>  c.因为 String 对象是不可变的，所以可以共享<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span><br>    <span class="hljs-type">String</span> <span class="hljs-variable">s2</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>    <br></code></pre></td></tr></table></figure>
+
+<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>String底层原理:String底层的原始面貌是一个被<span class="hljs-keyword">final</span>修饰的数组,数组一旦被<span class="hljs-keyword">final</span>修饰,地址值直接锁死,不能改变,所以我们说String是不可变的<br>    <br><span class="hljs-number">2.</span>jdk8:<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">char</span>[] value -&gt; 一个<span class="hljs-type">char</span>类型数据占内存两个字节<br>  jdk8之后:<span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">byte</span>[] value -&gt; 一个<span class="hljs-type">byte</span>型数据占内存一个字节 -&gt; 所以将<span class="hljs-type">char</span>数组改成了<span class="hljs-type">byte</span>数组-&gt;省内存<br></code></pre></td></tr></table></figure>
+
+<h2 id="创建"><a href="#创建" class="headerlink" title="创建"></a>创建</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>构造:<br>  a.String() 根据空参构造创建String对象<br>  b.String(String str) 根据字符串创建String对象<br>  c.String(<span class="hljs-type">byte</span>[] bytes) 根据<span class="hljs-type">byte</span>数组创建String对象<br>  d.String(<span class="hljs-type">char</span>[] chars) 根据<span class="hljs-type">char</span>数组创建String对象<br>  e.简化:<br>    String 变量名 = <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">public void method()&#123;<br>        //String() 根据空参构造创建String对象<br>        String s1 = new String();<br>        System.out.println(&quot;s1 = &quot; + s1);<br>        //String(String str) 根据字符串创建String对象<br>        String s2 = new String(&quot;abc&quot;);<br>        System.out.println(&quot;s2 = &quot; + s2);<br>        //String(byte[] bytes) 根据byte数组创建String对象<br>        byte[] bytes = &#123;97, 98, 99&#125;;<br>        String s3 = new String(bytes);<br>        System.out.println(&quot;s3 = &quot; + s3);<br>        //String(char[] chars) 根据char数组创建String对象<br>        char[] chars = &#123;&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;&#125;;<br>        String s4 = new String(chars);<br>        System.out.println(&quot;s4 = &quot; + s4);<br>        //简化形式<br>        String s5 = &quot;abc&quot;;<br>        System.out.println(&quot;s5 = &quot; + s5);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">1. String(byte[] bytes,int offset,int count)-&gt; 将byte数组的一部分转成String<br>         bytes:代表数组<br>         offset:从数组的哪个索引开始转<br>         count:转多少个<br>             <br>2. String(char[] chars,int offset,int length) -&gt; 将char数组的一部分转成String<br>         chars:代表数组<br>         offset:从数组的哪个索引开始转<br>         length:转多少个<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">@Test<br>   public void method2()&#123;<br>       String s1 = new String(new char[]&#123;&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;&#125;, 0, 2);<br>       System.out.println(&quot;s1 = &quot; + s1);  // ab<br>       String s2 = new String(new int[]&#123;97, 98, 99, 100&#125;, 1, 2);<br>       System.out.println(&quot;s2 = &quot; + s2); // bc<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><h3 id="判断"><a href="#判断" class="headerlink" title="判断"></a>判断</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">boolean equals(Objec obj) 判断字符串内容是否一样<br>boolean equalsIgnoreCase(String str) 判断字符串内容是否一样,忽略大小写    <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">method3</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s1</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;abc&quot;</span>;<br>    System.out.println(s1.equals(<span class="hljs-string">&quot;abc&quot;</span>)); <span class="hljs-comment">// true</span><br>    <span class="hljs-comment">// 若s1为null会报空指针异常，解决方式:&quot;abc&quot;.equals(s1)</span><br><br>    System.out.println(s1.equalsIgnoreCase(<span class="hljs-string">&quot;ABC&quot;</span>)); <span class="hljs-comment">// true</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span><span class="hljs-type">String</span> <span class="hljs-title function_">concat</span><span class="hljs-params">(String str)</span>                     字符串拼接,返回的是新的字符串<br><span class="hljs-number">2.</span><span class="hljs-type">char</span> <span class="hljs-title function_">charAt</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span>                        获取指定索引位置上的字符<br><span class="hljs-number">3.</span><span class="hljs-type">int</span> <span class="hljs-title function_">indexOf</span><span class="hljs-params">(String str)</span>                       获取指定字符在老串儿中第一次出现的索引位置<br><span class="hljs-number">4.</span><span class="hljs-type">String</span> <span class="hljs-title function_">subString</span><span class="hljs-params">(<span class="hljs-type">int</span> beginIndex)</span>              从指定索引开始截取字符串到最后<br><span class="hljs-number">5.</span><span class="hljs-type">String</span> <span class="hljs-title function_">subString</span><span class="hljs-params">(<span class="hljs-type">int</span> beginIndex,<span class="hljs-type">int</span> endIndex)</span> 从指定索引位置开始截取到endIndex-&gt;含头不含尾<br><span class="hljs-number">6.</span><span class="hljs-type">int</span> <span class="hljs-title function_">length</span><span class="hljs-params">()</span>                                  获取字符串长度<br></code></pre></td></tr></table></figure>
+
+<h3 id="转换"><a href="#转换" class="headerlink" title="转换"></a>转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span><span class="hljs-type">char</span>[] <span class="hljs-title function_">toCharArray</span><span class="hljs-params">()</span>                                           将字符串转成<span class="hljs-type">char</span>数组<br><span class="hljs-number">2.</span><span class="hljs-type">byte</span>[] <span class="hljs-title function_">getBytes</span><span class="hljs-params">()</span>                                              将字符串转成<span class="hljs-type">byte</span>数组<br><span class="hljs-number">3.</span><span class="hljs-type">byte</span>[] <span class="hljs-title function_">getBytes</span><span class="hljs-params">(String charsetName)</span>                            根据指定的编码集将字符串转成<span class="hljs-type">byte</span>数组:GBK,UTF-<span class="hljs-number">8.</span>.<br><span class="hljs-number">4.</span><span class="hljs-type">String</span> <span class="hljs-title function_">replace</span><span class="hljs-params">(CharSequence target, CharSequence replacement)</span>  将前面参数替换成后面的参数   <br></code></pre></td></tr></table></figure>
+
+<h3 id="分割"><a href="#分割" class="headerlink" title="分割"></a>分割</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">String</span>[] <span class="hljs-title function_">split</span><span class="hljs-params">(String regex)</span>                   按照指定的规则分割字符串<br></code></pre></td></tr></table></figure>
+
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span><span class="hljs-type">boolean</span> <span class="hljs-title function_">contains</span><span class="hljs-params">(String s)</span>       判断老串中是否包含指定的串儿<br><span class="hljs-number">2.</span><span class="hljs-type">boolean</span> <span class="hljs-title function_">endsWith</span><span class="hljs-params">(String s)</span>       判断是否以指定的串儿结尾<br><span class="hljs-number">3.</span><span class="hljs-type">boolean</span> <span class="hljs-title function_">startsWith</span><span class="hljs-params">(String s)</span>     判断是否以指定的串儿开头<br><span class="hljs-number">4.</span><span class="hljs-type">String</span> <span class="hljs-title function_">toLowerCase</span><span class="hljs-params">()</span>             将字母转成小写<br><span class="hljs-number">5.</span><span class="hljs-type">String</span> <span class="hljs-title function_">toUpperCase</span><span class="hljs-params">()</span>             将字母转成大写<br><span class="hljs-number">6.</span><span class="hljs-type">String</span> <span class="hljs-title function_">trim</span><span class="hljs-params">()</span>                    去掉字符串两端空格<br></code></pre></td></tr></table></figure>
+
+<h3 id="新特性"><a href="#新特性" class="headerlink" title="新特性"></a>新特性</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">JDK12之后<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>开始分隔符由三个双引号字符表示，后面可以跟零个或多个空格，最终以行终止符结束。</li>
+<li>文本块内容以开始分隔符的行终止符后的第一个字符开始。</li>
+<li>结束分隔符也由三个双引号字符表示，文本块内容以结束分隔符的第一个双引号之前的最后一个字符结束。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">String s = &quot;&quot;&quot;<br>			ni<br>			hao<br>		&quot;&quot;&quot;<br></code></pre></td></tr></table></figure>
+
+
+
+<h1 id="StringBuild"><a href="#StringBuild" class="headerlink" title="StringBuild"></a>StringBuild</h1><h2 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>问题:String每拼接一次都会产生一个新的字符串对象,如果多次拼接,会占用内存,效率低<br><span class="hljs-number">2.</span>解决:用StringBuilder或者StringBuffer<br><span class="hljs-number">3.</span>StringBuilder和StringBuffer特点:<br>  a.底层有一个缓冲区(没有被<span class="hljs-keyword">final</span>修饰的<span class="hljs-type">byte</span>数组),拼接的字符串内容,会直接放到数组中,不会随意产生新的字符串对象<br>    而且底层始终就这一个缓冲区<br>  b.底层数组默认长度为<span class="hljs-number">16</span><br>  c.如果超出了数组的长度,会自动扩容(Arrays.copyOf,创建新数组,将老数组元素复制到新数组中去,然后将新数组地址值给老数组)<br>    如果一次性拼接的字符没有超出默认扩容的范围:默认是<span class="hljs-number">2</span>倍+<span class="hljs-number">2</span><br>    如果一次性拼接的字符超出了默认扩容范围,就按照实际拼接的字符个数扩容    <br></code></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span>构造方法:<br>  StringBuilder()<br>  StringBuilder(String str)    <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br>   <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">method4</span><span class="hljs-params">()</span>&#123;<br>       <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>(<span class="hljs-string">&quot;abc&quot;</span>);<br>       <br>       System.out.println(sb.toString());<br>   &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="方法-1"><a href="#方法-1" class="headerlink" title="方法"></a>方法</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-number">1.</span><span class="hljs-type">StringBuilder</span> <span class="hljs-title function_">append</span><span class="hljs-params">(任意类型)</span>    拼接,返回的是StringBuilder自己<br><span class="hljs-number">2.</span><span class="hljs-type">StringBuilder</span> <span class="hljs-title function_">reverse</span><span class="hljs-params">()</span>          字符串翻转,返回的是StringBuilder自己<br><span class="hljs-number">3.</span><span class="hljs-type">String</span> <span class="hljs-title function_">toString</span><span class="hljs-params">()</span>                将StringBuilder转成String   <br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">method5</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-type">StringBuilder</span> <span class="hljs-variable">sb</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StringBuilder</span>();<br>        sb.append(<span class="hljs-string">&quot;abc&quot;</span>);<br>        sb.append(<span class="hljs-string">&quot;def&quot;</span>);<br>        System.out.println(sb);    <span class="hljs-comment">// abcdef</span><br>        System.out.println(sb.reverse());  <span class="hljs-comment">// fedcba</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">string</span> <span class="hljs-operator">=</span> sb.toString();<br>        System.out.println(string); <span class="hljs-comment">// fedcba</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://dyblott.github.io">Dyblott</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://dyblott.github.io/2026/09/02/String/">https://dyblott.github.io/2026/09/02/String/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://dyblott.github.io" target="_blank">Dyblott's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/String/">String</a><a class="post-meta__tags" href="/tags/StringBuild/">StringBuild</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/02/%E6%AD%A3%E5%88%99/" title="正则"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">正则</div></div><div class="info-2"><div class="info-item-1">正则表达式概念1234567891011121.概述:用于校验规则的一种字符串2.作用:用于校验字符串内容3.方法:String中的方法  boolean matches(String regex) 4.比如:校验一个QQ号(不能以0开头,都是数字,5-15位) -&gt; String s = 12121212      a.if:s.startsWith(&quot;0&quot;)      b.if:遍历s,调用toCharArray(),判断每一个字符是否大于等于&#x27;0&#x27;&amp;&amp; 小于等于&#x27;9&#x27;      c.if:s.length()&gt;=5 &amp;&amp; s.length()&lt;=15                      要是用正则表达式:      s.matches(&quot;[1-9][0-9]&#123;4,14&#125;&quot;)  123456@Test   public void method6()&#123;       String s = &quot;1212121&...</div></div></div></a><a class="pagination-related" href="/2026/09/02/Java%E5%8C%85%E8%A3%85%E7%B1%BB%E4%B8%8EJavaBean%E8%A7%84%E8%8C%83/" title="Java包装类与JavaBean 规范"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">Java包装类与JavaBean 规范</div></div><div class="info-2"><div class="info-item-1">包装类基本数据类型对应的包装类12341.概述:基本类型对应的那个类2.为啥要使用包装类:  当我们调用方法的时候,人家方法的形参或者返回值类型都要求使用包装类,所以我们就需要将基本类型转成包装类去返回,去传参  而且包装类里面有很多的方法可以去操作我们的数据         基本类型 包装类    byte Byte   short Short   int Integer   long Long   float Float   double Double   char Character   boolean Boolean   Integer类基本使用12345671.概述:Integer是int对应的包装类2.构造:  Integer(int i)  Integer(String s) -&gt; s的内容必须是数字格式3.方法:  static Integer valueOf(int i)    static Integer valueOf(String s) -&gt; s的内容必须是数字格式      123456789101112public void test01(...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dyblott</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">39</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">51</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">25</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Dyblott" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#String"><span class="toc-number">1.</span> <span class="toc-text">String</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D"><span class="toc-number">1.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="toc-number">1.2.</span> <span class="toc-text">实现原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA"><span class="toc-number">1.3.</span> <span class="toc-text">创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A4%E6%96%AD"><span class="toc-number">1.4.1.</span> <span class="toc-text">判断</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%8F%96"><span class="toc-number">1.4.2.</span> <span class="toc-text">获取</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BD%AC%E6%8D%A2"><span class="toc-number">1.4.3.</span> <span class="toc-text">转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%89%B2"><span class="toc-number">1.4.4.</span> <span class="toc-text">分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">1.4.5.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%89%B9%E6%80%A7"><span class="toc-number">1.4.6.</span> <span class="toc-text">新特性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#StringBuild"><span class="toc-number">2.</span> <span class="toc-text">StringBuild</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BB%8B%E7%BB%8D-1"><span class="toc-number">2.1.</span> <span class="toc-text">介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95-1"><span class="toc-number">2.3.</span> <span class="toc-text">方法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" title="多线程">多线程</a><time datetime="2026-09-03T01:25:00.000Z" title="发表于 2026-09-03 09:25:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/IO%E6%B5%81%E5%85%A8%E8%A7%A3%E6%9E%90/" title="IO流全解析：字节流、字符流、序列化与打印流">IO流全解析：字节流、字符流、序列化与打印流</a><time datetime="2026-09-02T16:00:00.000Z" title="发表于 2026-09-03 00:00:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/String/" title="String">String</a><time datetime="2026-09-02T12:47:00.000Z" title="发表于 2026-09-02 20:47:00">2026-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/%E6%AD%A3%E5%88%99/" title="正则">正则</a><time datetime="2026-09-02T12:47:00.000Z" title="发表于 2026-09-02 20:47:00">2026-09-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/02/File%E7%B1%BB/" title="File类">File类</a><time datetime="2026-09-02T12:47:00.000Z" title="发表于 2026-09-02 20:47:00">2026-09-02</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Dyblott</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
