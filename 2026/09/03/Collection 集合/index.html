@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Collection 集合 | Dyblott's Blog</title><meta name="author" content="Dyblott"><meta name="copyright" content="Dyblott"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Collection">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Collection 集合">
+<meta property="og:url" content="https://dyblott.github.io/2026/09/03/Collection%20%E9%9B%86%E5%90%88/index.html">
+<meta property="og:site_name" content="Dyblott&#39;s Blog">
+<meta property="og:description" content="Collection">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dyblott.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-03T05:07:00.000Z">
+<meta property="article:modified_time" content="2026-09-03T05:07:00.000Z">
+<meta property="article:author" content="Dyblott">
+<meta property="article:tag" content="Collection">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dyblott.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Collection 集合",
+  "url": "https://dyblott.github.io/2026/09/03/Collection%20%E9%9B%86%E5%90%88/",
+  "image": "https://dyblott.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-03T05:07:00.000Z",
+  "dateModified": "2026-09-03T05:07:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dyblott",
+      "url": "https://dyblott.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://dyblott.github.io/2026/09/03/Collection%20%E9%9B%86%E5%90%88/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Collection 集合',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">59</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dyblott's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">Collection 集合</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">Collection 集合</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-03T05:07:00.000Z" title="发表于 2026-09-03 13:07:00">2026-09-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-03T05:07:00.000Z" title="更新于 2026-09-03 13:07:00">2026-09-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/">Java</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Java/%E9%9B%86%E5%90%88/">集合</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="Collection-集合"><a href="#Collection-集合" class="headerlink" title="Collection 集合"></a>Collection 集合</h2><h3 id="集合概述"><a href="#集合概述" class="headerlink" title="集合概述"></a>集合概述</h3><p>集合是一种<strong>长度可变的容器</strong>，用来存储多个对象。与数组相比，集合的长度可以动态增长。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li>长度可变</li>
+<li>只能存储引用类型（基本类型会自动装箱）</li>
+<li>提供大量方法操作元素</li>
+</ul>
+<p><strong>分类：</strong></p>
+<ul>
+<li><strong>单列集合</strong>：元素只有一部分，<code>list.add(&quot;元素&quot;)</code></li>
+<li><strong>双列集合</strong>：元素由 <code>key</code> 和 <code>value</code> 两部分构成（键值对）</li>
+</ul>
+<h3 id="Collection-接口"><a href="#Collection-接口" class="headerlink" title="Collection 接口"></a>Collection 接口</h3><p>Collection 是单列集合的<strong>顶级接口</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Collection</span>&lt;String&gt; <span class="hljs-variable">c</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br></code></pre></td></tr></table></figure>
+
+<p><strong>常用方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean add(E e)</code></td>
+<td>添加元素（add 一定成功，通常不用接收返回值）</td>
+</tr>
+<tr>
+<td><code>boolean addAll(Collection&lt;? extends E&gt; c)</code></td>
+<td>合并另一个集合</td>
+</tr>
+<tr>
+<td><code>void clear()</code></td>
+<td>清空所有元素</td>
+</tr>
+<tr>
+<td><code>boolean contains(Object o)</code></td>
+<td>判断是否包含指定元素</td>
+</tr>
+<tr>
+<td><code>boolean isEmpty()</code></td>
+<td>判断集合是否为空</td>
+</tr>
+<tr>
+<td><code>boolean remove(Object o)</code></td>
+<td>删除指定元素</td>
+</tr>
+<tr>
+<td><code>int size()</code></td>
+<td>返回元素个数</td>
+</tr>
+<tr>
+<td><code>Object[] toArray()</code></td>
+<td>转为数组</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Collection</span>&lt;String&gt; <span class="hljs-variable">c1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>c1.add(<span class="hljs-string">&quot;张三&quot;</span>);<br>c1.add(<span class="hljs-string">&quot;李四&quot;</span>);<br><br><span class="hljs-type">Collection</span>&lt;String&gt; <span class="hljs-variable">c2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>c2.addAll(c1);           <span class="hljs-comment">// 合并</span><br>System.out.println(c1.contains(<span class="hljs-string">&quot;张三&quot;</span>)); <span class="hljs-comment">// true</span><br>System.out.println(c1.size());           <span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h3><h4 id="1-栈"><a href="#1-栈" class="headerlink" title="1. 栈"></a>1. 栈</h4><p><strong>先进后出</strong>（如同压子弹）。最后放进去的最先弹出来。</p>
+<h4 id="2-队列"><a href="#2-队列" class="headerlink" title="2. 队列"></a>2. 队列</h4><p><strong>先进先出</strong>（如同排队）。最先排队的最先出来。</p>
+<h4 id="3-数组"><a href="#3-数组" class="headerlink" title="3. 数组"></a>3. 数组</h4><ul>
+<li><strong>查询快</strong>：有索引，可通过索引快速定位元素</li>
+<li><strong>增删慢</strong>：定长，扩容需要新建数组并复制</li>
+</ul>
+<h4 id="4-链表"><a href="#4-链表" class="headerlink" title="4. 链表"></a>4. 链表</h4><ul>
+<li><strong>查询慢</strong>：需要从头依次遍历</li>
+<li><strong>增删快</strong>：只需修改相邻节点的引用</li>
+</ul>
+<p><strong>单向链表</strong>：每个节点由<strong>数据域 + 指针域</strong>构成，每个节点只记录下一个节点的地址。</p>
+<p><strong>双向链表</strong>：每个节点由<strong>前驱指针 + 数据域 + 后继指针</strong>三部分构成，头尾节点互相记录地址。Java 中的 LinkedList 采用双向链表实现。</p>
+<hr>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>Iterator 用于<strong>遍历集合</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">Iterator</span>&lt;String&gt; <span class="hljs-variable">it</span> <span class="hljs-operator">=</span> list.iterator();<br><span class="hljs-keyword">while</span> (it.hasNext()) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> it.next();<br>    System.out.println(s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>方法说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean hasNext()</code></td>
+<td>判断是否有下一个元素</td>
+</tr>
+<tr>
+<td><code>E next()</code></td>
+<td>获取下一个元素</td>
+</tr>
+</tbody></table>
+<p><strong>并发修改异常：</strong></p>
+<p>在迭代过程中使用集合自身的 <code>add / remove</code> 方法修改集合长度，会触发 <code>ConcurrentModificationException</code>（并发修改异常）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ❌ 错误示例</span><br><span class="hljs-keyword">while</span> (it.hasNext()) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> it.next();<br>    <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;猪八戒&quot;</span>.equals(s)) &#123;<br>        list.add(<span class="hljs-string">&quot;白龙马&quot;</span>); <span class="hljs-comment">// 抛出并发修改异常</span><br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// ✅ 正确做法：用 ListIterator</span><br><span class="hljs-type">ListIterator</span>&lt;String&gt; <span class="hljs-variable">lit</span> <span class="hljs-operator">=</span> list.listIterator();<br><span class="hljs-keyword">while</span> (lit.hasNext()) &#123;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> lit.next();<br>    <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;猪八戒&quot;</span>.equals(s)) &#123;<br>        lit.add(<span class="hljs-string">&quot;白龙马&quot;</span>); <span class="hljs-comment">// 用迭代器自身的方法添加</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>底层原理：</strong> ArrayList 迭代器底层是内部类 <code>Itr</code>，实现了 <code>Iterator</code> 接口。迭代器记录了集合的预期修改次数 <code>expectedModCount</code>，每次操作前会与实际修改次数 <code>modCount</code> 比较，不一致则抛异常。</p>
+<hr>
+<h3 id="List-接口"><a href="#List-接口" class="headerlink" title="List 接口"></a>List 接口</h3><p>List 是有序的集合（<strong>有索引、可重复</strong>）。</p>
+<p><strong>实现类：</strong> ArrayList、LinkedList、Vector</p>
+<h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p><strong>特点：</strong> 有序、有索引、元素可重复、线程不安全、数据结构为<strong>数组</strong>。</p>
+<p><strong>底层扩容机制：</strong></p>
+<ul>
+<li>无参构造：第一次 <code>add</code> 时才创建长度为 10 的数组，超出后扩容 <strong>1.5 倍</strong>（懒加载）</li>
+<li>有参构造：直接创建指定长度的数组，超出后扩容 1.5 倍</li>
+</ul>
+<p><strong>常用方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>boolean add(E e)</code></td>
+<td>尾部添加</td>
+</tr>
+<tr>
+<td><code>void add(int index, E e)</code></td>
+<td>指定索引插入</td>
+</tr>
+<tr>
+<td><code>E remove(int index)</code></td>
+<td>按索引删除（返回被删元素）</td>
+</tr>
+<tr>
+<td><code>boolean remove(Object o)</code></td>
+<td>按元素删除</td>
+</tr>
+<tr>
+<td><code>E set(int index, E e)</code></td>
+<td>修改指定索引元素</td>
+</tr>
+<tr>
+<td><code>E get(int index)</code></td>
+<td>获取指定索引元素</td>
+</tr>
+<tr>
+<td><code>int size()</code></td>
+<td>元素个数</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">ArrayList</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>list.add(<span class="hljs-string">&quot;张三&quot;</span>);<br>list.add(<span class="hljs-string">&quot;李四&quot;</span>);<br>list.add(<span class="hljs-number">1</span>, <span class="hljs-string">&quot;王五&quot;</span>);       <span class="hljs-comment">// [张三, 王五, 李四]</span><br>list.set(<span class="hljs-number">0</span>, <span class="hljs-string">&quot;赵六&quot;</span>);       <span class="hljs-comment">// [赵六, 王五, 李四]</span><br>list.remove(<span class="hljs-string">&quot;王五&quot;</span>);       <span class="hljs-comment">// [赵六, 李四]</span><br></code></pre></td></tr></table></figure>
+
+<blockquote>
+<p>⚠️ 注意：<code>list.remove(2)</code> 会调用<strong>按索引删除</strong>的方法；如果想删除元素 <code>2</code>（Integer），需要写成 <code>list.remove(Integer.valueOf(2))</code>。</p>
+</blockquote>
+<hr>
+<h4 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h4><p><strong>特点：</strong> 有序、<strong>无索引</strong>、元素可重复、线程不安全、数据结构为<strong>双向链表</strong>。</p>
+<p><strong>特有方法（直接操作首尾）：</strong></p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>void addFirst(E e)</code></td>
+<td>头部插入</td>
+</tr>
+<tr>
+<td><code>void addLast(E e)</code></td>
+<td>尾部插入</td>
+</tr>
+<tr>
+<td><code>E getFirst()</code></td>
+<td>获取头部元素</td>
+</tr>
+<tr>
+<td><code>E getLast()</code></td>
+<td>获取尾部元素</td>
+</tr>
+<tr>
+<td><code>E removeFirst()</code></td>
+<td>删除并返回头部</td>
+</tr>
+<tr>
+<td><code>E removeLast()</code></td>
+<td>删除并返回尾部</td>
+</tr>
+<tr>
+<td><code>E pop()</code></td>
+<td>弹出（相当于 removeFirst，常配合 push 模拟栈）</td>
+</tr>
+<tr>
+<td><code>void push(E e)</code></td>
+<td>压栈（相当于 addFirst）</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LinkedList</span>&lt;String&gt; <span class="hljs-variable">list</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>list.push(<span class="hljs-string">&quot;柯南&quot;</span>);<br>list.push(<span class="hljs-string">&quot;哆啦A梦&quot;</span>);<br>list.push(<span class="hljs-string">&quot;开心超人&quot;</span>);<br>System.out.println(list.pop()); <span class="hljs-comment">// 开心超人（先进后出，栈）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>底层原理：</strong> LinkedList 内部维护 <code>Node&lt;E&gt;</code> 节点，包含 <code>item</code>（数据）、<code>prev</code>（前驱）、<code>next</code>（后继）。<code>get</code> 方法采用<strong>二分思想</strong>：若 index &lt; size&#x2F;2 则从头遍历，否则从尾遍历，减少遍历次数。</p>
+<hr>
+<h4 id="Vector（了解）"><a href="#Vector（了解）" class="headerlink" title="Vector（了解）"></a>Vector（了解）</h4><p><strong>特点：</strong> 有序、有索引、元素可重复、线程安全（synchronized）、数据结构为数组。</p>
+<ul>
+<li>无参构造直接创建长度为 10 的数组，超出后扩容 <strong>2 倍</strong></li>
+<li>有参构造按指定增量扩容</li>
+</ul>
+<blockquote>
+<p>一般不使用 Vector，除非需要线程安全（推荐使用 <code>CopyOnWriteArrayList</code> 或 <code>Collections.synchronizedList</code>）。</p>
+</blockquote>
+<hr>
+<h3 id="增强-for"><a href="#增强-for" class="headerlink" title="增强 for"></a>增强 for</h3><p>增强 for（也称 for-each）是简化遍历的语法，底层原理<strong>遍历集合时就是迭代器</strong>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span> (String s : list) &#123;<br>    System.out.println(s);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>快捷键：</strong> 集合名 <code>.for</code></p>
+<p><strong>注意：</strong> 遍历集合时底层是迭代器，因此在增强 for 中不要修改集合长度，否则可能触发并发修改异常。</p>
+<hr>
+<h3 id="Set-接口"><a href="#Set-接口" class="headerlink" title="Set 接口"></a>Set 接口</h3><p>Set 是无序（不保证顺序）、<strong>无索引、元素不可重复</strong>的集合。</p>
+<p><strong>实现类：</strong> HashSet、LinkedHashSet、TreeSet</p>
+<h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><p><strong>特点：</strong> 无序、无索引、元素唯一、线程不安全、数据结构为<strong>哈希表</strong>。</p>
+<ul>
+<li>JDK 7 及以前：哈希表 &#x3D; 数组 + 链表</li>
+<li>JDK 8 及以后：哈希表 &#x3D; 数组 + 链表 + <strong>红黑树</strong>（链表长度 ≥ 8 且数组容量 ≥ 64 时转化）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">HashSet</span>&lt;String&gt; <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>set.add(<span class="hljs-string">&quot;小猫&quot;</span>);<br>set.add(<span class="hljs-string">&quot;小狗&quot;</span>);<br>set.add(<span class="hljs-string">&quot;小猫&quot;</span>);    <span class="hljs-comment">// 被忽略</span><br>System.out.println(set); <span class="hljs-comment">// 可能输出 [小狗, 小猫]（无序）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet</h4><p><strong>特点：</strong> <strong>有序</strong>（按插入顺序）、无索引、元素唯一、线程不安全、数据结构为哈希表 + 双向链表。</p>
+<p>HashSet 的链表是单向的，无法记录顺序；LinkedHashSet 用双向链表维护插入顺序。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">LinkedHashSet</span>&lt;String&gt; <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedHashSet</span>&lt;&gt;();<br>set.add(<span class="hljs-string">&quot;小猫&quot;</span>);<br>set.add(<span class="hljs-string">&quot;小狗&quot;</span>);<br>System.out.println(set); <span class="hljs-comment">// [小猫, 小狗]（有序）</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h4 id="TreeSet"><a href="#TreeSet" class="headerlink" title="TreeSet"></a>TreeSet</h4><p><strong>特点：</strong> 可对元素<strong>排序</strong>、无索引、元素唯一、线程不安全、数据结构为<strong>红黑树</strong>。</p>
+<p><strong>构造方法：</strong></p>
+<table>
+<thead>
+<tr>
+<th>构造</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TreeSet()</code></td>
+<td>按自然排序（ASCII 码）</td>
+</tr>
+<tr>
+<td><code>TreeSet(Comparator&lt;? super E&gt; comparator)</code></td>
+<td>按指定规则排序</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 自然排序（字符串按 ASCII 码）</span><br><span class="hljs-type">TreeSet</span>&lt;String&gt; <span class="hljs-variable">set1</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;();<br>set1.add(<span class="hljs-string">&quot;b&quot;</span>);<br>set1.add(<span class="hljs-string">&quot;a&quot;</span>);<br>set1.add(<span class="hljs-string">&quot;c&quot;</span>);<br>System.out.println(set1); <span class="hljs-comment">// [a, b, c]</span><br><br><span class="hljs-comment">// 指定排序（按年龄升序）</span><br><span class="hljs-type">TreeSet</span>&lt;Person&gt; <span class="hljs-variable">set2</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeSet</span>&lt;&gt;((o1, o2) -&gt; o1.getAge() - o2.getAge());<br>set2.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">18</span>));<br>set2.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;李四&quot;</span>, <span class="hljs-number">15</span>));<br><span class="hljs-comment">// 按年龄从低到高输出</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="哈希值"><a href="#哈希值" class="headerlink" title="哈希值"></a>哈希值</h3><p><strong>哈希值</strong>是 Java 根据对象内容计算出的十进制整数（可理解为”逻辑地址”）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 默认哈希值由 Object 的 native 方法计算，与内存地址相关</span><br><span class="hljs-type">Person</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">18</span>);<br>System.out.println(p.hashCode());<br></code></pre></td></tr></table></figure>
+
+<p><strong>关键结论（需背下来）：</strong></p>
+<ul>
+<li>哈希值不一样 → 内容<strong>一定</strong>不一样</li>
+<li>哈希值一样 → 内容<strong>有可能</strong>一样（哈希冲突 &#x2F; 哈希碰撞）</li>
+<li>想让哈希值反映对象<strong>内容</strong>，需要<strong>重写 <code>hashCode</code> 方法</strong>（IDE 通常自动生成）</li>
+</ul>
+<p><strong>String 的哈希算法：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// String 的 hashCode 用公式 h = 31 * h + val[i] 计算</span><br><span class="hljs-comment">// 选择 31 是因为它是质数，能极大减少哈希冲突</span><br><span class="hljs-string">&quot;abc&quot;</span>.hashCode(); <span class="hljs-comment">// 97 + 31*98 + 31*31*99 = 96354</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="HashSet-保证元素唯一的过程（需背下来）"><a href="#HashSet-保证元素唯一的过程（需背下来）" class="headerlink" title="HashSet 保证元素唯一的过程（需背下来）"></a>HashSet 保证元素唯一的过程（需背下来）</h3><p>存储自定义对象时，想让 HashSet 根据<strong>内容</strong>判断是否重复，<strong>必须重写 <code>hashCode</code> 和 <code>equals</code> 方法</strong>。</p>
+<p><strong>判断流程：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">① 计算哈希值<br>   └─ 哈希值不同 → 直接存<br>   └─ 哈希值相同 → ② 比较内容<br>                    ├─ 内容不同 → 存（链表/JDK8+红黑树）<br>                    └─ 内容相同 → 去重复<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 示例：&quot;abc&quot; 和 &quot;通话&quot; 的哈希值恰好相同，会进入内容比较</span><br><span class="hljs-type">HashSet</span>&lt;String&gt; <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>set.add(<span class="hljs-string">&quot;abc&quot;</span>);<br>set.add(<span class="hljs-string">&quot;通话&quot;</span>);    <span class="hljs-comment">// 哈希值 = 96354 ≠ &quot;abc&quot; 的哈希值？实际上相同！</span><br>set.add(<span class="hljs-string">&quot;重地&quot;</span>);    <span class="hljs-comment">// 哈希值相同，内容不同，存</span><br>set.add(<span class="hljs-string">&quot;abc&quot;</span>);     <span class="hljs-comment">// 哈希值相同，内容相同，去重复</span><br>System.out.println(set); <span class="hljs-comment">// [通话, 重地, abc]</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>自定义对象示例：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Person</span> &#123;<br>    <span class="hljs-keyword">private</span> String name;<br>    <span class="hljs-keyword">private</span> Integer age;<br><br>    <span class="hljs-comment">// IDE 自动生成：自动比较 name 和 age</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">equals</span><span class="hljs-params">(Object o)</span> &#123; <span class="hljs-comment">/* 内容比较 */</span> &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">hashCode</span><span class="hljs-params">()</span> &#123; <span class="hljs-keyword">return</span> Objects.hash(name, age); &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">HashSet</span>&lt;Person&gt; <span class="hljs-variable">set</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>set.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">18</span>));<br>set.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">18</span>)); <span class="hljs-comment">// hashCode 相同，equals 为 true → 去重复</span><br>set.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Person</span>(<span class="hljs-string">&quot;张三&quot;</span>, <span class="hljs-number">19</span>)); <span class="hljs-comment">// hashCode 相同，equals 为 false → 存</span><br>System.out.println(set.size()); <span class="hljs-comment">// 2</span><br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="红黑树（了解）"><a href="#红黑树（了解）" class="headerlink" title="红黑树（了解）"></a>红黑树（了解）</h3><p>红黑树是一种自平衡的二叉查找树，Java 中 TreeSet &#x2F; TreeMap 底层使用它来保证元素的有序性和高效查找。</p>
+<p><strong>5 大性质：</strong></p>
+<ol>
+<li>每个节点非红即黑</li>
+<li>根节点是黑色</li>
+<li>叶节点（NIL）是黑色</li>
+<li>红色节点的子节点必须是黑色（不能出现两个红色节点相连）</li>
+<li>从任一节点到其所有后代叶节点的路径上，黑色节点数目相同</li>
+</ol>
+<p><strong>特点：</strong> 保证最长路径不超过最短路径的 2 倍，树大致平衡，查找效率稳定在 <code>O(log n)</code>。</p>
+<blockquote>
+<p>可视化网站：<a target="_blank" rel="noopener" href="https://www.cs.usfca.edu/~galles/visualization/RedBlack">https://www.cs.usfca.edu/~galles/visualization/RedBlack</a></p>
+</blockquote>
+<hr>
+<h3 id="各集合对比总结"><a href="#各集合对比总结" class="headerlink" title="各集合对比总结"></a>各集合对比总结</h3><table>
+<thead>
+<tr>
+<th>集合</th>
+<th align="center">有序</th>
+<th align="center">有索引</th>
+<th align="center">元素唯一</th>
+<th align="center">线程安全</th>
+<th>数据结构</th>
+<th align="center">扩容倍数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ArrayList</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅ 可重复</td>
+<td align="center">❌</td>
+<td>数组</td>
+<td align="center">1.5倍（懒加载首次10）</td>
+</tr>
+<tr>
+<td>LinkedList</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅ 可重复</td>
+<td align="center">❌</td>
+<td>双向链表</td>
+<td align="center">无</td>
+</tr>
+<tr>
+<td>Vector</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅ 可重复</td>
+<td align="center">✅</td>
+<td>数组</td>
+<td align="center">2倍（首次10）</td>
+</tr>
+<tr>
+<td>HashSet</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">✅ 唯一</td>
+<td align="center">❌</td>
+<td>哈希表</td>
+<td align="center">2倍（首次16，加载因子0.75）</td>
+</tr>
+<tr>
+<td>LinkedHashSet</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">✅ 唯一</td>
+<td align="center">❌</td>
+<td>哈希表+双向链表</td>
+<td align="center">同 HashSet</td>
+</tr>
+<tr>
+<td>TreeSet</td>
+<td align="center">排序</td>
+<td align="center">❌</td>
+<td align="center">✅ 唯一</td>
+<td align="center">❌</td>
+<td>红黑树</td>
+<td align="center">无</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://dyblott.github.io">Dyblott</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://dyblott.github.io/2026/09/03/Collection%20%E9%9B%86%E5%90%88/">https://dyblott.github.io/2026/09/03/Collection%20%E9%9B%86%E5%90%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://dyblott.github.io" target="_blank">Dyblott's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Collection/">Collection</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/03/Stream%E6%B5%81/" title="Stream流"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">Stream流</div></div><div class="info-2"><div class="info-item-1">Stream 流概述Stream 不是 IO 流，而是流水线式的数据处理管道。它可以对集合数据进行链式操作（筛选 → 映射 → 排序 → 收集），代码更简洁。  注意：Stream 只能使用一次，使用后会消费掉，不能重复使用。   Stream 的获取   数据源 获取方式    数组 Stream.of(T... values)   Collection 集合 集合对象.stream()   123456// 数组Stream&lt;String&gt; s1 = Stream.of(&quot;樱桃小丸子&quot;, &quot;喜洋洋&quot;, &quot;猫和老鼠&quot;);// 集合ArrayList&lt;String&gt; list = new ArrayList&lt;&gt;();Stream&lt;String&gt; s2 = list.stream();   终结方法与延迟方法 终结方法：使用后 Stream 会被消耗，不能再链式调用（如 forEach、count、collect） 延迟方法：返回 Stream 本身，可继续链式调用（如 fi...</div></div></div></a><a class="pagination-related" href="/2026/09/03/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" title="函数式接口"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">函数式接口</div></div><div class="info-2"><div class="info-item-1">函数式接口概念函数式接口：有且仅有一个抽象方法的接口。 可以用 @FunctionalInterface 注解来强制校验，编译器会检查接口是否真的只有一个抽象方法。 12345@FunctionalInterfacepublic interface MyInterface &#123;    void test();    // void test2(); // 编译报错，只能有一个抽象方法&#125;  使用前提： Lambda 表达式、函数式接口的方法引用都必须基于函数式接口。  四大内置函数式接口Java 在 java.util.function 包下提供了四个最常用的函数式接口：    接口 抽象方法 含义 场景    Supplier&lt;T&gt; T get() 供给型 无输入，返回一个值   Consumer&lt;T&gt; void accept(T t) 消费型 接收一个值，进行操作   Function&lt;T,R&gt; R apply(T t) 功能型 接收 T，返回 R（类型转换）   Predicate&lt;T&gt; boolean tes...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dyblott</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">47</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">59</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">29</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Dyblott" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Collection-%E9%9B%86%E5%90%88"><span class="toc-number">1.</span> <span class="toc-text">Collection 集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%86%E5%90%88%E6%A6%82%E8%BF%B0"><span class="toc-number">1.1.</span> <span class="toc-text">集合概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Collection-%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.2.</span> <span class="toc-text">Collection 接口</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="toc-number">1.3.</span> <span class="toc-text">数据结构</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E6%A0%88"><span class="toc-number">1.3.1.</span> <span class="toc-text">1. 栈</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E9%98%9F%E5%88%97"><span class="toc-number">1.3.2.</span> <span class="toc-text">2. 队列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%E6%95%B0%E7%BB%84"><span class="toc-number">1.3.3.</span> <span class="toc-text">3. 数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E9%93%BE%E8%A1%A8"><span class="toc-number">1.3.4.</span> <span class="toc-text">4. 链表</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8"><span class="toc-number">1.4.</span> <span class="toc-text">迭代器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#List-%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.5.</span> <span class="toc-text">List 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#ArrayList"><span class="toc-number">1.5.1.</span> <span class="toc-text">ArrayList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedList"><span class="toc-number">1.5.2.</span> <span class="toc-text">LinkedList</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Vector%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="toc-number">1.5.3.</span> <span class="toc-text">Vector（了解）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A2%9E%E5%BC%BA-for"><span class="toc-number">1.6.</span> <span class="toc-text">增强 for</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Set-%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.7.</span> <span class="toc-text">Set 接口</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#HashSet"><span class="toc-number">1.7.1.</span> <span class="toc-text">HashSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LinkedHashSet"><span class="toc-number">1.7.2.</span> <span class="toc-text">LinkedHashSet</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TreeSet"><span class="toc-number">1.7.3.</span> <span class="toc-text">TreeSet</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E5%80%BC"><span class="toc-number">1.8.</span> <span class="toc-text">哈希值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HashSet-%E4%BF%9D%E8%AF%81%E5%85%83%E7%B4%A0%E5%94%AF%E4%B8%80%E7%9A%84%E8%BF%87%E7%A8%8B%EF%BC%88%E9%9C%80%E8%83%8C%E4%B8%8B%E6%9D%A5%EF%BC%89"><span class="toc-number">1.9.</span> <span class="toc-text">HashSet 保证元素唯一的过程（需背下来）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BA%A2%E9%BB%91%E6%A0%91%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89"><span class="toc-number">1.10.</span> <span class="toc-text">红黑树（了解）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%84%E9%9B%86%E5%90%88%E5%AF%B9%E6%AF%94%E6%80%BB%E7%BB%93"><span class="toc-number">1.11.</span> <span class="toc-text">各集合对比总结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/%E8%BF%AD%E4%BB%A3%E5%99%A8/" title="迭代器">迭代器</a><time datetime="2026-09-03T06:33:00.000Z" title="发表于 2026-09-03 14:33:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/Collections%E5%B7%A5%E5%85%B7%E7%B1%BB/" title="Collections工具类">Collections工具类</a><time datetime="2026-09-03T05:07:00.000Z" title="发表于 2026-09-03 13:07:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/Map%E9%9B%86%E5%90%88/" title="Map集合">Map集合</a><time datetime="2026-09-03T05:07:00.000Z" title="发表于 2026-09-03 13:07:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/" title="函数式接口">函数式接口</a><time datetime="2026-09-03T05:07:00.000Z" title="发表于 2026-09-03 13:07:00">2026-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/03/Collection%20%E9%9B%86%E5%90%88/" title="Collection 集合">Collection 集合</a><time datetime="2026-09-03T05:07:00.000Z" title="发表于 2026-09-03 13:07:00">2026-09-03</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Dyblott</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
