@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SpringBootWeb快速体验 | Dyblott's Blog</title><meta name="author" content="Dyblott"><meta name="copyright" content="Dyblott"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="通过一个 &#x2F;hello 接口案例，完整走通 Spring Boot Web 项目的创建、编写、启动与访问全流程，并拆解父 POM、场景启动器、启动原理与核心注解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SpringBootWeb快速体验">
+<meta property="og:url" content="https://dyblott.github.io/2026/09/09/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/index.html">
+<meta property="og:site_name" content="Dyblott&#39;s Blog">
+<meta property="og:description" content="通过一个 &#x2F;hello 接口案例，完整走通 Spring Boot Web 项目的创建、编写、启动与访问全流程，并拆解父 POM、场景启动器、启动原理与核心注解。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dyblott.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:modified_time" content="2026-09-08T16:00:00.000Z">
+<meta property="article:author" content="Dyblott">
+<meta property="article:tag" content="Spring Boot">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dyblott.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "SpringBootWeb快速体验",
+  "url": "https://dyblott.github.io/2026/09/09/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/",
+  "image": "https://dyblott.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-08T16:00:00.000Z",
+  "dateModified": "2026-09-08T16:00:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dyblott",
+      "url": "https://dyblott.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://dyblott.github.io/2026/09/09/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SpringBootWeb快速体验',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">87</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">43</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dyblott's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">SpringBootWeb快速体验</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">SpringBootWeb快速体验</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-08T16:00:00.000Z" title="发表于 2026-09-09 00:00:00">2026-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-08T16:00:00.000Z" title="更新于 2026-09-09 00:00:00">2026-09-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring/">Spring</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Spring/SpringBoot/">SpringBoot</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="Spring-Boot-Web-快速体验"><a href="#Spring-Boot-Web-快速体验" class="headerlink" title="Spring Boot Web 快速体验"></a>Spring Boot Web 快速体验</h1><p>通过一个极简案例，完整体验基于 Spring Boot 的 Java Web 项目「创建 → 编写 → 启动 → 访问」全流程。在实际开发中，我们几乎都基于 Spring Boot 环境开发——它是对 Spring Framework 的进一步简化与封装。</p>
+<hr>
+<h2 id="一、案例需求"><a href="#一、案例需求" class="headerlink" title="一、案例需求"></a>一、案例需求</h2><ol>
+<li><p>基于 Spring Boot 搭建一个 Web 项目；</p>
+</li>
+<li><p>编写动态资源接口，当浏览器访问 <code>http://localhost:8080/hello</code> 时；</p>
+</li>
+<li><p>后台返回字符串 <code>&quot;hello javaweb!&quot;</code>，并在浏览器页面上显示该内容。</p>
+</li>
+</ol>
+<hr>
+<h2 id="二、创建-Spring-Boot-Web-项目"><a href="#二、创建-Spring-Boot-Web-项目" class="headerlink" title="二、创建 Spring Boot Web 项目"></a>二、创建 Spring Boot Web 项目</h2><p>基于 IDEA 的 Spring Boot 工程创建向导搭建项目。</p>
+<h3 id="2-1-初始化工程"><a href="#2-1-初始化工程" class="headerlink" title="2.1 初始化工程"></a>2.1 初始化工程</h3><blockquote>
+<p>⚠️ 通过向导创建工程需联网。</p>
+</blockquote>
+<h3 id="2-2-选择-Spring-Boot-版本与场景启动器"><a href="#2-2-选择-Spring-Boot-版本与场景启动器" class="headerlink" title="2.2 选择 Spring Boot 版本与场景启动器"></a>2.2 选择 Spring Boot 版本与场景启动器</h3><p>选择 Spring Boot 版本（如 3.0.5 稳定版），并勾选 <strong>Web 开发场景启动器</strong>（即 <code>spring-boot-starter-web</code>）作为依赖。</p>
+<h3 id="2-3-POM-依赖解读"><a href="#2-3-POM-依赖解读" class="headerlink" title="2.3 POM 依赖解读"></a>2.3 POM 依赖解读</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs xml"><br><span class="hljs-meta">&lt;?xml version=<span class="hljs-string">&quot;1.0&quot;</span> encoding=<span class="hljs-string">&quot;UTF-8&quot;</span>?&gt;</span><br><br><span class="hljs-tag">&lt;<span class="hljs-name">project</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0&quot;</span> <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span></span><br><span class="hljs-tag"></span><br><span class="hljs-tag">         <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">&quot;http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd&quot;</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">modelVersion</span>&gt;</span>4.0.0<span class="hljs-tag">&lt;/<span class="hljs-name">modelVersion</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 继承 Spring Boot 官方父 POM，统一管理依赖版本和基础配置 --&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">parent</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-parent<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- Spring Boot 版本 --&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.5<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">relativePath</span>/&gt;</span> <span class="hljs-comment">&lt;!-- 跳过本地查找，直接读取官方父POM --&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">parent</span>&gt;</span><br><br><br><br>    <span class="hljs-comment">&lt;!-- 项目唯一标识（GAV） --&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.example<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>hello-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>0.0.1-SNAPSHOT<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br><br><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">java.version</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-name">java.version</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>    <br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- Web 开发场景启动器：一键引入 Web 开发所需所有依赖（依赖传递） --&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-web<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br><br><br>        <span class="hljs-comment">&lt;!-- Lombok：简化实体类代码（如省略 get/set 方法） --&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.projectlombok<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>lombok<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">optional</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">optional</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <br><br>        <span class="hljs-comment">&lt;!-- 测试场景启动器：仅在测试环境生效 --&gt;</span><br><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-test<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br><br><span class="hljs-tag">&lt;/<span class="hljs-name">project</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-4-工程结构说明"><a href="#2-4-工程结构说明" class="headerlink" title="2.4 工程结构说明"></a>2.4 工程结构说明</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>hello-web<br><br>├── src<br><br>│   ├── main<br><br>│   │   ├── java<br><br>│   │   │   └── com.example.helloweb        # 项目主包（Spring Boot 扫描的根包）<br><br>│   │   │       ├── controller               # 控制器包（处理 Web 请求的类放在这里）<br><br>│   │   │       │   └── HelloController      # 具体的 Web 控制器类（定义接口、处理请求）<br><br>│   │   │       └── HelloWebApplication      # Spring Boot 主启动类（运行它）<br><br>│   │   └── resources                        # 非代码类的资源文件目录<br><br>│   │       ├── static                       # 静态资源目录（HTML、CSS、图片等，浏览器可直接访问）<br><br>│   │       ├── templates                    # 模板文件目录（Thymeleaf 等模板引擎页面）<br><br>│   │       └── application.properties       # Spring Boot 核心配置文件<br><br>│   └── test<br><br>│       └── java<br><br>│           └── com.example.helloweb         # 测试代码根包<br><br>│               └── HelloWebApplicationTests # 项目测试类<br><br>├── target                                  # Maven 构建输出目录<br><br>└── pom.xml                                 # Maven 配置文件<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="三、编写动态资源（HelloController）"><a href="#三、编写动态资源（HelloController）" class="headerlink" title="三、编写动态资源（HelloController）"></a>三、编写动态资源（HelloController）</h2><blockquote>
+<p>💡 <strong>关键要求</strong>：<code>HelloController</code> 必须放在<strong>主启动类所在包或其子包</strong>下，否则 Spring 无法扫描到。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">package</span> com.example.helloweb.controller;<br><br><br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> * <span class="hljs-doctag">@RestController</span>：标记当前类为「动态资源类」，Spring 会自动创建该类的实例并管理</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> * 作用等价于 <span class="hljs-doctag">@Controller</span> + <span class="hljs-doctag">@ResponseBody</span>（返回字符串而非页面）</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> */</span><br><br><span class="hljs-meta">@RestController</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HelloController</span> &#123;<br><br><br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     * <span class="hljs-doctag">@RequestMapping</span>(&quot;hello&quot;)：映射请求路径，浏览器访问 /hello 时执行该方法</span><br><span class="hljs-comment"></span><br><span class="hljs-comment">     */</span><br><br>    <span class="hljs-meta">@RequestMapping(&quot;hello&quot;)</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">String</span> <span class="hljs-title function_">hello</span><span class="hljs-params">()</span> &#123;<br><br>        System.out.println(<span class="hljs-string">&quot;HelloController.hello 方法被调用&quot;</span>);<br><br>        <span class="hljs-comment">// 返回字符串给客户端（浏览器）</span><br><br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello javaweb!&quot;</span>;<br><br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="四、启动项目"><a href="#四、启动项目" class="headerlink" title="四、启动项目"></a>四、启动项目</h2><p>直接点击主启动类 <code>HelloWebApplication</code> 的 <code>main</code> 方法运行即可。控制台输出启动日志、默认端口（8080）及 Tomcat 启动信息即表示成功。</p>
+<hr>
+<h2 id="五、浏览器访问"><a href="#五、浏览器访问" class="headerlink" title="五、浏览器访问"></a>五、浏览器访问</h2><p>在浏览器地址栏输入：<code>http://localhost:8080/hello</code>，页面将显示返回的字符串：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs plaintext"><br>hello javaweb!<br><br></code></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="六、核心知识点总结"><a href="#六、核心知识点总结" class="headerlink" title="六、核心知识点总结"></a>六、核心知识点总结</h2><h3 id="6-1-为什么要继承-spring-boot-starter-parent？"><a href="#6-1-为什么要继承-spring-boot-starter-parent？" class="headerlink" title="6.1 为什么要继承 spring-boot-starter-parent？"></a>6.1 为什么要继承 <code>spring-boot-starter-parent</code>？</h3><p>继承该父 POM 的核心价值是<strong>简化配置、规避坑点</strong>：</p>
+<ol>
+<li><p><strong>版本统一管理</strong>：父 POM 预设了所有 Spring Boot 依赖的兼容版本，引入依赖时无需手动写版本号，避免版本冲突。</p>
+</li>
+<li><p><strong>插件简化配置</strong>：内置 Spring Boot 常用 Maven 插件（如打包插件）的适配版本，无需重复配置。</p>
+</li>
+<li><p><strong>基础配置预设</strong>：默认配置 UTF-8 编码、适配的 Java 版本等，省去基础配置工作。</p>
+</li>
+</ol>
+<blockquote>
+<p>简单说：父 POM 是 Spring Boot 官方的「配置模板」，让你聚焦业务而非基础配置。</p>
+</blockquote>
+<h3 id="6-2-为什么依赖叫“场景启动器”？有什么好处？"><a href="#6-2-为什么依赖叫“场景启动器”？有什么好处？" class="headerlink" title="6.2 为什么依赖叫“场景启动器”？有什么好处？"></a>6.2 为什么依赖叫“场景启动器”？有什么好处？</h3><p>Spring Boot 的「场景启动器（Starter）」是<strong>一站式依赖解决方案</strong>，核心好处是「一键引入场景所需所有资源」：</p>
+<ul>
+<li><p>官方场景启动器命名：<code>spring-boot-starter-*</code>（如 <code>spring-boot-starter-web</code>）。</p>
+</li>
+<li><p>第三方场景启动器命名：<code>*-spring-boot-starter</code>（如 <code>mybatis-spring-boot-starter</code>）。</p>
+</li>
+</ul>
+<p>导入对应场景启动器后，Spring Boot 会自动引入该场景的所有依赖、完成默认配置（如导入 <code>web</code> 启动器后，自动引入 Tomcat、Spring MVC 等并配置），实现「场景一导入，万物皆就绪」。</p>
+<blockquote>
+<p>官方所有场景参考：<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.build-systems.starters">https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.build-systems.starters</a></p>
+</blockquote>
+<h3 id="6-3-为什么点击启动类就能运行整个项目？"><a href="#6-3-为什么点击启动类就能运行整个项目？" class="headerlink" title="6.3 为什么点击启动类就能运行整个项目？"></a>6.3 为什么点击启动类就能运行整个项目？</h3><p>核心就两个关键点：</p>
+<ol>
+<li><p><strong><code>main</code> 方法是程序入口</strong>：Java 程序启动入口就是 <code>main</code> 方法，点击启动类本质是执行这个方法。</p>
+</li>
+<li><p><strong>注解 + <code>run</code> 方法完成初始化</strong>：</p>
+<ul>
+<li><p><code>@SpringBootApplication</code>：让 Spring 自动扫描并加载项目中的功能类（如 Controller）。</p>
+</li>
+<li><p><code>SpringApplication.run(...)</code>：启动 Spring 核心容器，同时自动启动内置 Tomcat 服务器，加载所有配置和组件。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>两者结合，只需运行启动类，就能完成「组件加载 + 服务器启动」，整个项目即可运行。</p>
+<hr>
+<h2 id="七、核心注解参考"><a href="#七、核心注解参考" class="headerlink" title="七、核心注解参考"></a>七、核心注解参考</h2><p>| 注解 | 作用 |</p>
+<p>| :— | :— |</p>
+<p>| <code>@Controller</code> | 声明一个控制器组件（默认返回视图&#x2F;页面） |</p>
+<p>| <code>@ResponseBody</code> | 声明响应体，数据以响应体方式返回（而非页面） |</p>
+<p>| <code>@RestController</code> | 声明控制器组件并纳入 IOC 容器管理；等价于 <code>@Controller + @ResponseBody</code> |</p>
+<p>| <code>@RequestMapping</code> | 声明路径映射，用于客户端访问（可作用于类或方法） |</p>
+<p>| <code>@SpringBootApplication</code> | 声明一个 Spring Boot 应用主程序（含自动配置与组件扫描） |</p>
+<p>| <code>@GetMapping</code> | 映射 GET 请求（查询） |</p>
+<p>| <code>@PostMapping</code> | 映射 POST 请求（新增） |</p>
+<p>| <code>@PutMapping</code> | 映射 PUT 请求（修改） |</p>
+<p>| <code>@DeleteMapping</code> | 映射 DELETE 请求（删除） |</p>
+<blockquote>
+<p>提示：<code>@GetMapping</code> &#x2F; <code>@PostMapping</code> &#x2F; <code>@PutMapping</code> &#x2F; <code>@DeleteMapping</code> 是 <code>@RequestMapping(method = ...)</code> 的语义化简写，推荐在 REST 风格接口中直接使用，可读性更好。</p>
+</blockquote>
+<hr>
+<h2 id="八、本章小结"><a href="#八、本章小结" class="headerlink" title="八、本章小结"></a>八、本章小结</h2><ol>
+<li><p>Spring Boot 项目创建核心是选对场景启动器（如 <code>web</code>），继承父 POM 可大幅简化配置。</p>
+</li>
+<li><p>控制器类需放在主启动类的包 &#x2F; 子包下，<code>@RestController</code> + <code>@RequestMapping</code> 可快速定义接口。</p>
+</li>
+<li><p>启动类的 <code>main</code> 方法 + <code>@SpringBootApplication</code> 是项目运行的核心，可自动完成容器和服务器启动。</p>
+</li>
+<li><p>常用请求映射可用 <code>@GetMapping</code> 等语义化注解替代宽泛的 <code>@RequestMapping</code>。</p>
+</li>
+</ol>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://dyblott.github.io">Dyblott</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://dyblott.github.io/2026/09/09/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/">https://dyblott.github.io/2026/09/09/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://dyblott.github.io" target="_blank">Dyblott's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Spring-Boot/">Spring Boot</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/09/Spring/Spring%20Boot%20%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/" title="SpringBoot概述与框架体系"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">SpringBoot概述与框架体系</div></div><div class="info-2"><div class="info-item-1">Spring Boot 概述与框架体系一、学习路线Web 与框架的整体学习路线如下，Spring Boot 是第一步的「入口框架」： 123Spring Boot → Spring MVC → MyBatis → MyBatis-Plus → Spring 高级 → Spring Boot 高级     Spring Boot：快速搭建 Java Web 项目脚手架，自动配置大部分框架。  Spring MVC：处理 Web 项目的「请求 - 响应」流程。  MyBatis：连接数据库的持久层框架。  MyBatis-Plus：MyBatis 的增强工具，提供通用 CRUD、分页等。  Spring 高级：深入 IOC&#x2F;AOP、事务管理等底层原理。  Spring Boot 高级：自定义 Starter、分布式配置、性能优化等。    二、Web 核心概念2.1 Web 项目定义Web 项目是基于网络通信，由客户端和服务器组成的程序：  客户端：一般用于「展示内容」和「数据收集」（如浏览器、App）。  服务端：一般用于「业务逻辑处理」和「数据处理」（如部署在机房的服务...</div></div></div></a><a class="pagination-related" href="/2026/09/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">网络编程</div></div><div class="info-2"><div class="info-item-1">网络编程1. 网络编程是什么让设备和设备之间能互相”聊天”——把你的程序通过网络发给另一台设备，让它收到并处理。 两种架构对比：    架构 客户端 服务端 特点    CS 需要开发安装 需要开发 体验好，功能强大   BS 浏览器代替 需要开发 无需安装，浏览器访问即可    2. 网络编程三要素通信离不开三个东西：IP、端口号、传输协议。 1发送者（IP:端口）  ──传输协议──  接收者（IP:端口）   3. IP 地址IP（Internet Protocol） 是上网设备的唯一标识。    类型 说明    IPv4 32位，点分十进制（如 192.168.1.66），已用完   IPv6 128位，冒分十六进制，可为万物编号   特殊 IP：    地址 说明    127.0.0.1 &#x2F; localhost 本机回环地址，永远只代表本机   常用命令： 12ipconfig              # 查看本机 IPping www.baidu.com    # 检查网络是否通  DNS（域名解析）：把域名（www.baidu.com）解析成 IP ...</div></div></div></a></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><a class="pagination-related" href="/2026/09/09/Spring/Spring%20Boot%20%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/" title="SpringBoot概述与框架体系"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-center"><div class="info-1"><div class="info-item-1"><i class="far fa-calendar-alt fa-fw"></i> 2026-09-09</div><div class="info-item-2">SpringBoot概述与框架体系</div></div><div class="info-2"><div class="info-item-1">Spring Boot 概述与框架体系一、学习路线Web 与框架的整体学习路线如下，Spring Boot 是第一步的「入口框架」： 123Spring Boot → Spring MVC → MyBatis → MyBatis-Plus → Spring 高级 → Spring Boot 高级     Spring Boot：快速搭建 Java Web 项目脚手架，自动配置大部分框架。  Spring MVC：处理 Web 项目的「请求 - 响应」流程。  MyBatis：连接数据库的持久层框架。  MyBatis-Plus：MyBatis 的增强工具，提供通用 CRUD、分页等。  Spring 高级：深入 IOC&#x2F;AOP、事务管理等底层原理。  Spring Boot 高级：自定义 Starter、分布式配置、性能优化等。    二、Web 核心概念2.1 Web 项目定义Web 项目是基于网络通信，由客户端和服务器组成的程序：  客户端：一般用于「展示内容」和「数据收集」（如浏览器、App）。  服务端：一般用于「业务逻辑处理」和「数据处理」（如部署在机房的服务...</div></div></div></a></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dyblott</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">73</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">87</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">43</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Dyblott" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring-Boot-Web-%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C"><span class="toc-number">1.</span> <span class="toc-text">Spring Boot Web 快速体验</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%A1%88%E4%BE%8B%E9%9C%80%E6%B1%82"><span class="toc-number">1.1.</span> <span class="toc-text">一、案例需求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%88%9B%E5%BB%BA-Spring-Boot-Web-%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.2.</span> <span class="toc-text">二、创建 Spring Boot Web 项目</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%B7%A5%E7%A8%8B"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 初始化工程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E9%80%89%E6%8B%A9-Spring-Boot-%E7%89%88%E6%9C%AC%E4%B8%8E%E5%9C%BA%E6%99%AF%E5%90%AF%E5%8A%A8%E5%99%A8"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 选择 Spring Boot 版本与场景启动器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-POM-%E4%BE%9D%E8%B5%96%E8%A7%A3%E8%AF%BB"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 POM 依赖解读</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%B7%A5%E7%A8%8B%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 工程结构说明</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E7%BC%96%E5%86%99%E5%8A%A8%E6%80%81%E8%B5%84%E6%BA%90%EF%BC%88HelloController%EF%BC%89"><span class="toc-number">1.3.</span> <span class="toc-text">三、编写动态资源（HelloController）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE"><span class="toc-number">1.4.</span> <span class="toc-text">四、启动项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E8%AE%BF%E9%97%AE"><span class="toc-number">1.5.</span> <span class="toc-text">五、浏览器访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A0%B8%E5%BF%83%E7%9F%A5%E8%AF%86%E7%82%B9%E6%80%BB%E7%BB%93"><span class="toc-number">1.6.</span> <span class="toc-text">六、核心知识点总结</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%BB%A7%E6%89%BF-spring-boot-starter-parent%EF%BC%9F"><span class="toc-number">1.6.1.</span> <span class="toc-text">6.1 为什么要继承 spring-boot-starter-parent？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BE%9D%E8%B5%96%E5%8F%AB%E2%80%9C%E5%9C%BA%E6%99%AF%E5%90%AF%E5%8A%A8%E5%99%A8%E2%80%9D%EF%BC%9F%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84%EF%BC%9F"><span class="toc-number">1.6.2.</span> <span class="toc-text">6.2 为什么依赖叫“场景启动器”？有什么好处？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-3-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%82%B9%E5%87%BB%E5%90%AF%E5%8A%A8%E7%B1%BB%E5%B0%B1%E8%83%BD%E8%BF%90%E8%A1%8C%E6%95%B4%E4%B8%AA%E9%A1%B9%E7%9B%AE%EF%BC%9F"><span class="toc-number">1.6.3.</span> <span class="toc-text">6.3 为什么点击启动类就能运行整个项目？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E6%A0%B8%E5%BF%83%E6%B3%A8%E8%A7%A3%E5%8F%82%E8%80%83"><span class="toc-number">1.7.</span> <span class="toc-text">七、核心注解参考</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%9C%AC%E7%AB%A0%E5%B0%8F%E7%BB%93"><span class="toc-number">1.8.</span> <span class="toc-text">八、本章小结</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%E6%B3%A8%E8%A7%A3/" title="SpringMVC注解">SpringMVC注解</a><time datetime="2026-09-11T09:35:00.000Z" title="发表于 2026-09-11 17:35:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/Thymeleaf%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/" title="Thymeleaf模板语法">Thymeleaf模板语法</a><time datetime="2026-09-11T09:35:00.000Z" title="发表于 2026-09-11 17:35:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/" title="SpringMVC混合开发">SpringMVC混合开发</a><time datetime="2026-09-11T09:15:00.000Z" title="发表于 2026-09-11 17:15:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%20RESTful%E8%AE%BE%E8%AE%A1/" title="SpringMVC RESTful设计">SpringMVC RESTful设计</a><time datetime="2026-09-11T08:15:00.000Z" title="发表于 2026-09-11 16:15:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%E5%8F%82%E6%95%B0%E6%8E%A5%E6%94%B6/" title="SpringMVC参数接收">SpringMVC参数接收</a><time datetime="2026-09-11T08:15:00.000Z" title="发表于 2026-09-11 16:15:00">2026-09-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Dyblott</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
