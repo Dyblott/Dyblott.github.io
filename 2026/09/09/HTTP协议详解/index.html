@@ -1,0 +1,679 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>HTTP协议详解 | Dyblott's Blog</title><meta name="author" content="Dyblott"><meta name="copyright" content="Dyblott"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="HTTP 协议核心知识点：请求格式、响应格式、八种请求方法、六类状态码、版本演进">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议详解">
+<meta property="og:url" content="https://dyblott.github.io/2026/09/09/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Dyblott&#39;s Blog">
+<meta property="og:description" content="HTTP 协议核心知识点：请求格式、响应格式、八种请求方法、六类状态码、版本演进">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dyblott.github.io/img/butterfly-icon.png">
+<meta property="article:published_time" content="2026-09-09T09:12:00.000Z">
+<meta property="article:modified_time" content="2026-09-09T09:12:00.000Z">
+<meta property="article:author" content="Dyblott">
+<meta property="article:tag" content="HTTP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dyblott.github.io/img/butterfly-icon.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "HTTP协议详解",
+  "url": "https://dyblott.github.io/2026/09/09/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/",
+  "image": "https://dyblott.github.io/img/butterfly-icon.png",
+  "datePublished": "2026-09-09T09:12:00.000Z",
+  "dateModified": "2026-09-09T09:12:00.000Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Dyblott",
+      "url": "https://dyblott.github.io"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://dyblott.github.io/2026/09/09/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'HTTP协议详解',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 8.1.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">85</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">42</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Dyblott's Blog</span></a><a class="nav-page-title" href="/"><span class="site-name">HTTP协议详解</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><span class="site-page group"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></span><ul class="menus_item_child"><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-user"></i><span> About</span></a></li><li><a class="site-page child" target="_blank" rel="noopener" href="https://github.com/Dyblott"><i class="fa-fw fab fa-github"></i><span> Github</span></a></li></ul></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">HTTP协议详解</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-09T09:12:00.000Z" title="发表于 2026-09-09 17:12:00">2026-09-09</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-09T09:12:00.000Z" title="更新于 2026-09-09 17:12:00">2026-09-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web/">Web</a><i class="fas fa-angle-right post-meta-separator"></i><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Web/%E5%8D%8F%E8%AE%AE/">协议</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h2 id="HTTP-协议详解"><a href="#HTTP-协议详解" class="headerlink" title="HTTP 协议详解"></a>HTTP 协议详解</h2><h3 id="1-HTTP-是什么"><a href="#1-HTTP-是什么" class="headerlink" title="1. HTTP 是什么"></a>1. HTTP 是什么</h3><p><strong>HTTP（HyperText Transfer Protocol）</strong> 即超文本传输协议，是应用层面向对象的协议，核心作用是<strong>规定客户端与服务器之间的通信规则</strong>。</p>
+<p>简单说：浏览器和服务器之间对话，总得有个统一的语言——这个语言就是 HTTP。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">浏览器（客户端）<br>       │  发 HTTP 请求<br>       ▼<br>┌──────────────┐<br>│   服务器      │<br>│              │<br>│  接收请求      │<br>│  处理业务      │<br>│  发 HTTP 响应  │<br>└──────────────┘<br>       │  回 HTTP 响应<br>       ▼<br>浏览器（客户端）<br></code></pre></td></tr></table></figure>
+
+<p>HTTP 基于 <strong>TCP&#x2F;IP</strong> 通信协议来传递数据（HTML 文件、图片、JSON 数据等）。</p>
+<hr>
+<h3 id="2-HTTP-版本演进"><a href="#2-HTTP-版本演进" class="headerlink" title="2. HTTP 版本演进"></a>2. HTTP 版本演进</h3><table>
+<thead>
+<tr>
+<th>版本</th>
+<th>核心特点</th>
+<th>解决的问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>HTTP&#x2F;1.1</strong></td>
+<td>持久连接（一个 TCP 传多个请求），但请求排队（队头阻塞）</td>
+<td>避免反复建立连接</td>
+</tr>
+<tr>
+<td><strong>HTTP&#x2F;2</strong></td>
+<td>二进制分帧，一个 TCP 并行传多个请求帧</td>
+<td>解决队头阻塞</td>
+</tr>
+<tr>
+<td><strong>HTTP&#x2F;3</strong></td>
+<td>基于 UDP 的 QUIC 协议，彻底解决 TCP 层阻塞</td>
+<td>连接更快、抗网络波动</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>通俗理解</strong>：</p>
+<ul>
+<li>HTTP&#x2F;1.1 &#x3D; 打电话，打完一个再打下一个（排队）</li>
+<li>HTTP&#x2F;2 &#x3D; 打电话但可以多人同时说话（多车道）</li>
+<li>HTTP&#x2F;3 &#x3D; 换成更快的网络线路（UDP QUIC）</li>
+</ul>
+</blockquote>
+<hr>
+<h3 id="3-HTTP-通信流程"><a href="#3-HTTP-通信流程" class="headerlink" title="3. HTTP 通信流程"></a>3. HTTP 通信流程</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">1. 建立连接          客户端与服务器建立 TCP 连接<br>2. 发送请求          客户端发 HTTP 请求（URL、请求方法、请求头、可选请求体）<br>3. 处理请求          服务器接收、解析、处理<br>4. 发送响应          服务器返回状态码、响应头、响应体<br>5. 关闭连接          请求-响应完成后关闭（HTTP/1.1 默认 keep-alive 保持连接）<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-请求格式（重点）"><a href="#4-请求格式（重点）" class="headerlink" title="4. 请求格式（重点）"></a>4. 请求格式（重点）</h3><p>HTTP 请求由四部分组成：<strong>请求行 → 请求头 → 空行 → 请求体</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">请求行：</span>    <span class="hljs-string">请求方法</span>   <span class="hljs-string">URL</span>   <span class="hljs-string">协议版本</span>          <span class="hljs-string">CRLF</span><br><span class="hljs-string">请求头：</span>    <span class="hljs-string">头部字段名:</span> <span class="hljs-string">值</span>                       <span class="hljs-string">CRLF</span><br><span class="hljs-string">请求头：</span>    <span class="hljs-string">头部字段名:</span> <span class="hljs-string">值</span>                       <span class="hljs-string">CRLF</span><br><span class="hljs-string">请求头：</span>    <span class="hljs-string">...</span>                                 <span class="hljs-string">CRLF</span><br><span class="hljs-string">空行：</span>      <span class="hljs-string">CRLF</span><br><span class="hljs-string">请求体：</span>    <span class="hljs-string">（实际数据，如</span> <span class="hljs-string">POST</span> <span class="hljs-string">表单数据、JSON）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>一个真实的 GET 请求长这样：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">GET</span> <span class="hljs-string">/index.html</span> <span class="hljs-string">HTTP/1.1</span><br><span class="hljs-attr">Host:</span> <span class="hljs-string">www.example.com</span><br><span class="hljs-attr">User-Agent:</span> <span class="hljs-string">Mozilla/5.0</span> <span class="hljs-string">(Windows</span> <span class="hljs-string">NT</span> <span class="hljs-number">10.0</span><span class="hljs-string">;</span> <span class="hljs-string">Win64;</span> <span class="hljs-string">x64)</span><br><span class="hljs-attr">Accept:</span> <span class="hljs-string">text/html,application/xhtml+xml,application/xml;q=0.9</span><br><span class="hljs-attr">Accept-Encoding:</span> <span class="hljs-string">gzip,</span> <span class="hljs-string">deflate</span><br><span class="hljs-attr">Connection:</span> <span class="hljs-string">keep-alive</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>一个真实的 POST 请求长这样：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">POST</span> <span class="hljs-string">/login</span> <span class="hljs-string">HTTP/1.1</span><br><span class="hljs-attr">Host:</span> <span class="hljs-string">www.example.com</span><br><span class="hljs-attr">Content-Type:</span> <span class="hljs-string">application/x-www-form-urlencoded</span><br><span class="hljs-attr">Content-Length:</span> <span class="hljs-number">27</span><br><span class="hljs-attr">Connection:</span> <span class="hljs-string">keep-alive</span><br><br><span class="hljs-string">username=admin&amp;password=123</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>请求各部分说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>请求行</strong></td>
+<td>三要素：请求方法 + URL + HTTP 版本，是请求的核心指令</td>
+</tr>
+<tr>
+<td><strong>请求头</strong></td>
+<td>告诉服务器额外信息（Host、User-Agent、Accept、Content-Type 等），可有多组</td>
+</tr>
+<tr>
+<td><strong>空行</strong></td>
+<td>分隔请求头和请求体，避免混淆</td>
+</tr>
+<tr>
+<td><strong>请求体</strong></td>
+<td>实际提交的数据，仅 POST&#x2F;PUT 等方法使用</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="5-响应格式（重点）"><a href="#5-响应格式（重点）" class="headerlink" title="5. 响应格式（重点）"></a>5. 响应格式（重点）</h3><p>HTTP 响应同样由四部分组成：<strong>状态行 → 响应头 → 空行 → 响应体</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">状态行：</span>    <span class="hljs-string">协议版本</span>   <span class="hljs-string">状态码</span>   <span class="hljs-string">状态描述</span>          <span class="hljs-string">CRLF</span><br><span class="hljs-string">响应头：</span>    <span class="hljs-string">头部字段名:</span> <span class="hljs-string">值</span>                       <span class="hljs-string">CRLF</span><br><span class="hljs-string">响应头：</span>    <span class="hljs-string">头部字段名:</span> <span class="hljs-string">值</span>                       <span class="hljs-string">CRLF</span><br><span class="hljs-string">响应头：</span>    <span class="hljs-string">...</span>                                 <span class="hljs-string">CRLF</span><br><span class="hljs-string">空行：</span>      <span class="hljs-string">CRLF</span><br><span class="hljs-string">响应体：</span>    <span class="hljs-string">（服务器返回的实际内容，如</span> <span class="hljs-string">HTML、JSON）</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>一个真实的响应长这样：</strong></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">HTTP/1.1</span> <span class="hljs-number">200</span> <span class="hljs-string">OK</span><br><span class="hljs-attr">Date:</span> <span class="hljs-string">Wed,</span> <span class="hljs-number">18</span> <span class="hljs-string">Apr</span> <span class="hljs-number">2026 12:00:00 </span><span class="hljs-string">GMT</span><br><span class="hljs-attr">Server:</span> <span class="hljs-string">Apache/2.4.1</span> <span class="hljs-string">(Unix)</span><br><span class="hljs-attr">Content-Length:</span> <span class="hljs-number">12345</span><br><span class="hljs-attr">Content-Type:</span> <span class="hljs-string">text/html;</span> <span class="hljs-string">charset=UTF-8</span><br><br><span class="hljs-string">&lt;!DOCTYPE</span> <span class="hljs-string">html&gt;</span><br><span class="hljs-string">&lt;html&gt;</span><br><span class="hljs-string">&lt;head&gt;&lt;title&gt;Example&lt;/title&gt;&lt;/head&gt;</span><br><span class="hljs-string">&lt;body&gt;Hello</span> <span class="hljs-string">World&lt;/body&gt;</span><br><span class="hljs-string">&lt;/html&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>响应各部分说明：</strong></p>
+<table>
+<thead>
+<tr>
+<th>部分</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>状态行</strong></td>
+<td>三要素：HTTP 版本 + 状态码 + 状态描述，是响应的核心反馈</td>
+</tr>
+<tr>
+<td><strong>响应头</strong></td>
+<td>告诉客户端额外信息（Content-Type、Content-Length、Server 等）</td>
+</tr>
+<tr>
+<td><strong>空行</strong></td>
+<td>分隔响应头和响应体</td>
+</tr>
+<tr>
+<td><strong>响应体</strong></td>
+<td>服务器返回的实际内容（HTML 页面、JSON 数据、图片等）</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="6-八种请求方法"><a href="#6-八种请求方法" class="headerlink" title="6. 八种请求方法"></a>6. 八种请求方法</h3><table>
+<thead>
+<tr>
+<th>方法</th>
+<th>描述</th>
+<th>数据位置</th>
+<th>幂等</th>
+<th>常见场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>GET</strong></td>
+<td>获取资源</td>
+<td>URL（?后）</td>
+<td>✅ 幂等</td>
+<td>查询列表、查详情</td>
+</tr>
+<tr>
+<td><strong>POST</strong></td>
+<td>新增资源</td>
+<td>请求体</td>
+<td>❌ 非幂等</td>
+<td>注册、上传文件、登录</td>
+</tr>
+<tr>
+<td><strong>PUT</strong></td>
+<td>更新资源（全量）</td>
+<td>请求体</td>
+<td>✅ 幂等</td>
+<td>全量修改用户信息</td>
+</tr>
+<tr>
+<td><strong>DELETE</strong></td>
+<td>删除资源</td>
+<td>URL（可选）</td>
+<td>✅ 幂等</td>
+<td>删除评论、删除用户</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td>部分更新</td>
+<td>请求体</td>
+<td>❌ 非幂等</td>
+<td>只改某个字段</td>
+</tr>
+<tr>
+<td>HEAD</td>
+<td>获取响应头</td>
+<td>—</td>
+<td>✅ 幂等</td>
+<td>检查资源是否存在</td>
+</tr>
+<tr>
+<td>OPTIONS</td>
+<td>允许的方法</td>
+<td>—</td>
+<td>✅ 幂等</td>
+<td>跨域预检</td>
+</tr>
+<tr>
+<td>TRACE</td>
+<td>回显请求</td>
+<td>—</td>
+<td>✅ 幂等</td>
+<td>调试追踪</td>
+</tr>
+</tbody></table>
+<p><strong>幂等</strong>：简单理解就是”发 1 次和发 100 次效果一样”，GET&#x2F;PUT&#x2F;DELETE 是幂等的，POST&#x2F;PATCH 不是。</p>
+<p><strong>GET vs POST 最核心的区别：</strong></p>
+<table>
+<thead>
+<tr>
+<th>对比</th>
+<th>GET</th>
+<th>POST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>数据在哪</td>
+<td>URL 后 <code>?key=value</code></td>
+<td>请求体里</td>
+</tr>
+<tr>
+<td>数据可见性</td>
+<td>地址栏可见，不安全</td>
+<td>请求体里，相对安全</td>
+</tr>
+<tr>
+<td>长度限制</td>
+<td>浏览器通常限 2KB~8KB</td>
+<td>无限制</td>
+</tr>
+<tr>
+<td>能否收藏</td>
+<td>✅ 能（URL 确定）</td>
+<td>❌ 不能</td>
+</tr>
+<tr>
+<td>缓存</td>
+<td>✅ 有缓存</td>
+<td>❌ 无缓存</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="7-常用请求头与响应头"><a href="#7-常用请求头与响应头" class="headerlink" title="7. 常用请求头与响应头"></a>7. 常用请求头与响应头</h3><h4 id="常用请求头"><a href="#常用请求头" class="headerlink" title="常用请求头"></a>常用请求头</h4><table>
+<thead>
+<tr>
+<th>请求头</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Host</code></td>
+<td>目标服务器域名+端口</td>
+<td><code>Host: www.example.com</code></td>
+</tr>
+<tr>
+<td><code>User-Agent</code></td>
+<td>客户端类型（浏览器等）</td>
+<td><code>Mozilla/5.0 (Windows NT 10.0...)</code></td>
+</tr>
+<tr>
+<td><code>Accept</code></td>
+<td>告诉服务器客户端能接受什么</td>
+<td><code>Accept: application/json</code></td>
+</tr>
+<tr>
+<td><code>Content-Type</code></td>
+<td>请求体数据格式</td>
+<td><code>application/json</code>、<code>application/x-www-form-urlencoded</code></td>
+</tr>
+<tr>
+<td><code>Content-Length</code></td>
+<td>请求体字节长度</td>
+<td><code>Content-Length: 234</code></td>
+</tr>
+<tr>
+<td><code>Cookie</code></td>
+<td>携带客户端 Cookie</td>
+<td><code>JSESSIONID=xxx</code></td>
+</tr>
+<tr>
+<td><code>Authorization</code></td>
+<td>认证信息（Token 等）</td>
+<td><code>Bearer eyJhbGci...</code></td>
+</tr>
+</tbody></table>
+<h4 id="常用响应头"><a href="#常用响应头" class="headerlink" title="常用响应头"></a>常用响应头</h4><table>
+<thead>
+<tr>
+<th>响应头</th>
+<th>说明</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Content-Type</code></td>
+<td>响应体数据类型</td>
+<td><code>text/html; charset=UTF-8</code></td>
+</tr>
+<tr>
+<td><code>Content-Length</code></td>
+<td>响应体字节长度</td>
+<td><code>Content-Length: 12345</code></td>
+</tr>
+<tr>
+<td><code>Set-Cookie</code></td>
+<td>让客户端种 Cookie</td>
+<td><code>JSESSIONID=xxx; Path=/</code></td>
+</tr>
+<tr>
+<td><code>Cache-Control</code></td>
+<td>缓存策略</td>
+<td><code>Cache-Control: no-cache</code></td>
+</tr>
+<tr>
+<td><code>Access-Control-Allow-Origin</code></td>
+<td>跨域允许（解决 CORS）</td>
+<td><code>Access-Control-Allow-Origin: *</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="8-HTTP-状态码（重点）"><a href="#8-HTTP-状态码（重点）" class="headerlink" title="8. HTTP 状态码（重点）"></a>8. HTTP 状态码（重点）</h3><p>状态码由<strong>三位数字</strong>组成，第一个数字决定了状态码的类型：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">1xx  ─ 信息性  → 临时响应<br>2xx  ─ 成功    → 请求成功<br>3xx  ─ 重定向  → 需要进一步操作<br>4xx  ─ 客户端错误 → 请求有问题<br>5xx  ─ 服务器错误 → 服务器出了问题<br></code></pre></td></tr></table></figure>
+
+<h4 id="2xx-成功"><a href="#2xx-成功" class="headerlink" title="2xx 成功"></a>2xx 成功</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>200</strong></td>
+<td>OK</td>
+<td>最常见，GET&#x2F;POST 成功都返回这个</td>
+</tr>
+<tr>
+<td><strong>201</strong></td>
+<td>Created</td>
+<td>POST 新增资源成功（接口标准返回）</td>
+</tr>
+<tr>
+<td><strong>204</strong></td>
+<td>No Content</td>
+<td>成功但没有响应体（如 DELETE 成功）</td>
+</tr>
+</tbody></table>
+<h4 id="3xx-重定向"><a href="#3xx-重定向" class="headerlink" title="3xx 重定向"></a>3xx 重定向</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>使用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>301</strong></td>
+<td>永久移动</td>
+<td>域名换地址，浏览器会记住新地址</td>
+</tr>
+<tr>
+<td><strong>302</strong></td>
+<td>临时移动</td>
+<td>临时跳转（如未登录跳转登录页，<code>resp.sendRedirect()</code>）</td>
+</tr>
+<tr>
+<td><strong>304</strong></td>
+<td>Not Modified</td>
+<td>资源未修改，浏览器用缓存</td>
+</tr>
+</tbody></table>
+<h4 id="4xx-客户端错误（前端-调用方常遇到）"><a href="#4xx-客户端错误（前端-调用方常遇到）" class="headerlink" title="4xx 客户端错误（前端&#x2F;调用方常遇到）"></a>4xx 客户端错误（前端&#x2F;调用方常遇到）</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>常见原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>400</strong></td>
+<td>Bad Request</td>
+<td>请求参数格式错误、JSON 语法错、字段类型不对</td>
+</tr>
+<tr>
+<td><strong>401</strong></td>
+<td>Unauthorized</td>
+<td>未登录、未提供 Token</td>
+</tr>
+<tr>
+<td><strong>403</strong></td>
+<td>Forbidden</td>
+<td>已登录但没有权限</td>
+</tr>
+<tr>
+<td><strong>404</strong></td>
+<td>Not Found</td>
+<td>URL 路径写错、接口未部署、参数 id 不存在</td>
+</tr>
+<tr>
+<td><strong>405</strong></td>
+<td>Method Not Allowed</td>
+<td>请求方法写错了（如接口只支持 POST，你用了 GET）</td>
+</tr>
+<tr>
+<td><strong>422</strong></td>
+<td>Unprocessable Entity</td>
+<td>参数格式对了但语义有问题（如邮箱格式对但不存在）</td>
+</tr>
+<tr>
+<td><strong>429</strong></td>
+<td>Too Many Requests</td>
+<td>请求太频繁，被限流了</td>
+</tr>
+</tbody></table>
+<h4 id="5xx-服务器错误（服务端常遇到）"><a href="#5xx-服务器错误（服务端常遇到）" class="headerlink" title="5xx 服务器错误（服务端常遇到）"></a>5xx 服务器错误（服务端常遇到）</h4><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>常见原因</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>500</strong></td>
+<td>Internal Server Error</td>
+<td>服务器代码抛异常（空指针、SQL 错等，最常见）</td>
+</tr>
+<tr>
+<td><strong>502</strong></td>
+<td>Bad Gateway</td>
+<td>网关（如 Nginx）收到了上游服务器的错误响应</td>
+</tr>
+<tr>
+<td><strong>503</strong></td>
+<td>Service Unavailable</td>
+<td>服务器过载、维护中、停了</td>
+</tr>
+<tr>
+<td><strong>504</strong></td>
+<td>Gateway Timeout</td>
+<td>网关等上游服务器响应超时</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="9-常见状态码排查思路"><a href="#9-常见状态码排查思路" class="headerlink" title="9. 常见状态码排查思路"></a>9. 常见状态码排查思路</h3><h4 id="400-排查"><a href="#400-排查" class="headerlink" title="400 排查"></a>400 排查</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">请求参数格式有问题<br>  ├── JSON 数据语法错误（少了逗号、引号）<br>  ├── 字段名和接口文档不一致<br>  ├── 字段类型不对（接口要 Number，你传了 String）<br>  └── 请求头 Content-Type 不对<br></code></pre></td></tr></table></figure>
+
+<h4 id="404-排查（最常见）"><a href="#404-排查（最常见）" class="headerlink" title="404 排查（最常见）"></a>404 排查（最常见）</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">资源找不到<br>  ├── 第一步：检查 URL 路径有没有拼写错误<br>  ├── 第二步：检查接口是否已部署到服务器<br>  └── 第三步：检查服务端路由配置是否正确<br></code></pre></td></tr></table></figure>
+
+<h4 id="405-排查"><a href="#405-排查" class="headerlink" title="405 排查"></a>405 排查</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">请求方法不支持<br>  ├── 查接口文档，确认该接口支持哪些方法（GET/POST/PUT/DELETE）<br>  ├── 确认前端发送请求时用的是正确方法<br>  └── 确认后端接口的请求方法配置无误<br></code></pre></td></tr></table></figure>
+
+<h4 id="500-排查"><a href="#500-排查" class="headerlink" title="500 排查"></a>500 排查</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">服务器代码出错了<br>  ├── 查服务端日志，定位具体异常（如 NullPointerException、SQLException）<br>  ├── 检查数据库连接是否正常<br>  └── 检查第三方接口（支付、短信等）是否可用<br></code></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="10-GET-与-POST-实战场景对比"><a href="#10-GET-与-POST-实战场景对比" class="headerlink" title="10. GET 与 POST 实战场景对比"></a>10. GET 与 POST 实战场景对比</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>选择</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>用户登录</td>
+<td>POST</td>
+<td>密码放请求体里，比放 URL 更安全</td>
+</tr>
+<tr>
+<td>用户注册</td>
+<td>POST</td>
+<td>新增资源，数据隐私不能放 URL</td>
+</tr>
+<tr>
+<td>查询商品列表</td>
+<td>GET</td>
+<td>只读，参数放 URL 简洁</td>
+</tr>
+<tr>
+<td>查询商品详情</td>
+<td>GET</td>
+<td>只读，用路径参数 <code>/goods/123</code></td>
+</tr>
+<tr>
+<td>修改用户昵称</td>
+<td>PUT</td>
+<td>更新已有资源，数据放请求体更安全</td>
+</tr>
+<tr>
+<td>删除评论</td>
+<td>DELETE</td>
+<td>删除操作，幂等，用路径参数 <code>/comment/456</code></td>
+</tr>
+<tr>
+<td>上传图片</td>
+<td>POST</td>
+<td>大文件只能放请求体，URL 装不下</td>
+</tr>
+<tr>
+<td>搜索商品</td>
+<td>GET</td>
+<td>纯查询，放 URL 可分享、可收藏</td>
+</tr>
+</tbody></table>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://dyblott.github.io">Dyblott</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://dyblott.github.io/2026/09/09/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/">https://dyblott.github.io/2026/09/09/HTTP%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://dyblott.github.io" target="_blank">Dyblott's Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/HTTP/">HTTP</a></div><div class="post-share"><div class="social-share" data-image="/img/butterfly-icon.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2026/09/11/Spring/SpringMVC%E5%8F%82%E6%95%B0%E6%8E%A5%E6%94%B6/" title="SpringMVC参数接收"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">SpringMVC参数接收</div></div><div class="info-2"><div class="info-item-1">SpringMVC 参数接收1. 参数接收总览SpringMVC 支持从多个位置接收参数，核心规则是”参数名 &#x3D; 形参名”自动匹配：    接收方式 参数位置 示例    直接接收 URL ?key=value ?username=zhangsan   @RequestParam URL ?key=value 显式指定参数名、控制必填   实体类接收 URL ?key=value 批量接收，自动映射   @PathVariable URL 路径中 /user/123   @RequestBody 请求体（JSON） POST JSON 数据   @RequestHeader 请求头 取 Header 值   @CookieValue Cookie 取 Cookie 值    2. 方式一：直接接收 QueryString 参数最简单的方式：形参名 &#x3D; URL 参数 key，直接写就行。 12345678// 前端请求：http://localhost:8080/user/list?username=zhangsan&amp;status=1@GetMappin...</div></div></div></a><a class="pagination-related" href="/2026/09/08/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" title="网络编程"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">网络编程</div></div><div class="info-2"><div class="info-item-1">网络编程1. 网络编程是什么让设备和设备之间能互相”聊天”——把你的程序通过网络发给另一台设备，让它收到并处理。 两种架构对比：    架构 客户端 服务端 特点    CS 需要开发安装 需要开发 体验好，功能强大   BS 浏览器代替 需要开发 无需安装，浏览器访问即可    2. 网络编程三要素通信离不开三个东西：IP、端口号、传输协议。 1发送者（IP:端口）  ──传输协议──  接收者（IP:端口）   3. IP 地址IP（Internet Protocol） 是上网设备的唯一标识。    类型 说明    IPv4 32位，点分十进制（如 192.168.1.66），已用完   IPv6 128位，冒分十六进制，可为万物编号   特殊 IP：    地址 说明    127.0.0.1 &#x2F; localhost 本机回环地址，永远只代表本机   常用命令： 12ipconfig              # 查看本机 IPping www.baidu.com    # 检查网络是否通  DNS（域名解析）：把域名（www.baidu.com）解析成 IP ...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/butterfly-icon.png" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Dyblott</div><div class="author-info-description"></div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">72</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">85</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">42</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/xxxxxx"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/Dyblott" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3"><span class="toc-number">1.</span> <span class="toc-text">HTTP 协议详解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-HTTP-%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-number">1.1.</span> <span class="toc-text">1. HTTP 是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-HTTP-%E7%89%88%E6%9C%AC%E6%BC%94%E8%BF%9B"><span class="toc-number">1.2.</span> <span class="toc-text">2. HTTP 版本演进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-HTTP-%E9%80%9A%E4%BF%A1%E6%B5%81%E7%A8%8B"><span class="toc-number">1.3.</span> <span class="toc-text">3. HTTP 通信流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E8%AF%B7%E6%B1%82%E6%A0%BC%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">1.4.</span> <span class="toc-text">4. 请求格式（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E5%93%8D%E5%BA%94%E6%A0%BC%E5%BC%8F%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">1.5.</span> <span class="toc-text">5. 响应格式（重点）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%85%AB%E7%A7%8D%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95"><span class="toc-number">1.6.</span> <span class="toc-text">6. 八种请求方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%E5%B8%B8%E7%94%A8%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%B8%8E%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">1.7.</span> <span class="toc-text">7. 常用请求头与响应头</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E8%AF%B7%E6%B1%82%E5%A4%B4"><span class="toc-number">1.7.1.</span> <span class="toc-text">常用请求头</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%93%8D%E5%BA%94%E5%A4%B4"><span class="toc-number">1.7.2.</span> <span class="toc-text">常用响应头</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-HTTP-%E7%8A%B6%E6%80%81%E7%A0%81%EF%BC%88%E9%87%8D%E7%82%B9%EF%BC%89"><span class="toc-number">1.8.</span> <span class="toc-text">8. HTTP 状态码（重点）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2xx-%E6%88%90%E5%8A%9F"><span class="toc-number">1.8.1.</span> <span class="toc-text">2xx 成功</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3xx-%E9%87%8D%E5%AE%9A%E5%90%91"><span class="toc-number">1.8.2.</span> <span class="toc-text">3xx 重定向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4xx-%E5%AE%A2%E6%88%B7%E7%AB%AF%E9%94%99%E8%AF%AF%EF%BC%88%E5%89%8D%E7%AB%AF-%E8%B0%83%E7%94%A8%E6%96%B9%E5%B8%B8%E9%81%87%E5%88%B0%EF%BC%89"><span class="toc-number">1.8.3.</span> <span class="toc-text">4xx 客户端错误（前端&#x2F;调用方常遇到）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5xx-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%94%99%E8%AF%AF%EF%BC%88%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%B8%B8%E9%81%87%E5%88%B0%EF%BC%89"><span class="toc-number">1.8.4.</span> <span class="toc-text">5xx 服务器错误（服务端常遇到）</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-%E5%B8%B8%E8%A7%81%E7%8A%B6%E6%80%81%E7%A0%81%E6%8E%92%E6%9F%A5%E6%80%9D%E8%B7%AF"><span class="toc-number">1.9.</span> <span class="toc-text">9. 常见状态码排查思路</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#400-%E6%8E%92%E6%9F%A5"><span class="toc-number">1.9.1.</span> <span class="toc-text">400 排查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#404-%E6%8E%92%E6%9F%A5%EF%BC%88%E6%9C%80%E5%B8%B8%E8%A7%81%EF%BC%89"><span class="toc-number">1.9.2.</span> <span class="toc-text">404 排查（最常见）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#405-%E6%8E%92%E6%9F%A5"><span class="toc-number">1.9.3.</span> <span class="toc-text">405 排查</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#500-%E6%8E%92%E6%9F%A5"><span class="toc-number">1.9.4.</span> <span class="toc-text">500 排查</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-GET-%E4%B8%8E-POST-%E5%AE%9E%E6%88%98%E5%9C%BA%E6%99%AF%E5%AF%B9%E6%AF%94"><span class="toc-number">1.10.</span> <span class="toc-text">10. GET 与 POST 实战场景对比</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/12/Spring/Spring%20Boot%20%E6%A6%82%E8%BF%B0%E4%B8%8E%E6%A1%86%E6%9E%B6%E4%BD%93%E7%B3%BB/" title="无标题">无标题</a><time datetime="2026-09-11T17:20:15.053Z" title="发表于 2026-09-12 01:20:15">2026-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/12/Spring/Spring%20Boot%20Web%20%E5%BF%AB%E9%80%9F%E4%BD%93%E9%AA%8C/" title="无标题">无标题</a><time datetime="2026-09-11T17:20:15.053Z" title="发表于 2026-09-12 01:20:15">2026-09-12</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%E6%B3%A8%E8%A7%A3/" title="SpringMVC注解">SpringMVC注解</a><time datetime="2026-09-11T09:35:00.000Z" title="发表于 2026-09-11 17:35:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/Thymeleaf%E6%A8%A1%E6%9D%BF%E8%AF%AD%E6%B3%95/" title="Thymeleaf模板语法">Thymeleaf模板语法</a><time datetime="2026-09-11T09:35:00.000Z" title="发表于 2026-09-11 17:35:00">2026-09-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2026/09/11/Spring/SpringMVC%E6%B7%B7%E5%90%88%E5%BC%80%E5%8F%91/" title="SpringMVC混合开发">SpringMVC混合开发</a><time datetime="2026-09-11T09:15:00.000Z" title="发表于 2026-09-11 17:15:00">2026-09-11</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By Dyblott</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=5.7.0"></script><script src="/js/main.js?v=5.7.0"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
