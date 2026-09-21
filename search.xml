@@ -17662,4 +17662,185 @@
         <tag>单元测试</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Spring事务管理</title>
+    <url>/2026/09/21/Spring/Spring%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/</url>
+    <content><![CDATA[<h1 id="Spring事务管理"><a href="#Spring事务管理" class="headerlink" title="Spring事务管理"></a>Spring事务管理</h1><h2 id="1-什么是事务"><a href="#1-什么是事务" class="headerlink" title="1. 什么是事务"></a>1. 什么是事务</h2><p>事务是逻辑上的一组操作，这组操作要么<strong>全部成功</strong>，要么<strong>全部失败</strong>回滚。</p>
+<p><strong>ACID 特性：</strong></p>
+<ul>
+<li><strong>原子性（Atomicity）</strong>：事务是不可分割的最小单元，要么都做，要么都不做。</li>
+<li><strong>一致性（Consistency）</strong>：事务前后，数据从一个一致状态变到另一个一致状态。</li>
+<li><strong>隔离性（Isolation）</strong>：多个事务并发执行时，一个事务不应被其他事务干扰。</li>
+<li><strong>持久性（Durability）</strong>：事务一旦提交，对数据的修改是永久性的。</li>
+</ul>
+<h2 id="2-Spring-事务的两种管理方式"><a href="#2-Spring-事务的两种管理方式" class="headerlink" title="2. Spring 事务的两种管理方式"></a>2. Spring 事务的两种管理方式</h2><h3 id="2-1-编程式事务"><a href="#2-1-编程式事务" class="headerlink" title="2.1 编程式事务"></a>2.1 编程式事务</h3><p>通过 <code>TransactionTemplate</code> 或 <code>PlatformTransactionManager</code> 手动控制事务边界。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Autowired</span><br><span class="hljs-keyword">private</span> TransactionTemplate transactionTemplate;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">transfer</span><span class="hljs-params">()</span> &#123;<br>    transactionTemplate.execute(status -&gt; &#123;<br>        <span class="hljs-comment">// 业务代码</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;<br>    &#125;);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>缺点</strong>：侵入业务代码，冗余且不优雅。<strong>一般不推荐</strong>。</p>
+<h3 id="2-2-声明式事务（推荐）"><a href="#2-2-声明式事务（推荐）" class="headerlink" title="2.2 声明式事务（推荐）"></a>2.2 声明式事务（推荐）</h3><p>基于 AOP 实现，将事务管理逻辑与业务代码解耦。两种方式：</p>
+<ul>
+<li><strong>注解方式</strong>：<code>@Transactional</code>（最常用）</li>
+<li><strong>XML 配置方式</strong>：<code>&lt;tx:advice&gt;</code> + <code>&lt;aop:config&gt;</code></li>
+</ul>
+<h2 id="3-事务管理器-PlatformTransactionManager"><a href="#3-事务管理器-PlatformTransactionManager" class="headerlink" title="3. 事务管理器 PlatformTransactionManager"></a>3. 事务管理器 PlatformTransactionManager</h2><p>Spring 并不直接管理事务，而是提供统一的 <code>PlatformTransactionManager</code> 接口，由具体持久层框架的实现类负责：</p>
+<table>
+<thead>
+<tr>
+<th>实现类</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DataSourceTransactionManager</code></td>
+<td>JDBC、MyBatis</td>
+</tr>
+<tr>
+<td><code>HibernateTransactionManager</code></td>
+<td>Hibernate</td>
+</tr>
+<tr>
+<td><code>JpaTransactionManager</code></td>
+<td>JPA</td>
+</tr>
+<tr>
+<td><code>JtaTransactionManager</code></td>
+<td>分布式&#x2F;多数据源（JTA）</td>
+</tr>
+</tbody></table>
+<p>Spring 配置示例：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Bean</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">PlatformTransactionManager</span> <span class="hljs-title function_">transactionManager</span><span class="hljs-params">(DataSource dataSource)</span> &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DataSourceTransactionManager</span>(dataSource);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="4-Transactional-核心属性"><a href="#4-Transactional-核心属性" class="headerlink" title="4. @Transactional 核心属性"></a>4. @Transactional 核心属性</h2><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional(</span><br><span class="hljs-meta">    propagation = Propagation.REQUIRED,   // 传播行为</span><br><span class="hljs-meta">    isolation = Isolation.DEFAULT,          // 隔离级别</span><br><span class="hljs-meta">    timeout = 3,                           // 超时时间（秒）</span><br><span class="hljs-meta">    readOnly = false,                      // 是否只读</span><br><span class="hljs-meta">    rollbackFor = Exception.class,         // 指定回滚的异常</span><br><span class="hljs-meta">    noRollbackFor = RuntimeException.class // 指定不回滚的异常</span><br><span class="hljs-meta">)</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">businessMethod</span><span class="hljs-params">()</span> &#123; ... &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="5-七种事务传播行为（Propagation）"><a href="#5-七种事务传播行为（Propagation）" class="headerlink" title="5. 七种事务传播行为（Propagation）"></a>5. 七种事务传播行为（Propagation）</h2><p>传播行为解决：<strong>一个事务方法被另一个事务方法调用时，事务如何传播</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>传播行为</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>REQUIRED</code>（默认）</td>
+<td>有事务就加入，没有就新建</td>
+</tr>
+<tr>
+<td><code>REQUIRES_NEW</code></td>
+<td>挂起当前事务，新建独立事务，互不干扰</td>
+</tr>
+<tr>
+<td><code>SUPPORTS</code></td>
+<td>有事务就加入，没有就以非事务方式运行</td>
+</tr>
+<tr>
+<td><code>NOT_SUPPORTED</code></td>
+<td>以非事务方式运行，挂起当前事务</td>
+</tr>
+<tr>
+<td><code>MANDATORY</code></td>
+<td>必须有事务，否则抛异常</td>
+</tr>
+<tr>
+<td><code>NEVER</code></td>
+<td>必须无事务，否则抛异常</td>
+</tr>
+<tr>
+<td><code>NESTED</code></td>
+<td>有事务则在其内开启嵌套（保存点）子事务</td>
+</tr>
+</tbody></table>
+<h2 id="6-隔离级别（Isolation）"><a href="#6-隔离级别（Isolation）" class="headerlink" title="6. 隔离级别（Isolation）"></a>6. 隔离级别（Isolation）</h2><p>解决并发事务带来的脏读、不可重复读、幻读问题。</p>
+<table>
+<thead>
+<tr>
+<th>隔离级别</th>
+<th align="center">脏读</th>
+<th align="center">不可重复读</th>
+<th align="center">幻读</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>READ_UNCOMMITTED</code></td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td><code>READ_COMMITTED</code></td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td><code>REPEATABLE_READ</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">❌</td>
+</tr>
+<tr>
+<td><code>SERIALIZABLE</code></td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+<td align="center">✅</td>
+</tr>
+<tr>
+<td><code>DEFAULT</code></td>
+<td align="center">使用数据库默认（MySQL 一般为 REPEATABLE_READ）</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>✅ 表示可防止，❌ 表示可能出现。级别越高安全性越强，但性能越低。</p>
+</blockquote>
+<h2 id="7-回滚规则"><a href="#7-回滚规则" class="headerlink" title="7. 回滚规则"></a>7. 回滚规则</h2><p>默认规则：</p>
+<ul>
+<li><strong>RuntimeException 及其子类 + Error</strong>：<strong>自动回滚</strong></li>
+<li><strong>受检异常（Exception 但不继承 RuntimeException）</strong>：<strong>默认不回滚</strong></li>
+</ul>
+<p>如需改变默认行为：</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span>        <span class="hljs-comment">// 受检异常也回滚</span><br><span class="hljs-meta">@Transactional(noRollbackFor = RuntimeException.class)</span> <span class="hljs-comment">// 某些运行时异常不回滚，</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="8-常见坑：自调用失效"><a href="#8-常见坑：自调用失效" class="headerlink" title="8. 常见坑：自调用失效"></a>8. 常见坑：自调用失效</h2><p><code>@Transactional</code> 基于代理实现。<strong>同类内部方法互相调用</strong>时，绕过了代理，事务注解会<strong>失效</strong>。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodA</span><span class="hljs-params">()</span> &#123;<br>        methodB(); <span class="hljs-comment">// 自调用，@Transactional 失效！</span><br>    &#125;<br><br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodB</span><span class="hljs-params">()</span> &#123; ... &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>解决方案：</strong></p>
+<ol>
+<li>拆分为两个 Service，通过依赖注入互相调用；</li>
+<li>注入自身代理（<code>@Autowired private UserService self;</code> 再 <code>self.methodB()</code>）；</li>
+<li>使用 <code>AopContext.currentProxy()</code> 获取代理后调用。</li>
+</ol>
+<h2 id="9-代码实战示例"><a href="#9-代码实战示例" class="headerlink" title="9. 代码实战示例"></a>9. 代码实战示例</h2><h3 id="9-1-基础示例：转账（REQUIRED-默认传播）"><a href="#9-1-基础示例：转账（REQUIRED-默认传播）" class="headerlink" title="9.1 基础示例：转账（REQUIRED 默认传播）"></a>9.1 基础示例：转账（REQUIRED 默认传播）</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AccountService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> AccountMapper accountMapper;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 转账：从 from 扣钱，向 to 加钱</span><br><span class="hljs-comment">     * 默认 propagation = REQUIRED，readOnly = false</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Transactional(rollbackFor = Exception.class)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">transfer</span><span class="hljs-params">(String from, String to, BigDecimal amount)</span> &#123;<br>        <span class="hljs-comment">// 1. 扣款</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">rows1</span> <span class="hljs-operator">=</span> accountMapper.decrease(from, amount);<br>        <span class="hljs-keyword">if</span> (rows1 != <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;扣款失败：&quot;</span> + from);<br>        &#125;<br>        <span class="hljs-comment">// 2. 加款</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">rows2</span> <span class="hljs-operator">=</span> accountMapper.increase(to, amount);<br>        <span class="hljs-keyword">if</span> (rows2 != <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;加款失败：&quot;</span> + to);<br>        &#125;<br>        <span class="hljs-comment">// 任意一步抛异常，两步都会整体回滚</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-2-传播行为：REQUIRES-NEW-独立事务"><a href="#9-2-传播行为：REQUIRES-NEW-独立事务" class="headerlink" title="9.2 传播行为：REQUIRES_NEW 独立事务"></a>9.2 传播行为：REQUIRES_NEW 独立事务</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> OrderMapper orderMapper;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> LogService logService;<br><br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">createOrder</span><span class="hljs-params">(Order order)</span> &#123;<br>        orderMapper.insert(order);          <span class="hljs-comment">// 主事务</span><br>        <span class="hljs-comment">// 即使下方日志写入失败，订单仍会回滚</span><br>        logService.saveLog(<span class="hljs-string">&quot;创建订单: &quot;</span> + order.getId());<br>    &#125;<br>&#125;<br><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">LogService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> LogMapper logMapper;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 日志用独立事务：即使主事务回滚，日志依然落库，便于排查问题</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Transactional(propagation = Propagation.REQUIRES_NEW)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">saveLog</span><span class="hljs-params">(String msg)</span> &#123;<br>        logMapper.insert(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Log</span>(msg));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-3-只读事务（查询优化）"><a href="#9-3-只读事务（查询优化）" class="headerlink" title="9.3 只读事务（查询优化）"></a>9.3 只读事务（查询优化）</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReportService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> ReportMapper reportMapper;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 纯查询方法标记为只读，</span><br><span class="hljs-comment">     * 数据库/连接池可做优化（如避免不必要的加锁、Hint 提示）</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Transactional(readOnly = true)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">List</span>&lt;Report&gt; <span class="hljs-title function_">queryReports</span><span class="hljs-params">(LocalDate date)</span> &#123;<br>        <span class="hljs-keyword">return</span> reportMapper.selectByDate(date);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-4-超时与回滚规则"><a href="#9-4-超时与回滚规则" class="headerlink" title="9.4 超时与回滚规则"></a>9.4 超时与回滚规则</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PayService</span> &#123;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * timeout = 5：事务最多执行 5 秒，超时抛 TransactionTimedOutException 并回滚</span><br><span class="hljs-comment">     * rollbackFor：受检异常（如自定义 BusinessException）也回滚</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Transactional(timeout = 5, rollbackFor = BusinessException.class)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">pay</span><span class="hljs-params">(Long orderId, BigDecimal money)</span> <span class="hljs-keyword">throws</span> BusinessException &#123;<br>        <span class="hljs-keyword">if</span> (money.compareTo(BigDecimal.ZERO) &lt;= <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">BusinessException</span>(<span class="hljs-string">&quot;金额非法&quot;</span>); <span class="hljs-comment">// 受检异常，仍会回滚</span><br>        &#125;<br>        <span class="hljs-comment">// 支付处理逻辑...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-5-自调用失效与修复"><a href="#9-5-自调用失效与修复" class="headerlink" title="9.5 自调用失效与修复"></a>9.5 自调用失效与修复</h3><figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// ❌ 错误：同类自调用，methodB 上的事务不生效</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BadUserService</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodA</span><span class="hljs-params">()</span> &#123;<br>        methodB(); <span class="hljs-comment">// 直接调用，绕过代理</span><br>    &#125;<br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodB</span><span class="hljs-params">()</span> &#123; ... &#125;<br>&#125;<br><br><span class="hljs-comment">// ✅ 修复方案：注入自身代理后调用</span><br><span class="hljs-meta">@Service</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GoodUserService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> GoodUserService self; <span class="hljs-comment">// 注入代理对象</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodA</span><span class="hljs-params">()</span> &#123;<br>        self.methodB(); <span class="hljs-comment">// 通过代理调用，事务生效</span><br>    &#125;<br><br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">methodB</span><span class="hljs-params">()</span> &#123; ... &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="9-6-XML-配置方式（声明式事务，无注解）"><a href="#9-6-XML-配置方式（声明式事务，无注解）" class="headerlink" title="9.6 XML 配置方式（声明式事务，无注解）"></a>9.6 XML 配置方式（声明式事务，无注解）</h3><figure class="highlight xml"><table><tr><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 1. 配置事务管理器 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">bean</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;transactionManager&quot;</span></span><br><span class="hljs-tag">      <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;org.springframework.jdbc.datasource.DataSourceTransactionManager&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">property</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;dataSource&quot;</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">&quot;dataSource&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">bean</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 2. 配置事务通知（Advice） --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">tx:advice</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;txAdvice&quot;</span> <span class="hljs-attr">transaction-manager</span>=<span class="hljs-string">&quot;transactionManager&quot;</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">tx:attributes</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;transfer&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span> <span class="hljs-attr">rollback-for</span>=<span class="hljs-string">&quot;Exception&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;query*&quot;</span> <span class="hljs-attr">read-only</span>=<span class="hljs-string">&quot;true&quot;</span>/&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">tx:method</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;*&quot;</span> <span class="hljs-attr">propagation</span>=<span class="hljs-string">&quot;REQUIRED&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">tx:attributes</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">tx:advice</span>&gt;</span><br><br><span class="hljs-comment">&lt;!-- 3. 用 AOP 把事务织入到目标方法 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">aop:config</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">aop:pointcut</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;servicePc&quot;</span></span><br><span class="hljs-tag">        <span class="hljs-attr">expression</span>=<span class="hljs-string">&quot;execution(* com.example.service.*Service.*(..))&quot;</span>/&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">aop:advisor</span> <span class="hljs-attr">advice-ref</span>=<span class="hljs-string">&quot;txAdvice&quot;</span> <span class="hljs-attr">pointcut-ref</span>=<span class="hljs-string">&quot;servicePc&quot;</span>/&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">aop:config</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="10-小结"><a href="#10-小结" class="headerlink" title="10. 小结"></a>10. 小结</h2><ul>
+<li>日常开发优先使用 <strong><code>@Transactional</code> 声明式事务</strong>；</li>
+<li>传播行为重点关注 <code>REQUIRED</code> 与 <code>REQUIRES_NEW</code>；</li>
+<li>注意默认只对 <strong>RuntimeException 回滚</strong>，受检异常需显式配置；</li>
+<li>警惕 <strong>同类自调用导致事务失效</strong>；</li>
+<li>纯查询方法建议加 <code>readOnly = true</code> 提升性能。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Spring</category>
+        <category>事务管理</category>
+      </categories>
+      <tags>
+        <tag>Spring</tag>
+        <tag>事务管理</tag>
+        <tag>Transaction</tag>
+        <tag>Transactional</tag>
+        <tag>传播行为</tag>
+        <tag>隔离级别</tag>
+      </tags>
+  </entry>
 </search>
